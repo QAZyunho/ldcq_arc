@@ -1,0 +1,29 @@
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Configure stats pid to 102046
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Loading settings from /home/yunho/.config/wandb/settings
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Loading settings from /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/settings
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'training/train_skills.py', 'program_abspath': '/home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/train_skills.py', 'program': './train_skills.py'}
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_init.py:_log_setup():521] Logging user logs to /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211918-pmos569n/logs/debug.log
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_init.py:_log_setup():522] Logging internal logs to /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211918-pmos569n/logs/debug-internal.log
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_init.py:init():561] calling init triggers
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_init.py:init():568] wandb.init called with sweep_config: {}
+config: {'lr': 5e-05, 'h_dim': 32, 'z_dim': 16, 'H': 5, 'a_dim': 36, 'state_dim': 32, 'l2_reg': 0.0, 'beta': 0.01, 'env_name': 'ARCLE', 'a_dist': 'normal', 'filename': 'gpu0_skill_model_ARCLE_ 00.00', 'encoder_type': 'gru', 'state_decoder_type': 'mlp', 'policy_decoder_type': 'mlp', 'per_element_sigma': True, 'conditional_prior': 1, 'train_diffusion_prior': 0, 'separate_test_trajectories': 0, 'get_rewards': 1, 'normalize_latent': 0, 'append_goals': 0}
+2024-09-25 21:19:18,124 INFO    MainThread:102046 [wandb_init.py:init():611] starting backend
+2024-09-25 21:19:18,125 INFO    MainThread:102046 [wandb_init.py:init():615] setting up manager
+2024-09-25 21:19:18,125 INFO    MainThread:102046 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-09-25 21:19:18,126 INFO    MainThread:102046 [wandb_init.py:init():623] backend started and connected
+2024-09-25 21:19:18,128 INFO    MainThread:102046 [wandb_init.py:init():715] updated telemetry
+2024-09-25 21:19:18,134 INFO    MainThread:102046 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-09-25 21:19:18,831 INFO    MainThread:102046 [wandb_run.py:_on_init():2357] communicating current version
+2024-09-25 21:19:18,889 INFO    MainThread:102046 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.18.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-09-25 21:19:18,889 INFO    MainThread:102046 [wandb_init.py:init():799] starting run threads in backend
+2024-09-25 21:19:20,101 INFO    MainThread:102046 [wandb_run.py:_console_start():2335] atexit reg
+2024-09-25 21:19:20,101 INFO    MainThread:102046 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-09-25 21:19:20,101 INFO    MainThread:102046 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-09-25 21:19:20,101 INFO    MainThread:102046 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-09-25 21:19:20,102 INFO    MainThread:102046 [wandb_init.py:init():842] run started, returning control to user process
+2024-09-25 21:19:26,079 WARNING MsgRouterThr:102046 [router.py:message_loop():77] message_loop has been closed

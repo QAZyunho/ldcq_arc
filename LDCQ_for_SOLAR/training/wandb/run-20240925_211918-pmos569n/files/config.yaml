@@ -1,0 +1,90 @@
+wandb_version: 1
+
+lr:
+  desc: null
+  value: 5.0e-05
+h_dim:
+  desc: null
+  value: 32
+z_dim:
+  desc: null
+  value: 16
+H:
+  desc: null
+  value: 5
+a_dim:
+  desc: null
+  value: 36
+state_dim:
+  desc: null
+  value: 32
+l2_reg:
+  desc: null
+  value: 0.0
+beta:
+  desc: null
+  value: 0.01
+env_name:
+  desc: null
+  value: ARCLE
+a_dist:
+  desc: null
+  value: normal
+filename:
+  desc: null
+  value: gpu0_skill_model_ARCLE_ 00.00
+encoder_type:
+  desc: null
+  value: gru
+state_decoder_type:
+  desc: null
+  value: mlp
+policy_decoder_type:
+  desc: null
+  value: mlp
+per_element_sigma:
+  desc: null
+  value: true
+conditional_prior:
+  desc: null
+  value: 1
+train_diffusion_prior:
+  desc: null
+  value: 0
+separate_test_trajectories:
+  desc: null
+  value: 0
+get_rewards:
+  desc: null
+  value: 1
+normalize_latent:
+  desc: null
+  value: 0
+append_goals:
+  desc: null
+  value: 0
+_wandb:
+  desc: null
+  value:
+    python_version: 3.8.18
+    cli_version: 0.16.6
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1727266758.0
+    t:
+      1:
+      - 1
+      - 55
+      2:
+      - 1
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.8.18
+      5: 0.16.6
+      8:
+      - 5
+      13: linux-x86_64

@@ -1,0 +1,20 @@
+CUDA_VISIBLE_DEVICES=0 python ./collect_offline_q_learning_dataset.py \
+--env ARCLE \
+--solar_dir /home/yunho/ldcq_arc/ARC_Single/segment/train.10.09.12 \
+--data_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/data \
+--checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_ARCLE_00.00 \
+--q_checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu0_ARCLE_00.00 \
+--skill_model_filename gpu0_skill_model_ARCLE_00.00_best.pth \
+--diffusion_model_filename gpu0_skill_model_ARCLE_00.00_best_diffusion_prior_best.pt \
+--num_diffusion_samples 1 \
+--num_prior_samples 1 \
+--diffusion_steps 100 \
+--a_dim 36 \
+--z_dim 16 \
+--h_dim 32 \
+--skill_model_diffusion_steps 100 \
+--train_diffusion_prior 0 \
+--conditional_prior 1 \
+--normalize_latent 0 \
+--batch_size 64 \
+--max_grid_size 10 

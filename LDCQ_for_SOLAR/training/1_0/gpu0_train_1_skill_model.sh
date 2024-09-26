@@ -1,0 +1,21 @@
+CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
+--env ARCLE \
+--solar_dir /home/yunho/ldcq_arc/ARC_Single/segment/train.10.09.12 \
+--test_solar_dir /home/yunho/ldcq_arc/ARC_Single/segment/test.10.09.12 \
+--num_epochs 1 \
+--test_on True \
+--horizon 5 \
+--a_dim 36 \
+--z_dim 16 \
+--h_dim 32 \
+--s_dim 32 \
+--gpu_name gpu0 \
+--normalize_latent 0 \
+--diffusion_steps 100 \
+--beta 0.01 \
+--test_num 1000 \
+--test_cycle 10 \
+--save_cycle 20 \
+--batch_size 128 \
+--max_grid_size 10 \
+--date 09.25

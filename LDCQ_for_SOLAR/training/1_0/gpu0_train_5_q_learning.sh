@@ -1,0 +1,16 @@
+CUDA_VISIBLE_DEVICES=0 python ./train_q_net.py \
+--env ARCLE \
+--data_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/data \
+--checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_ARCLE_00.00 \
+--q_checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu0_ARCLE_00.00 \
+--skill_model_filename gpu0_skill_model_ARCLE_00.00_best.pth \
+--diffusion_model_filename gpu0_skill_model_ARCLE_00.00_best_diffusion_prior_best.pt \
+--total_prior_samples 1 \
+--num_prior_samples 1 \
+--n_epoch 1 \
+--diffusion_steps 100 \
+--gpu_name gpu0 \
+--a_dim 36 \
+--h_dim 32 \
+--batch_size 128 \
+--max_grid_size 10

@@ -1,0 +1,1196 @@
+nohup: 입력 무시
+Number of episodes: 500
+in decoder a_dist:  normal
+Render mode : None
+exec_horizon : 1
+q_checkpoint_step : 150
+policy : q
+test set : train.10.09.13
+task_id:  4c4377d9-expert_66
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 1 out of 1 i.e. Acc: 100.0%
+Reach answer: 1 out of 1 i.e. Acc: 100.0%
+task_id:  4c4377d9-expert_389
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 1 out of 2 i.e. Acc: 50.0%
+Reach answer: 1 out of 2 i.e. Acc: 50.0%
+task_id:  4c4377d9-expert_216
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 2 out of 3 i.e. Acc: 66.66666666666666%
+Reach answer: 2 out of 3 i.e. Acc: 66.66666666666666%
+task_id:  4c4377d9-expert_376
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 3 out of 4 i.e. Acc: 75.0%
+Reach answer: 3 out of 4 i.e. Acc: 75.0%
+task_id:  4c4377d9-expert_420
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 4 out of 5 i.e. Acc: 80.0%
+Reach answer: 4 out of 5 i.e. Acc: 80.0%
+task_id:  4c4377d9-expert_260
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 5 out of 6 i.e. Acc: 83.33333333333334%
+Reach answer: 5 out of 6 i.e. Acc: 83.33333333333334%
+task_id:  4c4377d9-expert_352
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 3 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 5 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 6 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 7
+Total score: 6 out of 7 i.e. Acc: 85.71428571428571%
+Reach answer: 6 out of 7 i.e. Acc: 85.71428571428571%
+task_id:  4c4377d9-expert_292
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 7 out of 8 i.e. Acc: 87.5%
+Reach answer: 7 out of 8 i.e. Acc: 87.5%
+task_id:  4c4377d9-expert_134
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 8 out of 9 i.e. Acc: 88.88888888888889%
+Reach answer: 8 out of 9 i.e. Acc: 88.88888888888889%
+task_id:  4c4377d9-expert_61
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 8 out of 10 i.e. Acc: 80.0%
+Reach answer: 8 out of 10 i.e. Acc: 80.0%
+task_id:  4c4377d9-expert_39
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 9 out of 11 i.e. Acc: 81.81818181818183%
+Reach answer: 9 out of 11 i.e. Acc: 81.81818181818183%
+task_id:  4c4377d9-expert_327
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 5, y: 0, h : 4, w : 4
+Step: 4 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 5 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 6 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 7 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 8 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 9 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 10 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 11 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 12 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 13 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 14 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 15 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 16 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 17
+Total score: 9 out of 12 i.e. Acc: 75.0%
+Reach answer: 9 out of 12 i.e. Acc: 75.0%
+task_id:  4c4377d9-expert_452
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 10 out of 13 i.e. Acc: 76.92307692307693%
+Reach answer: 10 out of 13 i.e. Acc: 76.92307692307693%
+task_id:  4c4377d9-expert_335
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 11 out of 14 i.e. Acc: 78.57142857142857%
+Reach answer: 11 out of 14 i.e. Acc: 78.57142857142857%
+task_id:  4c4377d9-expert_427
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 12 out of 15 i.e. Acc: 80.0%
+Reach answer: 12 out of 15 i.e. Acc: 80.0%
+task_id:  4c4377d9-expert_97
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 13 out of 16 i.e. Acc: 81.25%
+Reach answer: 13 out of 16 i.e. Acc: 81.25%
+task_id:  4c4377d9-expert_79
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 14 out of 17 i.e. Acc: 82.35294117647058%
+Reach answer: 14 out of 17 i.e. Acc: 82.35294117647058%
+task_id:  4c4377d9-expert_57
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 15 out of 18 i.e. Acc: 83.33333333333334%
+Reach answer: 15 out of 18 i.e. Acc: 83.33333333333334%
+task_id:  4c4377d9-expert_430
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 16 out of 19 i.e. Acc: 84.21052631578947%
+Reach answer: 16 out of 19 i.e. Acc: 84.21052631578947%
+task_id:  4c4377d9-expert_308
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 17 out of 20 i.e. Acc: 85.0%
+Reach answer: 17 out of 20 i.e. Acc: 85.0%
+task_id:  4c4377d9-expert_298
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 18 out of 21 i.e. Acc: 85.71428571428571%
+Reach answer: 18 out of 21 i.e. Acc: 85.71428571428571%
+task_id:  4c4377d9-expert_224
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 5 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 6 | op: 27, x: 3, y: 0, h : 2, w : 2
+Step: 7 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 8 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 9 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 10 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 11 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 12 | op: 26, x: 3, y: 0, h : 2, w : 2
+Step: 13 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 14 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 15 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 16 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 17 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 18 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 19 | op: 27, x: 0, y: 0, h : 2, w : 2
+env_step : 20
+Total score: 18 out of 22 i.e. Acc: 81.81818181818183%
+Reach answer: 19 out of 22 i.e. Acc: 86.36363636363636%
+task_id:  4c4377d9-expert_383
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 19 out of 23 i.e. Acc: 82.6086956521739%
+Reach answer: 20 out of 23 i.e. Acc: 86.95652173913044%
+task_id:  4c4377d9-expert_295
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 20 out of 24 i.e. Acc: 83.33333333333334%
+Reach answer: 21 out of 24 i.e. Acc: 87.5%
+task_id:  4c4377d9-expert_393
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 21 out of 25 i.e. Acc: 84.0%
+Reach answer: 22 out of 25 i.e. Acc: 88.0%
+task_id:  4c4377d9-expert_356
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 22 out of 26 i.e. Acc: 84.61538461538461%
+Reach answer: 23 out of 26 i.e. Acc: 88.46153846153845%
+task_id:  4c4377d9-expert_5
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 23 out of 27 i.e. Acc: 85.18518518518519%
+Reach answer: 24 out of 27 i.e. Acc: 88.88888888888889%
+task_id:  4c4377d9-expert_386
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 24 out of 28 i.e. Acc: 85.71428571428571%
+Reach answer: 25 out of 28 i.e. Acc: 89.28571428571429%
+task_id:  4c4377d9-expert_118
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 25 out of 29 i.e. Acc: 86.20689655172413%
+Reach answer: 26 out of 29 i.e. Acc: 89.65517241379311%
+task_id:  4c4377d9-expert_385
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 26 out of 30 i.e. Acc: 86.66666666666667%
+Reach answer: 27 out of 30 i.e. Acc: 90.0%
+task_id:  4c4377d9-expert_309
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 27 out of 31 i.e. Acc: 87.09677419354838%
+Reach answer: 28 out of 31 i.e. Acc: 90.32258064516128%
+task_id:  4c4377d9-expert_230
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 28 out of 32 i.e. Acc: 87.5%
+Reach answer: 29 out of 32 i.e. Acc: 90.625%
+task_id:  4c4377d9-expert_93
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 29 out of 33 i.e. Acc: 87.87878787878788%
+Reach answer: 30 out of 33 i.e. Acc: 90.9090909090909%
+task_id:  4c4377d9-expert_110
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 30 out of 34 i.e. Acc: 88.23529411764706%
+Reach answer: 31 out of 34 i.e. Acc: 91.17647058823529%
+task_id:  4c4377d9-expert_236
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 31 out of 35 i.e. Acc: 88.57142857142857%
+Reach answer: 32 out of 35 i.e. Acc: 91.42857142857143%
+task_id:  4c4377d9-expert_434
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 32 out of 36 i.e. Acc: 88.88888888888889%
+Reach answer: 33 out of 36 i.e. Acc: 91.66666666666666%
+task_id:  4c4377d9-expert_180
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 32 out of 37 i.e. Acc: 86.48648648648648%
+Reach answer: 33 out of 37 i.e. Acc: 89.1891891891892%
+task_id:  4c4377d9-expert_245
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 33 out of 38 i.e. Acc: 86.8421052631579%
+Reach answer: 34 out of 38 i.e. Acc: 89.47368421052632%
+task_id:  4c4377d9-expert_14
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 34 out of 39 i.e. Acc: 87.17948717948718%
+Reach answer: 35 out of 39 i.e. Acc: 89.74358974358975%
+task_id:  4c4377d9-expert_183
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 34, x: 0, y: 0, h : 7, w : 3
+Step: 4 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 5 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 6
+Total score: 35 out of 40 i.e. Acc: 87.5%
+Reach answer: 36 out of 40 i.e. Acc: 90.0%
+task_id:  4c4377d9-expert_391
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 36 out of 41 i.e. Acc: 87.8048780487805%
+Reach answer: 37 out of 41 i.e. Acc: 90.2439024390244%
+task_id:  4c4377d9-expert_248
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 37 out of 42 i.e. Acc: 88.09523809523809%
+Reach answer: 38 out of 42 i.e. Acc: 90.47619047619048%
+task_id:  4c4377d9-expert_58
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 38 out of 43 i.e. Acc: 88.37209302325581%
+Reach answer: 39 out of 43 i.e. Acc: 90.69767441860465%
+task_id:  4c4377d9-expert_188
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 39 out of 44 i.e. Acc: 88.63636363636364%
+Reach answer: 40 out of 44 i.e. Acc: 90.9090909090909%
+task_id:  4c4377d9-expert_169
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 40 out of 45 i.e. Acc: 88.88888888888889%
+Reach answer: 41 out of 45 i.e. Acc: 91.11111111111111%
+task_id:  4c4377d9-expert_421
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 41 out of 46 i.e. Acc: 89.13043478260869%
+Reach answer: 42 out of 46 i.e. Acc: 91.30434782608695%
+task_id:  4c4377d9-expert_263
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 41 out of 47 i.e. Acc: 87.2340425531915%
+Reach answer: 42 out of 47 i.e. Acc: 89.36170212765957%
+task_id:  4c4377d9-expert_142
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 42 out of 48 i.e. Acc: 87.5%
+Reach answer: 43 out of 48 i.e. Acc: 89.58333333333334%
+task_id:  4c4377d9-expert_296
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 43 out of 49 i.e. Acc: 87.75510204081633%
+Reach answer: 44 out of 49 i.e. Acc: 89.79591836734694%
+task_id:  4c4377d9-expert_400
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 44 out of 50 i.e. Acc: 88.0%
+Reach answer: 45 out of 50 i.e. Acc: 90.0%
+task_id:  4c4377d9-expert_459
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 45 out of 51 i.e. Acc: 88.23529411764706%
+Reach answer: 46 out of 51 i.e. Acc: 90.19607843137256%
+task_id:  4c4377d9-expert_363
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 46 out of 52 i.e. Acc: 88.46153846153845%
+Reach answer: 47 out of 52 i.e. Acc: 90.38461538461539%
+task_id:  4c4377d9-expert_279
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 47 out of 53 i.e. Acc: 88.67924528301887%
+Reach answer: 48 out of 53 i.e. Acc: 90.56603773584906%
+task_id:  4c4377d9-expert_282
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 48 out of 54 i.e. Acc: 88.88888888888889%
+Reach answer: 49 out of 54 i.e. Acc: 90.74074074074075%
+task_id:  4c4377d9-expert_151
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 49 out of 55 i.e. Acc: 89.0909090909091%
+Reach answer: 50 out of 55 i.e. Acc: 90.9090909090909%
+task_id:  4c4377d9-expert_301
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 50 out of 56 i.e. Acc: 89.28571428571429%
+Reach answer: 51 out of 56 i.e. Acc: 91.07142857142857%
+task_id:  4c4377d9-expert_402
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 5 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 6
+Total score: 50 out of 57 i.e. Acc: 87.71929824561403%
+Reach answer: 51 out of 57 i.e. Acc: 89.47368421052632%
+task_id:  4c4377d9-expert_268
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 51 out of 58 i.e. Acc: 87.93103448275862%
+Reach answer: 52 out of 58 i.e. Acc: 89.65517241379311%
+task_id:  4c4377d9-expert_476
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 52 out of 59 i.e. Acc: 88.13559322033898%
+Reach answer: 53 out of 59 i.e. Acc: 89.83050847457628%
+task_id:  4c4377d9-expert_19
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 24, x: 4, y: 0, h : 3, w : 3
+Step: 4 | op: 25, x: 4, y: 0, h : 3, w : 3
+Step: 5 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 6 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 7
+Total score: 53 out of 60 i.e. Acc: 88.33333333333333%
+Reach answer: 54 out of 60 i.e. Acc: 90.0%
+task_id:  4c4377d9-expert_7
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 54 out of 61 i.e. Acc: 88.52459016393442%
+Reach answer: 55 out of 61 i.e. Acc: 90.1639344262295%
+task_id:  4c4377d9-expert_366
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 55 out of 62 i.e. Acc: 88.70967741935483%
+Reach answer: 56 out of 62 i.e. Acc: 90.32258064516128%
+task_id:  4c4377d9-expert_377
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 56 out of 63 i.e. Acc: 88.88888888888889%
+Reach answer: 57 out of 63 i.e. Acc: 90.47619047619048%
+task_id:  4c4377d9-expert_21
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 57 out of 64 i.e. Acc: 89.0625%
+Reach answer: 58 out of 64 i.e. Acc: 90.625%
+task_id:  4c4377d9-expert_159
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 58 out of 65 i.e. Acc: 89.23076923076924%
+Reach answer: 59 out of 65 i.e. Acc: 90.76923076923077%
+task_id:  4c4377d9-expert_199
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 59 out of 66 i.e. Acc: 89.39393939393939%
+Reach answer: 60 out of 66 i.e. Acc: 90.9090909090909%
+task_id:  4c4377d9-expert_304
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 60 out of 67 i.e. Acc: 89.55223880597015%
+Reach answer: 61 out of 67 i.e. Acc: 91.04477611940298%
+task_id:  4c4377d9-expert_70
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 24, x: 4, y: 0, h : 3, w : 3
+Step: 5 | op: 34, x: 0, y: 0, h : 7, w : 3
+Step: 6 | op: 34, x: 0, y: 0, h : 7, w : 3
+Step: 7 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 8
+Total score: 60 out of 68 i.e. Acc: 88.23529411764706%
+Reach answer: 62 out of 68 i.e. Acc: 91.17647058823529%
+task_id:  4c4377d9-expert_387
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 61 out of 69 i.e. Acc: 88.40579710144928%
+Reach answer: 63 out of 69 i.e. Acc: 91.30434782608695%
+task_id:  4c4377d9-expert_221
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 62 out of 70 i.e. Acc: 88.57142857142857%
+Reach answer: 64 out of 70 i.e. Acc: 91.42857142857143%
+task_id:  4c4377d9-expert_413
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 63 out of 71 i.e. Acc: 88.73239436619718%
+Reach answer: 65 out of 71 i.e. Acc: 91.54929577464789%
+task_id:  4c4377d9-expert_29
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 64 out of 72 i.e. Acc: 88.88888888888889%
+Reach answer: 66 out of 72 i.e. Acc: 91.66666666666666%
+task_id:  4c4377d9-expert_500
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 65 out of 73 i.e. Acc: 89.04109589041096%
+Reach answer: 67 out of 73 i.e. Acc: 91.78082191780823%
+task_id:  4c4377d9-expert_343
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 25, x: 4, y: 0, h : 3, w : 3
+Step: 4 | op: 27, x: 4, y: 0, h : 3, w : 3
+Step: 5 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 6 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 7 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 8 | op: 27, x: 4, y: 0, h : 3, w : 3
+Step: 9 | op: 25, x: 4, y: 0, h : 3, w : 3
+Step: 10 | op: 27, x: 4, y: 0, h : 3, w : 3
+Step: 11 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 12 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 13 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 14 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 15 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 16 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 17 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 18 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 19 | op: 34, x: 0, y: 0, h : 7, w : 3
+env_step : 20
+Total score: 65 out of 74 i.e. Acc: 87.83783783783784%
+Reach answer: 67 out of 74 i.e. Acc: 90.54054054054053%
+task_id:  4c4377d9-expert_258
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 66 out of 75 i.e. Acc: 88.0%
+Reach answer: 68 out of 75 i.e. Acc: 90.66666666666666%
+task_id:  4c4377d9-expert_300
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 67 out of 76 i.e. Acc: 88.1578947368421%
+Reach answer: 69 out of 76 i.e. Acc: 90.78947368421053%
+task_id:  4c4377d9-expert_415
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 68 out of 77 i.e. Acc: 88.31168831168831%
+Reach answer: 70 out of 77 i.e. Acc: 90.9090909090909%
+task_id:  4c4377d9-expert_353
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 69 out of 78 i.e. Acc: 88.46153846153845%
+Reach answer: 71 out of 78 i.e. Acc: 91.02564102564102%
+task_id:  4c4377d9-expert_41
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 70 out of 79 i.e. Acc: 88.60759493670885%
+Reach answer: 72 out of 79 i.e. Acc: 91.13924050632912%
+task_id:  4c4377d9-expert_305
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 71 out of 80 i.e. Acc: 88.75%
+Reach answer: 73 out of 80 i.e. Acc: 91.25%
+task_id:  4c4377d9-expert_96
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 72 out of 81 i.e. Acc: 88.88888888888889%
+Reach answer: 74 out of 81 i.e. Acc: 91.35802469135803%
+task_id:  4c4377d9-expert_237
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 34, x: 0, y: 0, h : 7, w : 3
+Step: 4 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 5 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 6
+Total score: 73 out of 82 i.e. Acc: 89.02439024390245%
+Reach answer: 75 out of 82 i.e. Acc: 91.46341463414635%
+task_id:  4c4377d9-expert_244
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 74 out of 83 i.e. Acc: 89.1566265060241%
+Reach answer: 76 out of 83 i.e. Acc: 91.56626506024097%
+task_id:  4c4377d9-expert_283
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 34, x: 0, y: 0, h : 9, w : 4
+Step: 4 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 5 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 6 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 7 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 8
+Total score: 75 out of 84 i.e. Acc: 89.28571428571429%
+Reach answer: 77 out of 84 i.e. Acc: 91.66666666666666%
+task_id:  4c4377d9-expert_495
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 34, x: 0, y: 0, h : 7, w : 3
+Step: 4 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 5 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 6
+Total score: 76 out of 85 i.e. Acc: 89.41176470588236%
+Reach answer: 78 out of 85 i.e. Acc: 91.76470588235294%
+task_id:  4c4377d9-expert_127
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 77 out of 86 i.e. Acc: 89.53488372093024%
+Reach answer: 79 out of 86 i.e. Acc: 91.86046511627907%
+task_id:  4c4377d9-expert_461
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 78 out of 87 i.e. Acc: 89.65517241379311%
+/home/jovyan/beomi/jaehyun/Diffuser_Ours/models/skill_model.py:303: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  state = torch.reshape(torch.tensor(state, device=torch.device('cuda:0'), dtype=torch.float32), (state_shape[0],1,-1))
+/home/jovyan/beomi/jaehyun/Diffuser_Ours/models/skill_model.py:306: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  clip = torch.reshape(torch.tensor(clip, device=torch.device('cuda:0'), dtype=torch.float32), (clip_shape[0],1,-1))
+/home/jovyan/beomi/jaehyun/Diffuser_Ours/models/skill_model.py:309: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  in_grid = torch.reshape(torch.tensor(in_grid, device=torch.device('cuda:0'), dtype=torch.float32), (in_grid_shape[0],1,-1))
+Reach answer: 80 out of 87 i.e. Acc: 91.95402298850574%
+task_id:  4c4377d9-expert_471
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 4
+Total score: 79 out of 88 i.e. Acc: 89.77272727272727%
+Reach answer: 81 out of 88 i.e. Acc: 92.04545454545455%
+task_id:  4c4377d9-expert_234
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 80 out of 89 i.e. Acc: 89.8876404494382%
+Reach answer: 82 out of 89 i.e. Acc: 92.13483146067416%
+task_id:  4c4377d9-expert_147
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 26, x: 0, y: 0, h : 3, w : 3
+Step: 5 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 6 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 7 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 8 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 9 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 10 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 11 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 12 | op: 24, x: 0, y: 0, h : 3, w : 3
+Step: 13 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 14 | op: 25, x: 0, y: 0, h : 3, w : 3
+Step: 15 | op: 34, x: 0, y: 0, h : 7, w : 3
+Step: 16 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 17 | op: 24, x: 4, y: 0, h : 3, w : 3
+Step: 18 | op: 26, x: 0, y: 0, h : 3, w : 3
+Step: 19 | op: 27, x: 0, y: 0, h : 3, w : 3
+env_step : 20
+Total score: 80 out of 90 i.e. Acc: 88.88888888888889%
+Reach answer: 83 out of 90 i.e. Acc: 92.22222222222223%
+task_id:  4c4377d9-expert_498
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 4
+Total score: 81 out of 91 i.e. Acc: 89.01098901098901%
+Reach answer: 84 out of 91 i.e. Acc: 92.3076923076923%
+task_id:  4c4377d9-expert_285
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 82 out of 92 i.e. Acc: 89.13043478260869%
+Reach answer: 85 out of 92 i.e. Acc: 92.3913043478261%
+task_id:  4c4377d9-expert_286
+Step: 0 | op: 33, x: 0, y: 0, h : 7, w : 3
+Step: 1 | op: 29, x: 0, y: 0, h : 3, w : 3
+Step: 2 | op: 30, x: 4, y: 0, h : 3, w : 3
+Step: 3 | op: 27, x: 0, y: 0, h : 3, w : 3
+Step: 4 | op: 34, x: 0, y: 0, h : 7, w : 3
+Terminal!!
+================================================================
+env_step : 5
+Total score: 83 out of 93 i.e. Acc: 89.24731182795699%
+Reach answer: 86 out of 93 i.e. Acc: 92.47311827956989%
+task_id:  4c4377d9-expert_266
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 84 out of 94 i.e. Acc: 89.36170212765957%
+Reach answer: 87 out of 94 i.e. Acc: 92.5531914893617%
+task_id:  4c4377d9-expert_233
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 85 out of 95 i.e. Acc: 89.47368421052632%
+Reach answer: 88 out of 95 i.e. Acc: 92.63157894736842%
+task_id:  4c4377d9-expert_101
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 4
+Total score: 86 out of 96 i.e. Acc: 89.58333333333334%
+Reach answer: 89 out of 96 i.e. Acc: 92.70833333333334%
+task_id:  4c4377d9-expert_436
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 5
+Total score: 87 out of 97 i.e. Acc: 89.69072164948454%
+Reach answer: 90 out of 97 i.e. Acc: 92.78350515463917%
+task_id:  4c4377d9-expert_290
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 4
+Total score: 88 out of 98 i.e. Acc: 89.79591836734694%
+Reach answer: 91 out of 98 i.e. Acc: 92.85714285714286%
+task_id:  4c4377d9-expert_117
+Step: 0 | op: 33, x: 0, y: 0, h : 9, w : 4
+Step: 1 | op: 29, x: 0, y: 0, h : 4, w : 4
+Step: 2 | op: 30, x: 5, y: 0, h : 4, w : 4
+Step: 3 | op: 27, x: 0, y: 0, h : 4, w : 4
+Step: 4 | op: 34, x: 0, y: 0, h : 9, w : 4
+Terminal!!
+================================================================
+env_step : 5
+Total score: 89 out of 99 i.e. Acc: 89.8989898989899%
+Reach answer: 92 out of 99 i.e. Acc: 92.92929292929293%
+task_id:  4c4377d9-expert_371
+Step: 0 | op: 33, x: 0, y: 0, h : 5, w : 2
+Step: 1 | op: 29, x: 0, y: 0, h : 2, w : 2
+Step: 2 | op: 30, x: 3, y: 0, h : 2, w : 2
+Step: 3 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 4 | op: 24, x: 0, y: 0, h : 2, w : 2
+Step: 5 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 6 | op: 34, x: 0, y: 0, h : 2, w : 2
+Step: 7 | op: 24, x: 3, y: 0, h : 2, w : 2
+Step: 8 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 9 | op: 24, x: 0, y: 0, h : 2, w : 2
+Step: 10 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 11 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 12 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 13 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 14 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 15 | op: 27, x: 0, y: 0, h : 2, w : 2
+Step: 16 | op: 24, x: 3, y: 0, h : 2, w : 2
+Step: 17 | op: 34, x: 0, y: 0, h : 5, w : 2
+Step: 18 | op: 34, x: 0, y: 0, h : 5, w : 2
+Terminal!!
+================================================================
+env_step : 19
+Total score: 89 out of 100 i.e. Acc: 89.0%
+Reach answer: 93 out of 100 i.e. Acc: 93.0%

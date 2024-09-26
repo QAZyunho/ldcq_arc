@@ -1,0 +1,12 @@
+  0%|                                                                                           | 0/432 [00:00<?, ?it/s]
+Epoch:   0%|                                                                                      | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "./train_q_net.py", line 261, in <module>
+    train(args)
+  File "./train_q_net.py", line 217, in train
+    dqn_agent.learn(dataload_train=per_buffer, n_epochs=args.n_epoch,
+  File "/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/dqn.py", line 155, in learn
+    s0, clip0, in_grid, z, reward, sT, clip_T, dones, pair_in, pair_out, indices, weights, max_latents = dataload_train.sample(batch_size, beta)
+  File "/home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/per_utils.py", line 143, in sample
+    sT = self.sT[indices]
+AttributeError: 'FixedPrioritizedBuffer' object has no attribute 'sT'

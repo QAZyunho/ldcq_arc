@@ -1,0 +1,30 @@
+  0%|                                                                                           | 0/432 [00:00<?, ?it/s]
+Epoch:   0%|                                                                                      | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "./train_q_net.py", line 261, in <module>
+    train(args)
+  File "./train_q_net.py", line 217, in train
+    dqn_agent.learn(dataload_train=per_buffer, n_epochs=args.n_epoch,
+  File "/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/dqn.py", line 174, in learn
+    q_s0z = self.q_net_0(s0, clip0, in_grid, z, pair_in, pair_out)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/q_learning_models.py", line 91, in forward
+    s_emb = self.state_emb_layer(s)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/container.py", line 215, in forward
+    input = module(input)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 460, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 456, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [32, 1, 1, 1], expected input[1, 128, 10, 10] to have 1 channels, but got 128 channels instead

@@ -1,0 +1,17 @@
+Test skill model :   0%|                                                                       | 0/1000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "./train_skills.py", line 412, in <module>
+    test_loss, test_s_T_loss, test_a_loss, test_kl_loss, test_diffusion_loss = test(model, train_loader, test_state_decoder = i > start_training_state_decoder_after, test_num=args.test_num)
+  File "./train_skills.py", line 97, in test
+    loss_tot, a_loss, x_loss, y_loss,  h_loss, w_loss, kl_loss, diffusion_loss = model.get_losses(states, clip, in_grid, actions, selection, pair_in, pair_out, test_state_decoder)
+  File "/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/skill_model.py", line 912, in get_losses
+    z_prior_means, z_prior_sigs = self.prior(states[:,0:1,:], clip[:,0:1,:], in_grid, pair_in, pair_out)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/skill_model.py", line 720, in forward
+    s_emb = self.state_emb_layer(s0.reshape(-1, 1, self.max_grid_size, self.max_grid_size).type(torch.float32).contiguous())    # (batch * block_size, h_dim)
+  File "/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1695, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'Prior' object has no attribute 'max_grid_size'

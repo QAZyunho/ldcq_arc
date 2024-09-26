@@ -1,0 +1,12 @@
+ARC_data/*/*/
+*.json
+*__pycache__*
+*.gif
+*.png
+not_use/
+working/
+*:Zone.Identifier
+
+!generate_trace.gif
+!visualization_example.gif
+!visualization_example.png

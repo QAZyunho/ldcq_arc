@@ -1,0 +1,183 @@
+2024-09-25 21:17:47,272 INFO    StreamThr :101702 [internal.py:wandb_internal():86] W&B internal server running at pid: 101702, started at: 2024-09-25 21:17:47.272646
+2024-09-25 21:17:47,273 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: status
+2024-09-25 21:17:47,275 INFO    WriterThread:101702 [datastore.py:open_for_write():87] open: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/run-tn3eb9qk.wandb
+2024-09-25 21:17:47,275 DEBUG   SenderThread:101702 [sender.py:send():379] send: header
+2024-09-25 21:17:47,282 DEBUG   SenderThread:101702 [sender.py:send():379] send: run
+2024-09-25 21:17:47,974 INFO    SenderThread:101702 [dir_watcher.py:__init__():211] watching files in: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files
+2024-09-25 21:17:47,975 INFO    SenderThread:101702 [sender.py:_start_run_threads():1124] run started: tn3eb9qk with start time 1727266667.272423
+2024-09-25 21:17:47,978 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: check_version
+2024-09-25 21:17:47,979 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: check_version
+2024-09-25 21:17:48,052 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: run_start
+2024-09-25 21:17:48,059 DEBUG   HandlerThread:101702 [system_info.py:__init__():26] System info init
+2024-09-25 21:17:48,059 DEBUG   HandlerThread:101702 [system_info.py:__init__():41] System info init done
+2024-09-25 21:17:48,059 INFO    HandlerThread:101702 [system_monitor.py:start():194] Starting system monitor
+2024-09-25 21:17:48,059 INFO    SystemMonitor:101702 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-09-25 21:17:48,060 INFO    HandlerThread:101702 [system_monitor.py:probe():214] Collecting system info
+2024-09-25 21:17:48,060 INFO    SystemMonitor:101702 [interfaces.py:start():190] Started cpu monitoring
+2024-09-25 21:17:48,060 INFO    SystemMonitor:101702 [interfaces.py:start():190] Started disk monitoring
+2024-09-25 21:17:48,061 INFO    SystemMonitor:101702 [interfaces.py:start():190] Started gpu monitoring
+2024-09-25 21:17:48,061 INFO    SystemMonitor:101702 [interfaces.py:start():190] Started memory monitoring
+2024-09-25 21:17:48,062 INFO    SystemMonitor:101702 [interfaces.py:start():190] Started network monitoring
+2024-09-25 21:17:48,074 DEBUG   HandlerThread:101702 [system_info.py:probe():150] Probing system
+2024-09-25 21:17:48,087 DEBUG   HandlerThread:101702 [system_info.py:_probe_git():135] Probing git
+2024-09-25 21:17:48,093 DEBUG   HandlerThread:101702 [system_info.py:_probe_git():143] Probing git done
+2024-09-25 21:17:48,093 DEBUG   HandlerThread:101702 [system_info.py:probe():198] Probing system done
+2024-09-25 21:17:48,093 DEBUG   HandlerThread:101702 [system_monitor.py:probe():223] {'os': 'Linux-5.15.153.1-microsoft-standard-WSL2-x86_64-with-glibc2.17', 'python': '3.8.18', 'heartbeatAt': '2024-09-25T12:17:48.074367', 'startedAt': '2024-09-25T12:17:47.269081', 'docker': None, 'cuda': None, 'args': ('--env', 'ARCLE', '--solar_dir', '/home/yunho/ldcq_arc/ARC_Single/segment/train.10.09.12', '--test_solar_dir', '/home/yunho/ldcq_arc/ARC_Single/segment/test.10.09.12', '--num_epochs', '1', '--test_on', 'True', '--horizon', '5', '--a_dim', '36', '--z_dim', '16', '--h_dim', '32', '--s_dim', '32', '--gpu_name', 'gpu0', '--normalize_latent', '0', '--diffusion_steps', '100', '--beta', '0.01', '--test_num', '1000', '--test_cycle', '10', '--save_cycle', '20', '--batch_size', '128', '--max_grid_size', '10'), 'state': 'running', 'program': './train_skills.py', 'codePathLocal': 'train_skills.py', 'codePath': 'training/train_skills.py', 'git': {'remote': None, 'commit': '356e4758636af15e6922e3bad8ea3d0052942bed'}, 'email': 'dbsgh797210@gist.ac.kr', 'root': '/home/yunho/ldcq_arc/LDCQ_for_SOLAR', 'host': 'DESKTOP-JU0OF62', 'username': 'yunho', 'executable': '/home/yunho/anaconda3/envs/ldcq/bin/python', 'cpu_count': 8, 'cpu_count_logical': 16, 'cpu_freq': {'current': 4491.468999999999, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}, {'current': 4491.469, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 1006.853931427002, 'used': 166.88689804077148}}, 'gpu': 'NVIDIA GeForce RTX 3060', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3060', 'memory_total': 12884901888}], 'memory': {'total': 30.926101684570312}}
+2024-09-25 21:17:48,093 INFO    HandlerThread:101702 [system_monitor.py:probe():224] Finished collecting system info
+2024-09-25 21:17:48,093 INFO    HandlerThread:101702 [system_monitor.py:probe():227] Publishing system info
+2024-09-25 21:17:48,093 DEBUG   HandlerThread:101702 [system_info.py:_save_conda():207] Saving list of conda packages installed into the current environment
+2024-09-25 21:17:48,975 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_created():271] file/dir created: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/conda-environment.yaml
+2024-09-25 21:17:49,210 DEBUG   HandlerThread:101702 [system_info.py:_save_conda():222] Saving conda packages done
+2024-09-25 21:17:49,211 INFO    HandlerThread:101702 [system_monitor.py:probe():229] Finished publishing system info
+2024-09-25 21:17:49,212 DEBUG   SenderThread:101702 [sender.py:send():379] send: files
+2024-09-25 21:17:49,212 INFO    SenderThread:101702 [sender.py:_save_file():1390] saving file wandb-metadata.json with policy now
+2024-09-25 21:17:49,316 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: python_packages
+2024-09-25 21:17:49,317 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: python_packages
+2024-09-25 21:17:49,317 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: stop_status
+2024-09-25 21:17:49,317 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: stop_status
+2024-09-25 21:17:49,318 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: internal_messages
+2024-09-25 21:17:49,774 DEBUG   SenderThread:101702 [sender.py:send():379] send: telemetry
+2024-09-25 21:17:49,775 DEBUG   SenderThread:101702 [sender.py:send():379] send: exit
+2024-09-25 21:17:49,775 INFO    SenderThread:101702 [sender.py:send_exit():586] handling exit code: 1
+2024-09-25 21:17:49,775 INFO    SenderThread:101702 [sender.py:send_exit():588] handling runtime: 1
+2024-09-25 21:17:49,775 INFO    SenderThread:101702 [sender.py:_save_file():1390] saving file wandb-summary.json with policy end
+2024-09-25 21:17:49,775 INFO    SenderThread:101702 [sender.py:send_exit():594] send defer
+2024-09-25 21:17:49,776 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:49,776 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 0
+2024-09-25 21:17:49,776 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:49,776 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 0
+2024-09-25 21:17:49,776 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 1
+2024-09-25 21:17:49,776 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:49,776 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 1
+2024-09-25 21:17:49,776 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:49,776 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 1
+2024-09-25 21:17:49,776 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 2
+2024-09-25 21:17:49,776 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:49,776 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 2
+2024-09-25 21:17:49,776 INFO    HandlerThread:101702 [system_monitor.py:finish():203] Stopping system monitor
+2024-09-25 21:17:49,776 DEBUG   SystemMonitor:101702 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-09-25 21:17:49,776 DEBUG   SystemMonitor:101702 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-09-25 21:17:49,777 DEBUG   SystemMonitor:101702 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-09-25 21:17:49,777 INFO    HandlerThread:101702 [interfaces.py:finish():202] Joined cpu monitor
+2024-09-25 21:17:49,777 INFO    HandlerThread:101702 [interfaces.py:finish():202] Joined disk monitor
+2024-09-25 21:17:49,783 INFO    HandlerThread:101702 [interfaces.py:finish():202] Joined gpu monitor
+2024-09-25 21:17:49,783 INFO    HandlerThread:101702 [interfaces.py:finish():202] Joined memory monitor
+2024-09-25 21:17:49,783 INFO    HandlerThread:101702 [interfaces.py:finish():202] Joined network monitor
+2024-09-25 21:17:49,783 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:49,783 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 2
+2024-09-25 21:17:49,783 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 3
+2024-09-25 21:17:49,783 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:49,783 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 3
+2024-09-25 21:17:49,783 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:49,783 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 3
+2024-09-25 21:17:49,783 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 4
+2024-09-25 21:17:49,784 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:49,784 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 4
+2024-09-25 21:17:49,784 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:49,784 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 4
+2024-09-25 21:17:49,784 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 5
+2024-09-25 21:17:49,784 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:49,784 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 5
+2024-09-25 21:17:49,784 DEBUG   SenderThread:101702 [sender.py:send():379] send: summary
+2024-09-25 21:17:49,784 INFO    SenderThread:101702 [sender.py:_save_file():1390] saving file wandb-summary.json with policy end
+2024-09-25 21:17:49,784 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:49,784 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 5
+2024-09-25 21:17:49,784 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 6
+2024-09-25 21:17:49,784 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:49,784 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 6
+2024-09-25 21:17:49,785 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:49,785 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 6
+2024-09-25 21:17:49,786 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: status_report
+2024-09-25 21:17:49,975 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/conda-environment.yaml
+2024-09-25 21:17:49,975 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_created():271] file/dir created: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/requirements.txt
+2024-09-25 21:17:49,975 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_created():271] file/dir created: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/output.log
+2024-09-25 21:17:49,975 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_created():271] file/dir created: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/wandb-summary.json
+2024-09-25 21:17:49,975 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_created():271] file/dir created: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/wandb-metadata.json
+2024-09-25 21:17:50,072 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 7
+2024-09-25 21:17:50,072 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:50,072 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 7
+2024-09-25 21:17:50,073 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:50,073 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 7
+2024-09-25 21:17:50,375 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: poll_exit
+2024-09-25 21:17:50,812 INFO    wandb-upload_0:101702 [upload_job.py:push():131] Uploaded file /tmp/tmpuunsbp6awandb/s67l6658-wandb-metadata.json
+2024-09-25 21:17:50,975 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/config.yaml
+2024-09-25 21:17:51,778 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 8
+2024-09-25 21:17:51,778 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: poll_exit
+2024-09-25 21:17:51,778 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:51,778 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 8
+2024-09-25 21:17:51,778 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:51,778 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 8
+2024-09-25 21:17:51,778 INFO    SenderThread:101702 [job_builder.py:build():318] Attempting to build job artifact
+2024-09-25 21:17:51,779 INFO    SenderThread:101702 [job_builder.py:_get_source_type():466] no source found
+2024-09-25 21:17:51,779 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 9
+2024-09-25 21:17:51,779 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:51,779 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 9
+2024-09-25 21:17:51,779 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:51,779 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 9
+2024-09-25 21:17:51,779 INFO    SenderThread:101702 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-09-25 21:17:51,976 INFO    Thread-12 :101702 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/output.log
+2024-09-25 21:17:51,976 INFO    SenderThread:101702 [dir_watcher.py:finish():388] scan: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files
+2024-09-25 21:17:51,976 INFO    SenderThread:101702 [dir_watcher.py:finish():402] scan save: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/wandb-summary.json wandb-summary.json
+2024-09-25 21:17:51,976 INFO    SenderThread:101702 [dir_watcher.py:finish():402] scan save: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/wandb-metadata.json wandb-metadata.json
+2024-09-25 21:17:51,976 INFO    SenderThread:101702 [dir_watcher.py:finish():402] scan save: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/config.yaml config.yaml
+2024-09-25 21:17:51,977 INFO    SenderThread:101702 [dir_watcher.py:finish():402] scan save: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/output.log output.log
+2024-09-25 21:17:51,978 INFO    SenderThread:101702 [dir_watcher.py:finish():402] scan save: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/conda-environment.yaml conda-environment.yaml
+2024-09-25 21:17:51,978 INFO    SenderThread:101702 [dir_watcher.py:finish():402] scan save: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/requirements.txt requirements.txt
+2024-09-25 21:17:51,980 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 10
+2024-09-25 21:17:51,982 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:51,982 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 10
+2024-09-25 21:17:51,983 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:51,983 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 10
+2024-09-25 21:17:51,983 INFO    SenderThread:101702 [file_pusher.py:finish():172] shutting down file pusher
+2024-09-25 21:17:52,376 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: poll_exit
+2024-09-25 21:17:52,376 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: poll_exit
+2024-09-25 21:17:52,931 INFO    wandb-upload_4:101702 [upload_job.py:push():131] Uploaded file /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/requirements.txt
+2024-09-25 21:17:53,077 INFO    wandb-upload_0:101702 [upload_job.py:push():131] Uploaded file /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/wandb-summary.json
+2024-09-25 21:17:53,083 INFO    wandb-upload_1:101702 [upload_job.py:push():131] Uploaded file /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/config.yaml
+2024-09-25 21:17:53,093 INFO    wandb-upload_3:101702 [upload_job.py:push():131] Uploaded file /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/conda-environment.yaml
+2024-09-25 21:17:53,130 INFO    wandb-upload_2:101702 [upload_job.py:push():131] Uploaded file /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/files/output.log
+2024-09-25 21:17:53,330 INFO    Thread-11 :101702 [sender.py:transition_state():614] send defer: 11
+2024-09-25 21:17:53,331 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:53,331 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 11
+2024-09-25 21:17:53,331 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:53,331 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 11
+2024-09-25 21:17:53,331 INFO    SenderThread:101702 [file_pusher.py:join():178] waiting for file pusher
+2024-09-25 21:17:53,331 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 12
+2024-09-25 21:17:53,331 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:53,331 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 12
+2024-09-25 21:17:53,332 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:53,332 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 12
+2024-09-25 21:17:53,332 INFO    SenderThread:101702 [file_stream.py:finish():614] file stream finish called
+2024-09-25 21:17:53,376 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: poll_exit
+2024-09-25 21:17:53,677 INFO    SenderThread:101702 [file_stream.py:finish():618] file stream finish is done
+2024-09-25 21:17:53,677 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 13
+2024-09-25 21:17:53,678 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: poll_exit
+2024-09-25 21:17:53,678 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:53,678 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 13
+2024-09-25 21:17:53,678 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:53,678 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 13
+2024-09-25 21:17:53,678 INFO    SenderThread:101702 [sender.py:transition_state():614] send defer: 14
+2024-09-25 21:17:53,678 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: defer
+2024-09-25 21:17:53,678 INFO    HandlerThread:101702 [handler.py:handle_request_defer():172] handle defer: 14
+2024-09-25 21:17:53,678 DEBUG   SenderThread:101702 [sender.py:send():379] send: final
+2024-09-25 21:17:53,678 DEBUG   SenderThread:101702 [sender.py:send():379] send: footer
+2024-09-25 21:17:53,678 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: defer
+2024-09-25 21:17:53,678 INFO    SenderThread:101702 [sender.py:send_request_defer():610] handle sender defer: 14
+2024-09-25 21:17:53,679 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: poll_exit
+2024-09-25 21:17:53,679 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: poll_exit
+2024-09-25 21:17:53,679 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: poll_exit
+2024-09-25 21:17:53,679 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: poll_exit
+2024-09-25 21:17:53,679 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: server_info
+2024-09-25 21:17:53,680 DEBUG   SenderThread:101702 [sender.py:send_request():406] send_request: server_info
+2024-09-25 21:17:53,681 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: get_summary
+2024-09-25 21:17:53,681 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: sampled_history
+2024-09-25 21:17:53,681 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: internal_messages
+2024-09-25 21:17:53,917 INFO    MainThread:101702 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-09-25 21:17:53,917 INFO    MainThread:101702 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-09-25 21:17:53,917 INFO    MainThread:101702 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-09-25 21:17:53,918 DEBUG   HandlerThread:101702 [handler.py:handle_request():146] handle_request: shutdown
+2024-09-25 21:17:53,918 INFO    HandlerThread:101702 [handler.py:finish():866] shutting down handler
+2024-09-25 21:17:54,680 INFO    WriterThread:101702 [datastore.py:close():296] close: /home/yunho/ldcq_arc/LDCQ_for_SOLAR/training/wandb/run-20240925_211747-tn3eb9qk/run-tn3eb9qk.wandb
+2024-09-25 21:17:54,917 INFO    SenderThread:101702 [sender.py:finish():1546] shutting down sender
+2024-09-25 21:17:54,917 INFO    SenderThread:101702 [file_pusher.py:finish():172] shutting down file pusher
+2024-09-25 21:17:54,917 INFO    SenderThread:101702 [file_pusher.py:join():178] waiting for file pusher

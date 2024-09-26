@@ -1,0 +1,57 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+Test skill model :  43%|██████████████████████████▍                                  | 433/1000 [00:27<00:36, 15.58it/s]
+/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/numpy/core/fromnumeric.py:3464: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/yunho/anaconda3/envs/ldcq/lib/python3.8/site-packages/numpy/core/_methods.py:192: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+Test Accuracy skill model :   0%|                                                              | 0/1000 [00:00<?, ?it/s]/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/skill_model.py:303: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  state = torch.reshape(torch.tensor(state, device=torch.device('cuda:0'), dtype=torch.float32), (state_shape[0],1,-1))
+/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/skill_model.py:306: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  clip = torch.reshape(torch.tensor(clip, device=torch.device('cuda:0'), dtype=torch.float32), (clip_shape[0],1,-1))
+/home/yunho/ldcq_arc/LDCQ_for_SOLAR/models/skill_model.py:309: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  in_grid = torch.reshape(torch.tensor(in_grid, device=torch.device('cuda:0'), dtype=torch.float32), (in_grid_shape[0],1,-1))
+
+
+
+
+
+
+Test Accuracy skill model : 100%|███████████████████████████████████████████████████| 1000/1000 [00:12<00:00, 77.14it/s]
+
+Test Accuracy skill model : 100%|██████████████████████████████████████████████████| 1000/1000 [00:05<00:00, 193.89it/s]
+Train skill model :   0%|                                                                       | 0/433 [00:00<?, ?it/s]
+--------TEST---------
+test_loss:  63.963473886044966
+test_s_T_loss:  nan
+test_a_loss:  18.06577399696544
+test_kl_loss:  0.11046887861939005
+test_Acc:  0.0 %
+
+
+
+
+
+
+
+
+
+
+
+
+Train skill model :  98%|███████████████████████████████████████████████████████████▊ | 425/433 [00:24<00:00, 18.80it/s]
+--------TRAIN---------
+Loss:  50.69672732980918
+
+Train skill model : 100%|█████████████████████████████████████████████████████████████| 433/433 [00:24<00:00, 17.61it/s]

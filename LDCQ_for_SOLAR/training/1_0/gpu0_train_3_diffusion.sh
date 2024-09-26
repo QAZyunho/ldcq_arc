@@ -1,0 +1,11 @@
+CUDA_VISIBLE_DEVICES=0 python ./train_diffusion.py \
+--env ARCLE \
+--checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_ARCLE_00.00 \
+--skill_model_filename gpu0_skill_model_ARCLE_00.00_best.pth \
+--n_epoch 1 \
+--save_cycle 50 \
+--diffusion_steps 100 \
+--gpu_name gpu0 \
+--s_dim 32 \
+--batch_size 32 \
+--max_grid_size 10
