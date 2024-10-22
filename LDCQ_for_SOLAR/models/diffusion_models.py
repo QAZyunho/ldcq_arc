@@ -23,7 +23,7 @@ class FCBlock(nn.Module):
         self.model = nn.Sequential(
             nn.Linear(in_feats, out_feats),
             nn.BatchNorm1d(num_features=out_feats),
-            nn.GELU(approximate='none'),
+            nn.GELU(),
         )
 
     def forward(self, x):
@@ -54,7 +54,7 @@ class ResBlock(nn.Module):
         self.layer1 = nn.Linear(2*input_dim, input_dim)
         self.layer2 = nn.Linear(input_dim, input_dim)
         self.layer_norm = nn.LayerNorm(input_dim)
-        self.act = nn.GELU(approximate='none')
+        self.act = nn.GELU()
 
     def forward(self, x, t, s):
         t_embed = self.time_layer(t)
@@ -89,24 +89,24 @@ class UNet(nn.Module):
             SinusoidalPositionEmbeddings(128),
             nn.Linear(128, time_embed_dim),
             nn.LayerNorm(time_embed_dim),
-            nn.GELU(approximate='none'),
+            nn.GELU(),
             nn.Linear(time_embed_dim, time_embed_dim),
             nn.LayerNorm(time_embed_dim),
-            nn.GELU(approximate='none')
+            nn.GELU()
         )
         self.state_mlp = nn.Sequential(
             nn.Linear(state_dim, state_embed_dim),
             nn.LayerNorm(state_embed_dim),
-            nn.GELU(approximate='none'),
+            nn.GELU(),
             nn.Linear(state_embed_dim, state_embed_dim),
             nn.LayerNorm(state_embed_dim),
-            nn.GELU(approximate='none')
+            nn.GELU()
         )
         self.init_layer = nn.Linear(input_dim, h_dims[0])
         self.final_mlp = nn.Sequential(
             nn.Linear(h_dims[0], input_dim),
             # nn.LayerNorm(state_embed_dim),
-            # nn.GELU(approximate='none'),
+            # nn.GELU(),
             # nn.Linear(z_dim, z_dim)
         )
         self.res_block1 = ResBlock(h_dims[0], time_embed_dim, state_embed_dim)
@@ -135,20 +135,20 @@ class UNet(nn.Module):
         x = self.init_layer(x)
         #Down
         h1 = self.res_block1(x, t_embed, s_embed)
-        h2 = nn.GELU(approximate='none')(self.layer_norm2(self.down1(h1)))
+        h2 = nn.GELU()(self.layer_norm2(self.down1(h1)))
         h2 = self.res_block2(h2, t_embed, s_embed)
-        h3 = nn.GELU(approximate='none')(self.layer_norm3(self.down2(h2)))
+        h3 = nn.GELU()(self.layer_norm3(self.down2(h2)))
         h3 = self.res_block3(h3, t_embed, s_embed)
-        h4 = nn.GELU(approximate='none')(self.layer_norm4(self.down3(h3)))
+        h4 = nn.GELU()(self.layer_norm4(self.down3(h3)))
         h4 = self.res_block4(h4, t_embed, s_embed)
         #Up
-        h = nn.GELU(approximate='none')(self.layer_norm3(self.up1(h4)))
+        h = nn.GELU()(self.layer_norm3(self.up1(h4)))
         h = h+h3
         h = self.res_block5(h, t_embed, s_embed)
-        h = nn.GELU(approximate='none')(self.layer_norm2(self.up2(h)))
+        h = nn.GELU()(self.layer_norm2(self.up2(h)))
         h = h+h2
         h = self.res_block6(h, t_embed, s_embed)
-        h = nn.GELU(approximate='none')(self.layer_norm1(self.up3(h)))
+        h = nn.GELU()(self.layer_norm1(self.up3(h)))
         h = h+h1
         h = self.res_block7(h, t_embed, s_embed)
         h = h+x
@@ -172,7 +172,7 @@ class TransformerEncoderBlock(nn.Module):
         self.attn1_to_fcn = nn.Linear(self.transformer_dim, self.trans_emb_dim)
         self.attn1_fcn = nn.Sequential(
             nn.Linear(self.trans_emb_dim, self.trans_emb_dim * 4),
-            nn.GELU(approximate='none'),
+            nn.GELU(),
             nn.Linear(self.trans_emb_dim * 4, self.trans_emb_dim),
         )
         self.norm1a = nn.BatchNorm1d(self.trans_emb_dim)
@@ -688,12 +688,12 @@ class ResidualConvBlock(nn.Module):
         self.conv1 = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, 3, 1, 1),
             nn.BatchNorm2d(out_channels),
-            nn.GELU(approximate='none'),
+            nn.GELU(),
         )
         self.conv2 = nn.Sequential(
             nn.Conv2d(out_channels, out_channels, 3, 1, 1),
             nn.BatchNorm2d(out_channels),
-            nn.GELU(approximate='none'),
+            nn.GELU(),
         )
 
     def forward(self, x):
@@ -808,6 +808,7 @@ class Model_mlp(nn.Module):
             activation="relu",
             net_type=self.net_type,
             use_prev=False,
+            # h_dims=[int(y_dim*4), int(y_dim*2), int(y_dim), int(y_dim/2)],
             h_dims=[128,32,16,8],
             max_grid_size=self.max_grid_size
         )

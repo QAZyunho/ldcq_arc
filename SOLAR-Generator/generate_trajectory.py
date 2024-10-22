@@ -188,7 +188,7 @@ for i in tqdm(range(len(tasks)), desc="total", position=0):
 
         # check it is reasonable trajectory(compare output from ARCLE with handcrafted answer)
         # if not np.array_equal(np.array(data['grid'][-1])[:g_h, :g_w], pr_out[0]):
-        if 'expert' in data['desc'] and not np.array_equal(np.array(data['grid'][-1])[:g_h, :g_w], pr_out[0]):
+        if 'golden_standard' in data['desc'] and not np.array_equal(np.array(data['grid'][-1])[:g_h, :g_w], pr_out[0]):
             print(f" {tasks[i]} not correct answer")
             utils.save_wrong(data, tasks[i], data_folder_path)
             continue

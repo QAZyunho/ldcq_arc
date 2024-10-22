@@ -1,0 +1,7 @@
+tqdm
+matplotlib
+wandb
+ipdb
+arcle == 0.2.5
+gymnasium >=0.28.0
+numpy >= 1.24

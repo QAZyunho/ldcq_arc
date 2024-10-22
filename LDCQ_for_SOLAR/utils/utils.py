@@ -1,5 +1,3 @@
-# import d4rl
-# import gym
 import numpy as np
 import torch
 import torch.nn as nn
@@ -396,8 +394,8 @@ class ARC_Segment_Dataset(Dataset):
         state = torch.FloatTensor(trace['grid'])
         selection = torch.LongTensor(trace['selection']).unsqueeze(-1)
         operation = torch.LongTensor(trace['operation']).unsqueeze(-1)
-        reward = torch.FloatTensor(trace['reward']).unsqueeze(-1)
-        terminated = torch.LongTensor(trace['terminated']).unsqueeze(-1)
+        reward = torch.FloatTensor(trace['reward'])
+        terminated = torch.LongTensor(trace['terminated'])
         selection_mask = torch.LongTensor(trace['selection_mask'])
         
         in_grid = torch.FloatTensor(trace['in_grid']).unsqueeze(0)
@@ -409,8 +407,8 @@ class ARC_Segment_Dataset(Dataset):
         ex_in = torch.FloatTensor(trace['ex_in'])
         ex_out = torch.FloatTensor(trace['ex_out'])
         
-        s_T= torch.FloatTensor(trace['next_grid']).unsqueeze(1)
-        clip_T = torch.FloatTensor(trace['next_clip']).unsqueeze(1)
+        s_T= torch.FloatTensor(trace['next_grid']).unsqueeze(0)
+        clip_T = torch.FloatTensor(trace['next_clip']).unsqueeze(0)
         
         return state, s_T, clip, clip_T, selection, operation, reward, terminated, selection_mask, in_grid, out_grid, ex_in, ex_out
     
@@ -418,7 +416,7 @@ if __name__ == "__main__":
     from tqdm import tqdm
     
     dataset = ARC_Segment_Dataset(
-		data_path="/mnt/c/Users/Jaehyun/Desktop/Workspace/ldcq/ARC_data/segment"
+		data_path="/home/jovyan/beomi/jaehyun/ARC_single/segment/test.10.09.12"
 	)
     
     train_loader = DataLoader(
@@ -430,7 +428,7 @@ if __name__ == "__main__":
     pbar = tqdm(enumerate(train_loader), total=len(train_loader))
 
 	# state, selection, operation, reward, terminated, selection_mask, in_grid, out_grid
-    for _, (state, selection, operation, reward, terminated, selection_mask, in_grid, out_grid) in pbar:
+    for _, (state, s_T, clip, clip_T, selection, operation, reward, terminated, selection_mask, in_grid, out_grid, ex_in, ex_out) in pbar:
         print("state shape: {0}".format(state.shape))
         print("selection shape: {0}".format(selection.shape))
         print("operation shape: {0}".format(operation.shape))
@@ -439,5 +437,9 @@ if __name__ == "__main__":
         print("selection_mask shape: {0}".format(selection_mask.shape))
         print("in_grid shape: {0}".format(in_grid.shape))
         print("out_grid shape: {0}".format(out_grid.shape))
+        print("s_T shape: {0}".format(in_grid.shape))
+        print("cip_T shape: {0}".format(out_grid.shape))
+        print("ex_in shape: {0}".format(ex_in.shape))
+        print("ex_out shape: {0}".format(ex_out.shape))
         print("굳!")
         break

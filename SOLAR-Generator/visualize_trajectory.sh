@@ -2,10 +2,10 @@
 
 #change the arguments below
 python visualize_trajectory.py \
-    --mode whole\
-    --file_path '/home/yunho/SOLAR-Generator/SOLAR_data/'\
-    --save_folder_path figure\
-    --make_task_folder false
+    --mode whole \
+    --file_path /home/yunho/ldcq_arc/ARC_Single/whole/46442a0e\
+    --save_folder_path /home/yunho/ldcq_arc/ARC_Single/figure \
+    --make_task_folder true
 
 :<<"OPTIONS"
 explanation of arguments

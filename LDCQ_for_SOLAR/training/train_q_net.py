@@ -24,6 +24,7 @@ from models.diffusion_models import (
 )
 from models.dqn import DDQN
 
+
 class QLearningDataset(Dataset):
     def __init__(
         self, data_dir, filename, train_or_test="train", test_prop=0.1, sample_z=False
@@ -137,36 +138,20 @@ def PER_buffer_filler(data_dir, filename, test_prop=0.1, sample_z=False, sample_
     replay_buffer = FixedPrioritizedBuffer(n_train, num_samples=args.total_prior_samples, z_dim=latent_all.shape[-1], grid_dim=args.max_grid_size, pair_dim=args.max_grid_size, prob_alpha=alpha)
 
     for i in tqdm(range(n_train)):
-        if not 'maze' in filename and not 'kitchen' in filename:
-            replay_buffer.push(
-                state_all[i], 
-                clip_all[i],
-                in_grid_all[i], 
-                latent_all[i], 
-                rewards_all[i], 
-                sT_all[i], 
-                clip_T_all[i], 
-                terminals_all[i], 
-                pair_in_all[i], 
-                pair_out_all[i], 
-                max_latents_all[i]
-            )
-            # replay_buffer.push(state_all[i], latent_all[i], rewards_all[i], sT_all[i], terminals_all[i], max_latents_all[i])
-        else:
-            replay_buffer.push(
-                state_all[i], 
-                clip_all[i], 
-                in_grid_all[i], 
-                latent_all[i], 
-                rewards_all[i], 
-                sT_all[i], 
-                clip_T_all[i], 
-                0, 
-                pair_in_all[i], 
-                pair_out_all[i],
-                max_latents_all[i]
-            )
-
+        replay_buffer.push(
+            state_all[i], 
+            clip_all[i],
+            in_grid_all[i], 
+            latent_all[i], 
+            rewards_all[i], 
+            sT_all[i], 
+            clip_T_all[i], 
+            terminals_all[i], 
+            pair_in_all[i], 
+            pair_out_all[i], 
+            max_latents_all[i]
+        )
+        
     return replay_buffer, state_all.shape[-1], latent_all.shape[-1]
 
 def train(args):
@@ -211,7 +196,7 @@ def train(args):
         ).to(args.device)
         model.eval()
 
-    dqn_agent = DDQN(state_dim = x_shape, z_dim=y_dim, h_dim=args.h_dim, diffusion_prior=model, total_prior_samples=args.total_prior_samples, num_prior_samples=args.num_prior_samples, gamma=args.gamma,max_grid_size=args.max_grid_size)
+    dqn_agent = DDQN(state_dim = x_shape, z_dim=y_dim, h_dim=args.h_dim, diffusion_prior=model, total_prior_samples=args.total_prior_samples, num_prior_samples=args.num_prior_samples, gamma=args.gamma,max_grid_size=args.max_grid_size,horizon=args.horizon)
     # dqn_agent.learn(dataload_train=per_buffer if args.per_buffer else dataload_train, n_epochs=args.n_epoch,
     #     diffusion_model_name=args.skill_model_filename[:-4], cfg_weight=args.cfg_weight, per_buffer = args.per_buffer, batch_size = args.batch_size, gpu_name=args.gpu_name)
     dqn_agent.learn(dataload_train=per_buffer, n_epochs=args.n_epoch,
@@ -252,10 +237,12 @@ if __name__ == "__main__":
     parser.add_argument('--predict_noise', type=int, default=0)
     
     parser.add_argument('--a_dim', type=int, default=36)
+    parser.add_argument('--z_dim', type=int, default=256)
     parser.add_argument('--h_dim', type=int, default=256)
-    
+    parser.add_argument('--s_dim', type=int, default=256)
+    parser.add_argument('--horizon',type=int, default=5)
     parser.add_argument('--gpu_name', type=str, required=True)
     parser.add_argument('--max_grid_size', type=int, default=30)
     args = parser.parse_args()
-
+    
     train(args)

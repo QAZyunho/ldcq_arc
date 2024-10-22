@@ -131,12 +131,7 @@ class DDQN(nn.Module):
         loss_net_0, loss_net_1, loss_total = 0, 0, 0 #Logged in comet at update frequency
         epoch = 0
         beta = 0.3
-        if 'maze' in diffusion_model_name or 'kitchen' in diffusion_model_name:
-            update_steps = 3000
-        elif 'random_walk' in diffusion_model_name:
-            update_steps = 500
-        else:
-            update_steps = 10
+        update_steps = 2000
             
         update = 0
         
@@ -237,8 +232,8 @@ class DDQN(nn.Module):
                         wandb.log({"train_Q/train_loss_0": loss_net_0})
                         wandb.log({"train_Q/train_loss_1": loss_net_1})
                         wandb.log({"train_Q/train_loss": loss_total, "steps": steps_total})
-                        wandb.log({"train_Q/step_per_update": update,"steps": steps_total})
-                        wandb.log({"train_Q/episodes": ep, "steps": steps_total})
+                        wandb.log({"train_Q/step_per_update": update/update_steps,"steps": steps_total})
+                        wandb.log({"train_Q/epoches": ep, "steps": steps_total})
                         
                         loss_net_0, loss_net_1, loss_total = 0,0,0
                         steps_net_0, steps_net_1 = 0,0
@@ -250,7 +245,8 @@ class DDQN(nn.Module):
                             target_param.data.copy_((1.0-self.tau)*local_param.data + (self.tau)*target_param.data)
                         self.target_net_0.eval()
                         self.target_net_1.eval()
-                    if steps_total%(update_steps) == 0:
+                        
+                    if steps_total % (update_steps) == 0:
                         torch.save(self,  os.path.join(q_checkpoint_dir,diffusion_model_name+'_dqn_agent_'+str(steps_total//update_steps)+'_cfg_weight_'+str(cfg_weight)+'{}.pt'.format('_PERbuffer' if per_buffer == 1 else '')))
                         beta = np.min((beta+0.03,1))
                         # torch.save(self,  parent_folder+'/q_checkpoints/'+diffusion_model_name+'_dqn_agent_'+str(steps_total//update_steps)+'_cfg_weight_'+str(cfg_weight)+'{}.pt'.format('_PERbuffer' if per_buffer == 1 else ''))

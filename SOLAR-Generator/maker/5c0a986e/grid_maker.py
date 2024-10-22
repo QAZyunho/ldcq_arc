@@ -101,7 +101,7 @@ class GridMaker(BaseGridMaker):
                     ex_out.append(answer_grid)
                     j = j + 1
 
-            desc = {'id': '5c0a986e',
+            desc = {'id': f'5c0a986e_{num}',
                     'selections': selections,
                     'operations': operations}
             dat.append((ex_in, ex_out, pr_in, pr_out, desc))

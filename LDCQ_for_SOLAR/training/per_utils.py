@@ -71,7 +71,7 @@ class NaivePrioritizedBuffer(object):
         return len(self.buffer)
     
 class FixedPrioritizedBuffer(object):
-    def __init__(self, capacity, num_samples, z_dim, grid_dim, pair_dim, prob_alpha=0.6):
+    def __init__(self, capacity, num_samples, z_dim, max_grid_size, prob_alpha=0.6):
         self.prob_alpha = prob_alpha
         self.capacity = capacity
         self.pos = 0
@@ -79,20 +79,19 @@ class FixedPrioritizedBuffer(object):
         
         self.num_samples = num_samples
         self.z_dim = z_dim
-        self.grid_dim = grid_dim
-        self.pair_dim = pair_dim
+        self.max_grid_size = max_grid_size
 
         # Numpy arrays for fixed-size storage
-        self.states = np.zeros((capacity, self.grid_dim, self.grid_dim), dtype=np.float32)
-        self.clips = np.zeros((capacity, self.grid_dim, self.grid_dim), dtype=np.float32)
-        self.in_grids = np.zeros((capacity, self.grid_dim, self.grid_dim), dtype=np.float32)
+        self.states = np.zeros((capacity, self.max_grid_size, self.max_grid_size), dtype=np.float32)
+        self.clips = np.zeros((capacity, self.max_grid_size, self.max_grid_size), dtype=np.float32)
+        self.in_grids = np.zeros((capacity, self.max_grid_size, self.max_grid_size), dtype=np.float32)
         self.latents = np.zeros((capacity, self.z_dim), dtype=np.float32)
         self.rewards = np.zeros((capacity,), dtype=np.float32)
-        self.s_T = np.zeros((capacity, self.grid_dim, self.grid_dim), dtype=np.float32)
-        self.clip_T = np.zeros((capacity, self.grid_dim, self.grid_dim), dtype=np.float32)
+        self.s_T = np.zeros((capacity, self.max_grid_size, self.max_grid_size), dtype=np.float32)
+        self.clip_T = np.zeros((capacity, self.max_grid_size, self.max_grid_size), dtype=np.float32)
         self.dones = np.zeros((capacity,), dtype=np.float32)
-        self.pair_in = np.zeros((capacity, 3, self.grid_dim, self.grid_dim), dtype=np.float32)
-        self.pair_out = np.zeros((capacity, 3, self.grid_dim, self.grid_dim), dtype=np.float32)
+        self.pair_in = np.zeros((capacity, 3, self.max_grid_size, self.max_grid_size), dtype=np.float32)
+        self.pair_out = np.zeros((capacity, 3, self.max_grid_size, self.max_grid_size), dtype=np.float32)
         self.max_latents = np.zeros((capacity, self.num_samples, self.z_dim), dtype=np.float32)
 
         self.priorities = np.zeros((capacity,), dtype=np.float32)

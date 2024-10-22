@@ -41,9 +41,9 @@ def plot_one(mode, is_ex, data, ax, i, seg_id):
     if is_ex:  # set title for example pairs
         input_matrix = data
         if i == 0:
-            ax.set_title('example input')
+            ax.set_title(f'demonstration input {is_ex}', fontsize=20)
         else:
-            ax.set_title('example output')
+            ax.set_title(f'demonstration output {is_ex}', fontsize=20)
 
     else:
         if mode == "inout":  # set title for input-ouput mode
@@ -59,10 +59,10 @@ def plot_one(mode, is_ex, data, ax, i, seg_id):
             operation_name = utils.mapping_operation(operation_num)
 
             if i == 0 and seg_id == 0:  # input title
-                ax.set_title(f"input")
+                ax.set_title(f"test input", fontsize=20)
             else:
-                ax.set_title(f"step {seg_id+i}")
-            ax.text(0.5, -0.05, f'{operation_num}  {operation_name}', ha='center', transform=ax.transAxes, fontsize=12)
+                ax.set_title(f"step {seg_id+i}",fontsize=20)
+            ax.text(0.5, -0.05, f'{operation_num}  {operation_name}', ha='center', transform=ax.transAxes, fontsize=20)
 
             # if i == 0:  # input title
             #     if seg_id > 0:
@@ -208,7 +208,11 @@ def plot_task(mode, data, task_id, trace_id, save_folder_path, make_task_folder=
             plot_one(mode, is_ex, data, axs[i], i, seg_id)
 
     if mode != "gif":  # inout // segment // whole // wrong
-        fig.suptitle(f"{data['desc']['id']}, {mode}\n")
+        if 'expert' in data['desc']['id']:
+            title = data['desc']['id'].replace('expert', 'gold-standard')
+        else: 
+            title = data['desc']['id']
+        fig.suptitle(f"{title}, {mode}\n",fontsize=20)
 
         if not os.path.exists(save_folder_path):
             os.makedirs(save_folder_path)

@@ -250,25 +250,18 @@ class LowLevelPolicy(nn.Module):
         w_mean = self.w_act(w_mean)
         
         return a_mean, None, x_mean, None, y_mean, None, h_mean, None, w_mean, None
-        
-        # if self.a_dist=='softmax':
-        #     a_mean = self.act(a_mean)
-        #     return a_mean, None
-        
-        # a_sig  = nn.Softplus()(self.sig_layer(feats))
-
-        # if self.fixed_sig is not None:
-        #     a_sig = self.fixed_sig * torch.ones_like(a_sig)
-
-        # return a_mean, a_sig
     
     def numpy_policy(self, state, clip, in_grid, z, pair_in, pair_out):
         '''
         maps state as a numpy array and z as a pytorch tensor to a numpy action
         '''
-        state = torch.reshape(torch.tensor(state, device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
-        clip = torch.reshape(torch.tensor(clip, device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
-        in_grid = torch.reshape(torch.tensor(in_grid, device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
+        state = torch.reshape(state.clone().detach().to(device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
+        clip = torch.reshape(clip.clone().detach().to(device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
+        in_grid = torch.reshape(in_grid.clone().detach().to(device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
+
+        # state = torch.reshape(torch.tensor(state, device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
+        # clip = torch.reshape(torch.tensor(clip, device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
+        # in_grid = torch.reshape(torch.tensor(in_grid, device=torch.device('cuda:0'), dtype=torch.float32), (1,1,-1))
         
         a_mean, a_sig, x_mean, x_sig, y_mean, y_sig, h_mean, h_sig, w_mean, w_sig = self.forward(state, clip, in_grid, z, pair_in, pair_out)
         # a_mean, a_sig = self.forward(state, z)
@@ -300,13 +293,13 @@ class LowLevelPolicy(nn.Module):
         maps state as a numpy array and z as a pytorch tensor to a numpy action
         '''
         state_shape = state.shape
-        state = torch.reshape(torch.tensor(state, device=torch.device('cuda:0'), dtype=torch.float32), (state_shape[0],1,-1))
+        state = torch.reshape(torch.tensor(state.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (state_shape[0],1,-1))
         
         clip_shape = clip.shape
-        clip = torch.reshape(torch.tensor(clip, device=torch.device('cuda:0'), dtype=torch.float32), (clip_shape[0],1,-1))
+        clip = torch.reshape(torch.tensor(clip.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (clip_shape[0],1,-1))
         
         in_grid_shape = in_grid.shape
-        in_grid = torch.reshape(torch.tensor(in_grid, device=torch.device('cuda:0'), dtype=torch.float32), (in_grid_shape[0],1,-1))
+        in_grid = torch.reshape(torch.tensor(in_grid.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (in_grid_shape[0],1,-1))
         
         a_mean, a_sig, x_mean, x_sig, y_mean, y_sig, h_mean, h_sig, w_mean, w_sig = self.forward(state, clip, in_grid, z, pair_in, pair_out)
         # a_mean, a_sig = self.forward(state, z)
@@ -773,7 +766,7 @@ class GenerativeModel(nn.Module):
 class SkillModel(nn.Module):
     def __init__(self,state_dim,a_dim,z_dim,h_dim,horizon,a_dist='normal',beta=1.0,fixed_sig=None,encoder_type='gru',state_decoder_type='mlp',policy_decoder_type='mlp',
                  per_element_sigma=True,conditional_prior=True,train_diffusion_prior=False,normalize_latent=False,
-                 color_num=11,action_num=36,max_grid_size=30,diffusion_steps=500):
+                 color_num=11,action_num=36,max_grid_size=30,diffusion_steps=100):
         super(SkillModel, self).__init__()
 
         self.state_dim = state_dim # state dimension

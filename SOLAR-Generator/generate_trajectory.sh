@@ -4,13 +4,13 @@
 python generate_trajectory.py \
     --env ARCLE/O2ARCv2Env-v0\
     --data_folder_path /home/yunho/ldcq_arc/ARC_Single \
-    --tasks test.10.09.13 \
-    --num_samples 100 \
+    --tasks 46442a0e\
+    --num_samples 10 \
     --num_examples 3 \
     --max_grid_dim 10 10 \
     --horizon 5\
     --save_whole_trace True \
-    --save_seg_trace True \
+    --save_seg_trace False \
     --render_mode None\
     --delete_existing_data True\
     --rand_seed 5\

@@ -34,14 +34,16 @@ class GridMaker(BaseGridMaker):
                 ex_out.append(self.make_answer(rand_grid))
 
             # set grid size randomly and randomly generate grid.
-            h = np.random.randint(1, max_h//2+1)
+            # h = np.random.randint(1, max_h//2+1)
+            h=3
             w = h  # w=np.random.randint(1,max_w//2+1) for rectangular grid
-            rand_grid = np.random.randint(0, 10, size=[h, w], dtype=np.uint8)
+            # rand_grid = np.random.randint(0, 10, size=[h, w], dtype=np.uint8)
+            rand_grid=np.array([[1, 4, 1], [4, 9, 4], [9, 1, 9]])
             pr_in.append(rand_grid)
             pr_out.append(self.make_answer(rand_grid))
             method = self.get_random_method()
             operation, selection = method(h, w)
-            desc = {'id': '46442a0e',
+            desc = {'id': f'46442a0e-golden-standard_{num}',
                     'selections': selection,
                     'operations': operation}
             dat.append((ex_in, ex_out, pr_in, pr_out, desc))
@@ -107,18 +109,18 @@ class GridMaker(BaseGridMaker):
                       ]
         return operations, selections
 
-    def method4(self, h, w):
-        operations = [33, 29, 30, 25, 29, 30, 25, 29, 30, 25, 34]
-        selections = [[0, 0, 2*h-1, 2*w-1],  # 33
-                      [0, 0, h-1, w-1],  # 29
-                      [0, w, h-1, w-1],  # 30
-                      [0, w, h-1, w-1],  # 25
-                      [0, w, h-1, w-1],  # 29
-                      [h, w, h-1, w-1],  # 30
-                      [h, w, h-1, w-1],  # 25
-                      [h, w, h-1, w-1],  # 29
-                      [h, 0, h-1, w-1],  # 30
-                      [h, 0, h-1, w-1],  # 25
-                      [0, 0, 2*h-1, 2*w-1]  # 34
-                      ]
-        return operations, selections
+    # def method4(self, h, w):
+    #     operations = [33, 29, 30, 25, 29, 30, 25, 29, 30, 25, 34]
+    #     selections = [[0, 0, 2*h-1, 2*w-1],  # 33
+    #                   [0, 0, h-1, w-1],  # 29
+    #                   [0, w, h-1, w-1],  # 30
+    #                   [0, w, h-1, w-1],  # 25
+    #                   [0, w, h-1, w-1],  # 29
+    #                   [h, w, h-1, w-1],  # 30
+    #                   [h, w, h-1, w-1],  # 25
+    #                   [h, w, h-1, w-1],  # 29
+    #                   [h, 0, h-1, w-1],  # 30
+    #                   [h, 0, h-1, w-1],  # 25
+    #                   [0, 0, 2*h-1, 2*w-1]  # 34
+    #                   ]
+        # return operations, selections
