@@ -42,7 +42,6 @@ class ARC_Segment_Dataset(Dataset):
         with open(trace_file, 'r') as f:
             trace = json.load(f)
         
-        # state = torch.LongTensor(trace['grid']).flatten(start_dim=1, end_dim=2)
         state = torch.FloatTensor(trace['grid'])
         selection = torch.LongTensor(trace['selection']).unsqueeze(-1)
         operation = torch.LongTensor(trace['operation']).unsqueeze(-1)
