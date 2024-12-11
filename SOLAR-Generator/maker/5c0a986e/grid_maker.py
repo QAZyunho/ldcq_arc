@@ -6,7 +6,13 @@ import random
 
 
 class GridMaker(BaseGridMaker):
-
+    
+    def is_diagonal_intersect(point1, point2):
+                    x1, y1 = point1
+                    x2, y2 = point2
+                    # 양쪽 대각선 조건을 모두 확인
+                    return abs(x1 - x2) == abs(y1 - y2) or x1 + y1 == x2 + y2
+                
     def parse(self, **kwargs) -> List[Tuple[List[NDArray], List[NDArray], List[NDArray], List[NDArray], Dict]]:
         dat = []
         num = 0
@@ -40,12 +46,7 @@ class GridMaker(BaseGridMaker):
                 rand_grid = np.zeros((h, w), dtype=np.uint8)
 
                 # 두 점이 대각선으로 만나는 지 확인하는 함수
-                def is_diagonal_intersect(point1, point2):
-                    x1, y1 = point1
-                    x2, y2 = point2
-                    # 양쪽 대각선 조건을 모두 확인
-                    return abs(x1 - x2) == abs(y1 - y2) or x1 + y1 == x2 + y2
-
+                
                 # 랜덤으로 2개 찍기
                 points = []
                 x1 = np.random.randint(1, h-2)

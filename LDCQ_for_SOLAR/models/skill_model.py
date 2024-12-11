@@ -293,14 +293,17 @@ class LowLevelPolicy(nn.Module):
         maps state as a numpy array and z as a pytorch tensor to a numpy action
         '''
         state_shape = state.shape
-        state = torch.reshape(torch.tensor(state.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (state_shape[0],1,-1))
-        
+        # state = torch.reshape(torch.tensor(state.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (state_shape[0],1,-1))
+        state = torch.reshape(state.clone().detach().to(device=torch.device('cuda:0'), dtype=torch.float32), (state_shape[0], 1, -1))
+
         clip_shape = clip.shape
-        clip = torch.reshape(torch.tensor(clip.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (clip_shape[0],1,-1))
-        
+        # clip = torch.reshape(torch.tensor(clip.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (clip_shape[0],1,-1))
+        clip = torch.reshape(clip.clone().detach().to(device=torch.device('cuda:0'), dtype=torch.float32), (clip_shape[0], 1, -1))
+
         in_grid_shape = in_grid.shape
-        in_grid = torch.reshape(torch.tensor(in_grid.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (in_grid_shape[0],1,-1))
-        
+        # in_grid = torch.reshape(torch.tensor(in_grid.clone().detach(), device=torch.device('cuda:0'), dtype=torch.float32), (in_grid_shape[0],1,-1))
+        in_grid = torch.reshape(in_grid.clone().detach().to(device=torch.device('cuda:0'), dtype=torch.float32), (in_grid_shape[0], 1, -1))
+
         a_mean, a_sig, x_mean, x_sig, y_mean, y_sig, h_mean, h_sig, w_mean, w_sig = self.forward(state, clip, in_grid, z, pair_in, pair_out)
         # a_mean, a_sig = self.forward(state, z)
         action = self.reparameterize(a_mean, a_sig, self.a_dim)

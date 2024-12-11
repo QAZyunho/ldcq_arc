@@ -44,10 +44,11 @@ for i in tqdm(range(len(file_path_list)), position=0):
 
     elif mode == "wrong" or mode == "whole" or mode == "inout" or mode == "gif":
         if len(part) != 2:
-            print("not correct mode!")
-            continue
+            if 'gold_standard' not in file_name:
+                print("not correct mode!")
+                continue
         task_id = file_name.split('_')[0]
-        trace_id = file_name.split('.')[0].split('_')[1]
+        trace_id = file_name.split('.')[0].split('_')[-1]
     else:
         raise NotImplementedError
 

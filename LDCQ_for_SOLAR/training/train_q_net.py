@@ -111,7 +111,7 @@ def PER_buffer_filler(data_dir, filename, test_prop=0.1, sample_z=False, sample_
             
     if not 'maze' in filename and not 'kitchen' in filename:
         terminals_all = np.load(os.path.join(data_dir, filename + "_terminals.npy"), allow_pickle=True)
-        rewards_all = rewards_all/10
+        # rewards_all = rewards_all/10
     
     n_train = int(state_all.shape[0] * (1 - test_prop))
     
@@ -135,8 +135,8 @@ def PER_buffer_filler(data_dir, filename, test_prop=0.1, sample_z=False, sample_
     
     # load into PER buffer
     # replay_buffer = NaivePrioritizedBuffer(n_train, prob_alpha=alpha)
-    replay_buffer = FixedPrioritizedBuffer(n_train, num_samples=args.total_prior_samples, z_dim=latent_all.shape[-1], grid_dim=args.max_grid_size, pair_dim=args.max_grid_size, prob_alpha=alpha)
-
+    replay_buffer = FixedPrioritizedBuffer(n_train, num_samples=args.total_prior_samples, z_dim=args.z_dim, max_grid_size=args.max_grid_size, prob_alpha=alpha)
+    
     for i in tqdm(range(n_train)):
         replay_buffer.push(
             state_all[i], 

@@ -1,28 +1,26 @@
-CUDA_VISIBLE_DEVICES=1 python ./plan_skills_diffusion_ARCLE.py \
+CUDA_VISIBLE_DEVICES=0 python ./plan_skills_diffusion_ARCLE.py \
     --env ARCLE/O2ARCv2Env-v0 \
-    --dataset_dir /home/jovyan/Four_Data/test/whole/46442a0e \
-    --skill_model_filename "Openhpc4_gpu1_ARCLE_5.19_9.33/Openhpc4_gpu1_skill_model_ARCLE_5.19_9.33_260_.pth" \
-    --diffusion_filename "Openhpc4_gpu1_ARCLE_5.19_9.33/Openhpc4_gpu1_skill_model_ARCLE_5.19_9.33_260__400_epoch.pth" \
-    --q_checkpoint_dir "/home/jovyan/LDCQ/checkpoints/" \
-    --state_decoder_type none \
-    --num_diffusion_samples 200 \
-    --q_checkpoint_steps 4 \
-    --diffusion_steps 100 \
+    --test_solar_dir /home/jovyan/ldcq_arc/ARC_Single/whole/train.5c0a986e.10.11.13 \
+    --checkpoint_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu1_11.07 \
+    --q_checkpoint_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu1_11.07 \
+    --skill_model_filename gpu1_skill_model_ARCLE_11.07_400_.pth \
+    --diffusion_filename gpu1_skill_model_ARCLE_11.07_400__diffusion_prior_best.pt \
+    --policy_decoder_type mlp \
+    --num_diffusion_samples 300 \
+    --q_checkpoint_steps 48 \
+    --diffusion_steps 500 \
+    --num_parallel_envs 1 \
     --skill_model_diffusion_steps 100 \
     --a_dim 36 \
-    --z_dim 1024 \
-    --h_dim 1024 \
-    --s_dim 1024 \
-    --num_diffusion_samples 1 \
+    --z_dim 256 \
+    --h_dim 512 \
+    --s_dim 512 \
     --train_diffusion_prior 1 \
     --conditional_prior 1 \
     --normalize_latent 0 \
-    --policy diffusion_prior \
-    --render ansi \
-    --beta 0.01 \
-    --use_contrastive 1 \
-    --contrastive_ratio 0.1 \
-    --loss_type CosFace \
-    --margin 0.4 \
-    --scale 30 \
-    --extra_steps 4
+    --exec_horizon 1 \
+    --horizon 5 \
+    --policy q \
+    --render None \
+    --beta 0.1 \
+    --max_grid_size 10

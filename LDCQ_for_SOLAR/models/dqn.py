@@ -128,7 +128,7 @@ class DDQN(nn.Module):
         self.target_net_1 = copy.deepcopy(self.q_net_1)
         self.target_net_0.eval()
         self.target_net_1.eval()
-        loss_net_0, loss_net_1, loss_total = 0, 0, 0 #Logged in comet at update frequency
+        loss_net_0, loss_net_1, loss_total = 0, 0, 0 
         epoch = 0
         beta = 0.3
         update_steps = 2000
@@ -231,9 +231,9 @@ class DDQN(nn.Module):
                         update += 1
                         wandb.log({"train_Q/train_loss_0": loss_net_0})
                         wandb.log({"train_Q/train_loss_1": loss_net_1})
-                        wandb.log({"train_Q/train_loss": loss_total, "steps": steps_total})
-                        wandb.log({"train_Q/step_per_update": update/update_steps,"steps": steps_total})
-                        wandb.log({"train_Q/epoches": ep, "steps": steps_total})
+                        wandb.log({"train_Q/train_loss": loss_total})
+                        wandb.log({"train_Q/step_per_update": update/update_steps,"train_Q/steps": steps_total})
+                        wandb.log({"train_Q/epoches": ep, "train_Q/steps": steps_total})
                         
                         loss_net_0, loss_net_1, loss_total = 0,0,0
                         steps_net_0, steps_net_1 = 0,0

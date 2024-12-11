@@ -5,3 +5,7 @@
 *__pycache__*
 *.gif
 *.png
+*.log
+ARC_Single/
+ARC_DT/
+**/wandb/

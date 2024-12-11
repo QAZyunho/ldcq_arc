@@ -136,7 +136,7 @@ def collect_data(args):
         pair_out_gt[start_idx: end_idx] = pair_out[:, :, :, :].cpu().numpy()
         
         rewards_gt[start_idx: end_idx, 0] = np.sum(reward.cpu().numpy() * gamma_array, axis=1)
-        terminals_gt[start_idx: end_idx] = np.sum(terminated.cpu().numpy(), axis=1)
+        terminals_gt[start_idx: end_idx,0] = np.sum(terminated.cpu().numpy(), axis=1)
         
         if not args.do_diffusion:
             with torch.no_grad():

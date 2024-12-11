@@ -30,7 +30,8 @@ def collect_data(args):
 
     checkpoint = torch.load(skill_model_path)
     
-    skill_model = SkillModel(state_dim,
+    skill_model = SkillModel(
+                            state_dim,
                             a_dim,
                             args.z_dim,
                             args.h_dim,
@@ -44,58 +45,65 @@ def collect_data(args):
                             per_element_sigma=args.per_element_sigma,
                             conditional_prior=args.conditional_prior,
                             train_diffusion_prior=args.train_diffusion_prior,
-                            num_categocical_interval=args.num_categorical_interval,
-                            use_contrastive=args.use_contrastive,
-                            contrastive_ratio=args.contrastive_ratio,
-                            margin=args.margin,
-                            scale=args.scale,
-                            prior_loss=args.prior_loss
+                            diffusion_steps=args.diffusion_steps, 
+                            normalize_latent=args.normalize_latent,
+                            action_num=a_dim,
+                            max_grid_size=args.max_grid_size,
                             ).to(args.device)
     
     skill_model.load_state_dict(checkpoint['model_state_dict'])
     skill_model.eval()
 
-    #locomotion data의 경우 reward까지 받아오도록 수정, maze계열은 없는게 default
-    if 'halfcheetah' in args.env or 'walker2d' in args.env or 'hopper' in args.env:
-        dataset = get_dataset(args.env, args.horizon, args.stride, 0.0, args.append_goals, args.get_rewards, dataset_dir=args.dataset_dir)
-    else:
-        dataset = get_dataset(args.env, args.horizon, args.stride, 0.0, args.append_goals, dataset_dir=args.dataset_dir)
-
-    obs_chunks_train = dataset['observations_train']
-    action_chunks_train = dataset['actions_train']
-
-    inputs_train = torch.cat([obs_chunks_train, action_chunks_train], dim=-1)
+    dataset = ARC_Segment_Dataset(data_path=args.solar_dir)
 
     train_loader = DataLoader(
-        inputs_train,
+        dataset,
         batch_size=args.batch_size,
         num_workers=0)
-
-    states_gt = np.zeros((inputs_train.shape[0], state_dim))
-    latent_gt = np.zeros((inputs_train.shape[0], args.z_dim))
+    
+    len_train_dataset = dataset.__len__()
+    
+    states_gt = np.zeros((len_train_dataset, 1, args.max_grid_size, args.max_grid_size))
+    clip_gt = np.zeros((len_train_dataset, 1, args.max_grid_size, args.max_grid_size))
+    in_grid_gt = np.zeros((len_train_dataset, 1, args.max_grid_size, args.max_grid_size))
+    latent_gt = np.zeros((len_train_dataset, args.z_dim))
+    
     if args.save_z_dist:
-        latent_std_gt = np.zeros((inputs_train.shape[0], args.z_dim))
-    sT_gt = np.zeros((inputs_train.shape[0], state_dim))
+        latent_std_gt = np.zeros((len_train_dataset, args.z_dim))
+       
+    
+    pbar = tqdm(enumerate(train_loader), total=len(train_loader))
 
-    for batch_id, data in enumerate(train_loader):
-        data = data.to(args.device)
-        states = data[:, :, :skill_model.state_dim]
-        actions = data[:, :, skill_model.state_dim:]
+    for batch_id, (state, s_T, clip, clip_T, selection, operation, reward, terminated, _, in_grid, out_grid, ex_in, ex_out) in pbar:
+        state = state.to(args.device)
+        clip = clip.to(args.device)
+        in_grid = in_grid.to(args.device)
+        selection = selection.to(args.device)
+        operation = operation.to(args.device)
+        terminated = terminated.to(args.device)
+        pair_in = ex_in.to(args.device)
+        pair_out = ex_out.to(args.device)
+        s_T = s_T.to(args.device)
+        clip_T = clip_T.to(args.device)
 
         start_idx = batch_id * args.batch_size
         end_idx = start_idx + args.batch_size
-        states_gt[start_idx : end_idx] = data[:, 0, :skill_model.state_dim].cpu().numpy()
-        sT_gt[start_idx: end_idx] = states[:, -1, :skill_model.state_dim].cpu().numpy()
-        output, output_std = skill_model.encoder(states, actions)
+        
+        states_gt[start_idx : end_idx, 0, :, :] = state[:, 0, :, :].cpu().numpy()
+        clip_gt[start_idx : end_idx, 0, :, :] = clip[:, 0, :, :].cpu().numpy()
+        in_grid_gt[start_idx : end_idx, 0, :, :] = in_grid[:, 0, :, :].cpu().numpy()
+        
+        output, output_std = skill_model.encoder(state, clip, in_grid, operation, selection, pair_in, pair_out)
         latent_gt[start_idx : end_idx] = output.detach().cpu().numpy().squeeze(1)
-        if args.save_z_dist:
-            latent_std_gt[start_idx : end_idx] = output_std.detach().cpu().numpy().squeeze(1)
 
-    np.save(os.path.join(args.dataset_dir,f'{args.skill_model_filename[:-4]}_states.npy'), states_gt)
-    np.save(os.path.join(args.dataset_dir,f'{args.skill_model_filename[:-4]}_latents.npy'), latent_gt)
-    np.save(os.path.join(args.dataset_dir,f'{args.skill_model_filename[:-4]}_sT.npy'), sT_gt)
+        
+    np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_states.npy'), states_gt)
+    np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_latents.npy'), latent_gt)
+    np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_clip.npy'), clip_gt)
+    np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_in_grid.npy'), in_grid_gt)
+    
     if args.save_z_dist:
-        np.save(os.path.join(args.dataset_dir,f'{args.skill_model_filename[:-4]}_latents_std.npy'), latent_std_gt)
+        np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_latents_std.npy'), latent_std_gt)
 
 if __name__ == '__main__':
 
@@ -104,7 +112,8 @@ if __name__ == '__main__':
     parser.add_argument('--env', type=str, default='antmaze-large-diverse-v2') #####
     parser.add_argument('--device', type=str, default='cuda')
     parser.add_argument('--checkpoint_dir', type=str, default=parent_folder+'/checkpoints')
-    parser.add_argument('--dataset_dir', type=str, default=parent_folder+'/data')
+    parser.add_argument('--data_dir', type=str, default=parent_folder+'/data')
+    parser.add_argument('--solar_dir', type=str, default=None)
     parser.add_argument('--skill_model_filename', type=str) #####
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--append_goals', type=int, default=0) #####
@@ -115,7 +124,8 @@ if __name__ == '__main__':
     parser.add_argument('--stride', type=int, default=1)
     parser.add_argument('--beta', type=float, default=0.05)
     parser.add_argument('--a_dist', type=str, default='normal')
-
+    
+    parser.add_argument('--encoder_type', type=str, default='gru') 
     parser.add_argument('--state_decoder_type', type=str, default='mlp') #####
     parser.add_argument('--policy_decoder_type', type=str, default='autoregressive') #####
     parser.add_argument('--per_element_sigma', type=int, default=1)
@@ -123,15 +133,14 @@ if __name__ == '__main__':
     parser.add_argument('--train_diffusion_prior', type=int, default=0)
     parser.add_argument('--h_dim', type=int, default=256)
     parser.add_argument('--z_dim', type=int, default=16)
+    parser.add_argument('--a_dim', type=int, default=256)
+    parser.add_argument('--s_dim', type=int, default=256)
     
-    parser.add_argument('--num_categorical_interval', type=int, default=10)
-    parser.add_argument('--use_contrastive', type=int, default=0)
-    parser.add_argument('--contrastive_ratio', type=float, default=1.0)
-    parser.add_argument('--margin', type=float, default=1.0)
-    parser.add_argument('--scale', type=int, default=30)
+    parser.add_argument('--normalize_latent', type=int, default=0)
+    parser.add_argument('--diffusion_steps', type=int, default=100)
+    parser.add_argument('--max_grid_size', type=int, default=30)
     
-    parser.add_argument('--encoder_type', type=str, default='gru')
-    parser.add_argument('--prior_loss', type=str, default='kl_divergence')  # wasserstein or kl_divergence
+    
     args = parser.parse_args()
 
     collect_data(args)

@@ -46,7 +46,7 @@ class ARC_Dataloader(Loader):
 
         for path, _, files in os.walk(data_path):
             for name in files:
-                if 'expert' in name:
+                if 'expert' in name or 'gold_standard' in name:
                     pathlist.append(os.path.join(path, name))   
 
         self.num_dataset = len(pathlist)
@@ -238,8 +238,9 @@ def prior_policy(
     in_grid_unsq = in_grid.unsqueeze(1)
     
     latent, latent_prior_std = skill_model.prior(state_0, clip_0, in_grid_unsq, pair_in, pair_out)
-
-    return latent
+    eps = torch.normal(torch.zeros(latent.size()).cuda(), torch.ones(latent.size()).cuda())
+    
+    return latent + latent_prior_std * eps
         
 def eval_func(diffusion_model,
               skill_model,
@@ -264,6 +265,7 @@ def eval_func(diffusion_model,
               loader=None):
     
     print("Render mode : None")
+    print(f"test_data: {args.test_solar_dir}")
     print(f"exec_horizon: {args.exec_horizon}")
     print(f"q_checkpoint_dir: {args.q_checkpoint_dir}")
     print(f"q_checkpoint_steps: {args.q_checkpoint_steps}")
@@ -291,7 +293,7 @@ def eval_func(diffusion_model,
             
             done = [False] * num_parallel_envs
             reach_ans = [False] * num_parallel_envs
-            
+            count_none = [0] * num_parallel_envs
             for env_idx in range(len(envs)):
                 # input-output pair 추출
                 ex_in, ex_out, tt_in, tt_out, desc = loader.pick(data_index=eval_step)
@@ -352,6 +354,7 @@ def eval_func(diffusion_model,
 
                 for _ in range(exec_horizon):
                     for env_idx in range(len(envs)):
+                        
                         # for sample_num in range(args.num_diffusion_samples):
                         if not done[env_idx]:
                             # print(state_0[env_idx].shape)
@@ -376,33 +379,48 @@ def eval_func(diffusion_model,
                             # w = np.argmax(w)
                             
                             if(render != "ansi"):
+                                if operation == 35:
+                                    print("None")
+                                    # count_none[env_idx] +=1
+                                    # if count_none[env_idx] >= 10:
+                                    #     break
+                                    done[env_idx] = 1
+                                    continue
+                                    
+                                    
                                 print("Step: {0}| op: {1}, x: {2}, y: {3}, h : {4}, w : {5}".format(env_step, operation, x, y, h, w))
                             
                             # Operation에서 None 나오면 env에 안넣고 패스
                             if(operation == 35):
                                 print("None !!")
+                                done[env_idx] = 1
                                 ValueError("잘하자")
                             else:
                                 # time.sleep(1.0)
                                 select = sel_bbox_to_mask((x, y, h, w), (args.max_grid_size, args.max_grid_size))
                                 action = {'selection': select.astype(bool), 'operation': operation}
                                 
-                                obs, reward, done[env_idx], _, _ = envs[env_idx].step(action)
+                                try:
+                                    obs, reward, done[env_idx], _, _ = envs[env_idx].step(action)
                                 
-                                # time.sleep(2.0)
-                                if reward:
-                                    score_submit += 1
-                                    
-                                obs_x, obs_y  = obs['grid_dim']
-                                state_0[env_idx].fill_(10)
-                                state_0[env_idx, :obs_x, :obs_y] = torch.from_numpy(obs['grid'][:obs_x, :obs_y].copy())
-                                
-                                clip_x, clip_y  = obs['clip_dim']
-                                clip_0[env_idx].fill_(10)
-                                clip_0[env_idx, :clip_x, :clip_y] = torch.from_numpy(obs['clip'][:clip_x, :clip_y].copy())
+                                    # time.sleep(2.0)
+                                    if reward:
+                                        score_submit += 1
 
-                                if np.array_equal(obs['grid'][:obs_x, :obs_y], tt_out[0]):
-                                    reach_ans[env_idx] = True
+                                    obs_x, obs_y  = obs['grid_dim']
+                                    state_0[env_idx].fill_(10)
+                                    state_0[env_idx, :obs_x, :obs_y] = torch.from_numpy(obs['grid'][:obs_x, :obs_y].copy())
+
+                                    clip_x, clip_y  = obs['clip_dim']
+                                    clip_0[env_idx].fill_(10)
+                                    clip_0[env_idx, :clip_x, :clip_y] = torch.from_numpy(obs['clip'][:clip_x, :clip_y].copy())
+
+                                    if np.array_equal(obs['grid'][:obs_x, :obs_y], tt_out[0]):
+                                        reach_ans[env_idx] = True
+                                        
+                                except Exception as e:
+                                    print("ARCLE execution error")
+                                    continue
                                     
                             if render and env_idx == 0:
                                 envs[env_idx].render()
@@ -467,7 +485,7 @@ def evaluate(args, loader):
     skill_model.load_state_dict(torch.load(os.path.join(args.checkpoint_dir, args.skill_model_filename))['model_state_dict'])
     skill_model.eval()
 
-    # diffusion_model = None
+    diffusion_model = None
     if not args.policy == 'prior':
         # if args.append_goals:
         #   diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4] + '_diffusion_prior_gc_best.pt')).to(args.device)
@@ -490,70 +508,70 @@ def evaluate(args, loader):
         # envs = [gym.make(args.env, render_mode=None, data_loader=loader, max_grid_size=args.max_grid_size, colors=10, 
         #                  max_episode_steps=None, max_trial=3) for _ in range(args.num_parallel_envs)]
 
-        if(args.render == 'ansi'):
-            # envs = gym.make(args.env, data_loader=loader, render_mode='ansi', max_grid_size=(args.max_grid_size,args.max_grid_size), colors=10, max_trial=3)
-            envs = [gym.make(args.env, data_loader=loader, render_mode='ansi', max_grid_size=(args.max_grid_size,args.max_grid_size), colors=10, max_trial=3)]
-        else:
-            envs = [gym.make(args.env, data_loader=loader, max_grid_size=(args.max_grid_size,args.max_grid_size), colors=10, max_trial=3)]
+    if(args.render == 'ansi'):
+        # envs = gym.make(args.env, data_loader=loader, render_mode='ansi', max_grid_size=(args.max_grid_size,args.max_grid_size), colors=10, max_trial=3)
+        envs = [gym.make(args.env, data_loader=loader, render_mode='ansi', max_grid_size=(args.max_grid_size,args.max_grid_size), colors=10, max_trial=3)]
+    else:
+        envs = [gym.make(args.env, data_loader=loader, max_grid_size=(args.max_grid_size,args.max_grid_size), colors=10, max_trial=3)]
         
         
-        if not args.append_goals:
-            #state_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_states.npy"), allow_pickle=True)
-            state_mean = 0    #torch.from_numpy(state_all.mean(axis=0)).to(args.device).float()
-            state_std = 1     #torch.from_numpy(state_all.std(axis=0)).to(args.device).float()
+    if not args.append_goals:
+        #state_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_states.npy"), allow_pickle=True)
+        state_mean = 0    #torch.from_numpy(state_all.mean(axis=0)).to(args.device).float()
+        state_std = 1     #torch.from_numpy(state_all.std(axis=0)).to(args.device).float()
 
-            #latent_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_latents.npy"), allow_pickle=True)
-            latent_mean = 0   #torch.from_numpy(latent_all.mean(axis=0)).to(args.device).float()
-            latent_std = 1    #torch.from_numpy(latent_all.std(axis=0)).to(args.device).float()
-        else:
-            #state_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_goals_states.npy"), allow_pickle=True)
-            state_mean = 0    #torch.from_numpy(state_all.mean(axis=0)).to(args.device).float()
-            state_std = 1     #torch.from_numpy(state_all.std(axis=0)).to(args.device).float()
+        #latent_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_latents.npy"), allow_pickle=True)
+        latent_mean = 0   #torch.from_numpy(latent_all.mean(axis=0)).to(args.device).float()
+        latent_std = 1    #torch.from_numpy(latent_all.std(axis=0)).to(args.device).float()
+    else:
+        #state_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_goals_states.npy"), allow_pickle=True)
+        state_mean = 0    #torch.from_numpy(state_all.mean(axis=0)).to(args.device).float()
+        state_std = 1     #torch.from_numpy(state_all.std(axis=0)).to(args.device).float()
 
-            #latent_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_goals_latents.npy"), allow_pickle=True)
-            latent_mean = 0   #torch.from_numpy(latent_all.mean(axis=0)).to(args.device).float()
-            latent_std = 1    #torch.from_numpy(latent_all.std(axis=0)).to(args.device).float()
+        #latent_all = np.load(os.path.join(args.test_solar_dir, args.skill_model_filename[:-4] + "_goals_latents.npy"), allow_pickle=True)
+        latent_mean = 0   #torch.from_numpy(latent_all.mean(axis=0)).to(args.device).float()
+        latent_std = 1    #torch.from_numpy(latent_all.std(axis=0)).to(args.device).float()
 
-        dqn_agent = None
-        if args.policy == 'prior':
-            policy_fn = prior_policy
-        elif args.policy == 'diffusion_prior':
-            policy_fn = diffusion_prior_policy
-        elif args.policy == 'q':
-            # dqn_agent = torch.load(os.path.join(args.q_checkpoint_dir, args.skill_model_filename[:-4]+'_dqn_agent_'+str(args.q_checkpoint_steps)+'_cfg_weight_'+str(args.cfg_weight)+'_PERbuffer.pt')).to(args.device)
-            dqn_agent = torch.load(os.path.join(args.q_checkpoint_dir, args.skill_model_filename[:-4]+'_dqn_agent_'+str(args.q_checkpoint_steps)+'_cfg_weight_'+str(args.cfg_weight)+'_use_ex_PERbuffer.pt')).to(args.device)
-            dqn_agent.diffusion_prior = diffusion_model
-            dqn_agent.extra_steps = args.extra_steps
-            dqn_agent.target_net_0 = dqn_agent.q_net_0
-            dqn_agent.target_net_1 = dqn_agent.q_net_1
-            dqn_agent.eval()
-            dqn_agent.num_prior_samples = args.num_diffusion_samples
-            policy_fn = q_policy
-        else:
-            raise NotImplementedError
+    dqn_agent = None
+    if args.policy == 'prior':
+        policy_fn = prior_policy
+    elif args.policy == 'diffusion_prior':
+        policy_fn = diffusion_prior_policy
+    elif args.policy == 'q':
+        # dqn_agent = torch.load(os.path.join(args.q_checkpoint_dir, args.skill_model_filename[:-4]+'_dqn_agent_'+str(args.q_checkpoint_steps)+'_cfg_weight_'+str(args.cfg_weight)+'_PERbuffer.pt')).to(args.device)
+        dqn_agent = torch.load(os.path.join(args.q_checkpoint_dir, args.skill_model_filename[:-4]+'_dqn_agent_'+str(args.q_checkpoint_steps)+'_cfg_weight_'+str(args.cfg_weight)+'_PERbuffer.pt')).to(args.device)
+        dqn_agent.diffusion_prior = diffusion_model
+        dqn_agent.extra_steps = args.extra_steps
+        dqn_agent.target_net_0 = dqn_agent.q_net_0
+        dqn_agent.target_net_1 = dqn_agent.q_net_1
+        dqn_agent.eval()
+        dqn_agent.num_prior_samples = args.num_diffusion_samples
+        policy_fn = q_policy
+    else:
+        raise NotImplementedError
 
-        eval_func(diffusion_model,
-                    skill_model,
-                    policy_fn,
-                    envs,
-                    state_dim,
-                    state_mean,
-                    state_std,
-                    latent_mean,
-                    latent_std,
-                    args.num_evals,
-                    args.num_parallel_envs,
-                    args.num_diffusion_samples,
-                    args.extra_steps,
-                    args.planning_depth,
-                    args.exec_horizon,
-                    args.predict_noise,
-                    args.render,
-                    args.append_goals,
-                    dqn_agent,
-                    args.env,
-                    loader,
-                    )
+    eval_func(diffusion_model,
+                skill_model,
+                policy_fn,
+                envs,
+                state_dim,
+                state_mean,
+                state_std,
+                latent_mean,
+                latent_std,
+                args.num_evals,
+                args.num_parallel_envs,
+                args.num_diffusion_samples,
+                args.extra_steps,
+                args.planning_depth,
+                args.exec_horizon,
+                args.predict_noise,
+                args.render,
+                args.append_goals,
+                dqn_agent,
+                args.env,
+                loader,
+                )
 
 
 if __name__ == "__main__":

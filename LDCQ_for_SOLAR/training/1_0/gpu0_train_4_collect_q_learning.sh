@@ -1,20 +1,21 @@
 CUDA_VISIBLE_DEVICES=0 python ./collect_offline_q_learning_dataset.py \
 --env ARCLE \
---solar_dir /home/yunho/ldcq_arc/ARC_Single/segment/train.10.09.12 \
---data_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/data \
---checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_ARCLE_00.00 \
---q_checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu0_ARCLE_00.00 \
---skill_model_filename gpu0_skill_model_ARCLE_00.00_best.pth \
---diffusion_model_filename gpu0_skill_model_ARCLE_00.00_best_diffusion_prior_best.pt \
---num_diffusion_samples 1 \
---num_prior_samples 1 \
---diffusion_steps 100 \
+--solar_dir /home/jovyan/ldcq_arc/ARC_Single/segment/train.6f8cd79b.10.11.26 \
+--data_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/data/train.6f8cd79b.10.11.26 \
+--checkpoint_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_11.26 \
+--skill_model_filename gpu0_skill_model_ARCLE_11.26_400_.pth \
+--diffusion_model_filename gpu0_skill_model_ARCLE_11.26_400__diffusion_prior_best.pt \
+--num_diffusion_samples 300 \
+--num_prior_samples 300 \
+--diffusion_steps 500 \
 --a_dim 36 \
---z_dim 16 \
---h_dim 32 \
+--z_dim 256 \
+--h_dim 512 \
 --skill_model_diffusion_steps 100 \
---train_diffusion_prior 0 \
+--train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \
---batch_size 64 \
---max_grid_size 10 
+--batch_size 256 \
+--max_grid_size 10  \
+--gamma 0.5 \
+--horizon 5 

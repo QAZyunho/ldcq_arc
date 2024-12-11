@@ -1,5 +1,5 @@
 <1단계 - train_skills>
-nohup ./1_0/gpu0_train_1_skill_model.sh > ./log/gpu0_09.04/gpu0_1.log 2>&1 &
+nohup ./1_0/gpu0_train_1_skill_model.sh > ./log/gpu0_10.31/gpu0_1.log 2>&1 &
 nohup ./1_1/gpu1_train_1_skill_model.sh > ./log/gpu1_09.12/gpu1.30_1.log 2>&1 &
 nohup ./1_2/gpu2_train_1_skill_model.sh > ./log/gpu2_09.12/gpu2_1.log 2>&1 &
 nohup ./1_3/gpu3_train_1_skill_model.sh > ./log/gpu3_09.12/gpu3_1.log 2>&1 &

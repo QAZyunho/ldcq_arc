@@ -153,8 +153,8 @@ class FixedPrioritizedBuffer(object):
     
     def __len__(self):
         return self.buffer_size
-   
-# class NaivePrioritizedBuffer(object):
+    
+    # class NaivePrioritizedBuffer(object):
 #     def __init__(self, capacity, prob_alpha=0.6):
 #         self.prob_alpha = prob_alpha
 #         self.capacity   = capacity

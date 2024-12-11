@@ -3,8 +3,8 @@
 #change the arguments below
 python visualize_trajectory.py \
     --mode whole \
-    --file_path /home/yunho/ldcq_arc/ARC_Single/whole/46442a0e\
-    --save_folder_path /home/yunho/ldcq_arc/ARC_Single/figure \
+    --file_path /home/jovyan/ldcq_arc/ARC_Single/whole/train.6f8cd79b.10.11.20/6f8cd79b-gold_standard_100.json /home/jovyan/ldcq_arc/ARC_Single/whole/train.6f8cd79b.10.11.20/6f8cd79b-gold_standard_50.json\
+    --save_folder_path /home/jovyan/ldcq_arc/ARC_Single/figure \
     --make_task_folder true
 
 :<<"OPTIONS"

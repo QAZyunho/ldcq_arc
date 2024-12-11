@@ -1,15 +1,16 @@
 CUDA_VISIBLE_DEVICES=0 python ./collect_diffusion_data.py \
 --env ARCLE \
---solar_dir /home/yunho/ldcq_arc/ARC_Single/segment/train.10.09.12 \
---data_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/data \
---checkpoint_dir /home/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_ARCLE_00.00 \
---skill_model_filename gpu0_skill_model_ARCLE_00.00_best.pth \
+--solar_dir /home/jovyan/ldcq_arc/ARC_Single/segment/train.6f8cd79b.10.11.26 \
+--data_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/data/train.6f8cd79b.10.11.26 \
+--checkpoint_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_11.26 \
+--skill_model_filename gpu0_skill_model_ARCLE_11.26_400_.pth \
+--policy_decoder_type mlp \
 --horizon 5 \
 --a_dim 36 \
---z_dim 16 \
---h_dim 32 \
---s_dim 32 \
---train_diffusion_prior 0 \
+--z_dim 256 \
+--h_dim 512 \
+--s_dim 512 \
+--train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \
 --diffusion_steps 100 \

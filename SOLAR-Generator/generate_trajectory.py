@@ -97,6 +97,7 @@ for i in tqdm(range(len(tasks)), desc="total", position=0):
         grid_maker = utils.import_library_for_task(tasks[i], num_samples, max_grid_dim, num_examples=num_examples, rand_seed=rand_seed)
     except Exception as e:
         # falied to generate random grids, check if the max_grid_dim too small.
+        print('newline')
         print(e)
         print(f"For {tasks[i]}, failed to generate grid")
         continue
@@ -188,10 +189,11 @@ for i in tqdm(range(len(tasks)), desc="total", position=0):
 
         # check it is reasonable trajectory(compare output from ARCLE with handcrafted answer)
         # if not np.array_equal(np.array(data['grid'][-1])[:g_h, :g_w], pr_out[0]):
-        if 'golden_standard' in data['desc'] and not np.array_equal(np.array(data['grid'][-1])[:g_h, :g_w], pr_out[0]):
-            print(f" {tasks[i]} not correct answer")
-            utils.save_wrong(data, tasks[i], data_folder_path)
-            continue
+        if 'gold_standard_' in data['desc'] :
+            if not np.array_equal(np.array(data['grid'][-1])[:g_h, :g_w], pr_out[0]):
+                print(f" {tasks[i]} not correct answer")
+                utils.save_wrong(data, tasks[i], data_folder_path)
+                continue
 
         data['in_grid'] = data['grid'][0]
         data['out_grid'] = data['grid'][-1]
