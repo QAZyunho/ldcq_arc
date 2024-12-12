@@ -255,5 +255,5 @@ class DDQN(nn.Module):
             self.scheduler_0.step()
             self.scheduler_1.step()
             # experiment.log_metric("train_loss_episode", loss_ep/n_batch, step=epoch)
-            wandb.log({"train_Q/train_loss_episode": loss_ep/n_batch, "steps": update})
+            wandb.log({"train_Q/train_loss_episode": loss_ep/n_batch, "train_Q/udates": update})
             epoch += 1
