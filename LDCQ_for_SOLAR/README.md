@@ -30,27 +30,27 @@ cd training
 ```
 1. Training skill with:
 ```
-./gpu0_train_1_skill_model.sh
+./1_0/gpu0_train_1_skill_model.sh
 ```
 
 2. Collect data to train diffusion model with:
 ```
-./gpu0_train_2_collect_diffusion_data.sh
+./1_0/gpu0_train_2_collect_diffusion_data.sh
 ```
 
 3. Training diffusion model with:
 ```
-./gpu0_train_3_diffusion.sh
+./1_0/gpu0_train_3_diffusion.sh
 ```
 
 4. Collect data to train offline Q-learning with:
 ```
-./gpu0_train_4_collect_q_learning.sh
+./1_0/gpu0_train_4_collect_q_learning.sh
 ```
 
 5. Training Q-network with:
 ```
-./gpu0_train_5_q_learning.sh
+./1_0/gpu0_train_5_q_learning.sh
 ```
 
 ## Test
