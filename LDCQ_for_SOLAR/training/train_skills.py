@@ -117,6 +117,8 @@ def test_acc(model, test_loader, test_num):
 	correct = 0
 	correct_0 = 0
 	total_0 = 0
+	total_op, total_x, total_y, total_h, total_w = 0, 0, 0, 0, 0
+	correct_op, correct_x, correct_y, correct_h, correct_w = 0, 0, 0, 0, 0	
  
 	with torch.no_grad():
 		pbar = tqdm(enumerate(test_loader), total=test_num, desc="Test Accuracy skill model : ")
@@ -142,26 +144,52 @@ def test_acc(model, test_loader, test_num):
 
 			total_0 += 1
 			for h in range(H):
-				pred_operation, pred_x, pred_y, pred_h, pred_w = model.decoder.ll_policy.tensor_policy(states[:, h, :, :], clip[:, h, :, :], in_grid, z_sampled, pair_in, pair_out)
+				pred_operation, pred_x, pred_y, pred_h, pred_w = model.decoder.ll_policy.tensor_policy(
+					states[:, h, :, :], clip[:, h, :, :], in_grid, z_sampled, pair_in, pair_out)
+
 				p_operation = torch.argmax(pred_operation)
 				p_x = torch.argmax(pred_x)
 				p_y = torch.argmax(pred_y)
 				p_h = torch.argmax(pred_h)
 				p_w = torch.argmax(pred_w)
 
+				if operation[0, h, 0] == p_operation:
+					correct_op += 1
+				if selection[0, h, 0] == p_x:
+					correct_x += 1
+				if selection[0, h, 1] == p_y:
+					correct_y += 1
+				if selection[0, h, 2] == p_h:
+					correct_h += 1
+				if selection[0, h, 3] == p_w:
+					correct_w += 1
+
+				total_op += 1
+				total_x += 1
+				total_y += 1
+				total_h += 1
+				total_w += 1
+
 				if (operation[0, h, 0] == p_operation and
 					selection[0, h, 0] == p_x and
 					selection[0, h, 1] == p_y and
 					selection[0, h, 2] == p_h and
 					selection[0, h, 3] == p_w):
-					correct = correct + 1
+					correct += 1
 					if h == 0:
 						correct_0 += 1
-    
-				total_num = total_num + 1
 
-	wandb.log({"train_skill/test_acc_whole": 100.0*correct/total_num})
-	wandb.log({"train_skill/test_acc_s0": 100.0*correct_0/total_0})
+				total_num += 1
+
+		wandb.log({
+			"train_skill/test_acc_whole": 100.0 * correct / total_num,
+			"train_skill/test_acc_s0": 100.0 * correct_0 / total_0,
+			"train_skill/test_acc_operation": 100.0 * correct_op / total_op,
+			"train_skill/test_acc_x": 100.0 * correct_x / total_x,
+			"train_skill/test_acc_y": 100.0 * correct_y / total_y,
+			"train_skill/test_acc_h": 100.0 * correct_h / total_h,
+			"train_skill/test_acc_w": 100.0 * correct_w / total_w,
+		})
 	return correct/total_num
 
 def test_acc_prior(model, test_loader, test_num):
@@ -292,7 +320,10 @@ checkpoint_dir = args.checkpoint_dir
 env_name = args.env
 
 action_num = args.a_dim
-date = args.date
+#date=args.date
+now =datetime.datetime.now()
+nowtime = now.strftime("%m.%d")
+
 
 state_dim = args.s_dim # h_dim이랑 같은 것 사용
 a_dim = args.a_dim # ARCLE에서 35개의 action
@@ -308,19 +339,29 @@ else:
     ValueError("지금은 ARCLE만 가능")
 
 # 모델 저장할 때 이름
-file_info = env_name  + '_' + date
+file_info = env_name  + '_' + nowtime
 filename = args.gpu_name+'_' + 'skill_model_' + file_info
 
 # 확인하고 싶은 디렉토리의 경로를 지정하세요
-checkpoint_dir = checkpoint_dir+'/'+args.gpu_name+'_'+date
+org_checkpoint_dir = checkpoint_dir+'/'+args.gpu_name+'_'+ nowtime
 
-# 디렉토리가 존재하는지 확인
-if not os.path.exists(checkpoint_dir):
-    # 디렉토리가 없으면 새로 만듭니다
-    os.makedirs(checkpoint_dir)
-    print(f"디렉토리가 생성되었습니다: {checkpoint_dir}")
-else:
-    print(f"디렉토리가 이미 존재합니다: {checkpoint_dir}")
+suffix = 0
+checkpoint_dir = org_checkpoint_dir
+
+while os.path.exists(checkpoint_dir):
+    checkpoint_dir = org_checkpoint_dir + f'_{suffix}'
+    suffix += 1
+
+os.makedirs(checkpoint_dir)
+
+# # 디렉토리가 존재하는지 확인
+# if not os.path.exists(checkpoint_dir):
+#     # 디렉토리가 없으면 새로 만듭니다
+#     os.makedirs(checkpoint_dir)
+#     print(f"디렉토리가 생성되었습니다: {checkpoint_dir}")
+# else:
+    
+#     print(f"디렉토리가 이미 존재합니다: {checkpoint_dir}")
 
 # Check model option
 print("Normalize_latent : {0}".format(normalize_latent))
@@ -360,10 +401,13 @@ else:
 
 d=datetime.datetime.now()
 # Wandb 기록
+task_name = args.solar_dir.split("/")[-1]
+task= task_name.split(".")[1]
 wandb.init(
     project = "LDCQ_single",
-    name = 'LDCQ_'+args.gpu_name+'_'+'skill'+'_'+str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
+    name = 'LDCQ_'+args.gpu_name+'_'+'skill'+'_'+ task + '_' +nowtime,
     config = {
+        'task':task_name,
 		'lr':lr,
 		'h_dim':h_dim,
 		'z_dim':z_dim,

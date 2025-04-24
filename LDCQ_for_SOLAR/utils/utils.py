@@ -416,7 +416,7 @@ if __name__ == "__main__":
     from tqdm import tqdm
     
     dataset = ARC_Segment_Dataset(
-		data_path="/home/jovyan/beomi/jaehyun/ARC_single/segment/test.10.09.12"
+		data_path="/data/beomi/jaehyun/ARC_single/segment/test.10.09.12"
 	)
     
     train_loader = DataLoader(

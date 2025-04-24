@@ -2,6 +2,7 @@ import json
 import os
 import numpy as np
 import importlib.util
+from datetime import datetime
 
 
 action_names = [  # mapping action number and action name of ARCLE
@@ -65,14 +66,16 @@ def mapping_operation(n):  # return action name of given integer
     except:
         raise ValueError("not defined action number")
 
+now = datetime.now()
+formatted_time = now.strftime("%y.%m.%d")
 
-def save_wrong(data, task, data_folder_path):  # save wrong(broken) trajectory
+def save_wrong(data, task, t, max_grid_dim, data_folder_path):  # save wrong(broken) trajectory
 
     whole_folder_path = data_folder_path+'/wrong'
     if not os.path.exists(whole_folder_path):
         os.makedirs(whole_folder_path)
 
-    task_folder_path = whole_folder_path+f"/{task}"
+    task_folder_path = whole_folder_path+f"/{t}.{task}.s{max_grid_dim}.{formatted_time}"
     if not os.path.exists(task_folder_path):
         os.makedirs(task_folder_path)
 
@@ -81,13 +84,13 @@ def save_wrong(data, task, data_folder_path):  # save wrong(broken) trajectory
         f.close()
 
 
-def save_whole(data, task, data_folder_path):  # save whole trajectory
+def save_whole(data, task, t, max_grid_dim, data_folder_path):  # save whole trajectory
 
     whole_folder_path = data_folder_path+'/whole'
     if not os.path.exists(whole_folder_path):
         os.makedirs(whole_folder_path)
 
-    task_folder_path = whole_folder_path+f"/{task}"
+    task_folder_path = whole_folder_path+f"/{t}.{task}.s{max_grid_dim}.{formatted_time}"
     if not os.path.exists(task_folder_path):
         os.makedirs(task_folder_path)
 
@@ -96,13 +99,13 @@ def save_whole(data, task, data_folder_path):  # save whole trajectory
         f.close()
 
 
-def save_seg(data, task, H, data_folder_path):  # save segment trajectory
+def save_seg(data, task, H, t, max_grid_dim, data_folder_path):  # save segment trajectory
 
     seg_folder_path = data_folder_path+'/segment'
     if not os.path.exists(seg_folder_path):
         os.makedirs(seg_folder_path)
 
-    task_folder_path = seg_folder_path+f"/{task}"
+    task_folder_path = seg_folder_path+f"/{t}.{task}.s{max_grid_dim}.{formatted_time}"
     if not os.path.exists(task_folder_path):
         os.makedirs(task_folder_path)
 

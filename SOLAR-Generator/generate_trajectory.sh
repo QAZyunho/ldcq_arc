@@ -2,18 +2,18 @@
 
 #change the arguments below
 python generate_trajectory.py \
-    --env ARCLE/O2ARCv2Env-v0\
-    --data_folder_path /home/jovyan/ldcq_arc/ARC_Single \
-    --tasks test.6f8cd79b.10.11.26 \
-    --num_samples 100 \
+    --env ARCLE/O2ARCv2Env-v0 \
+    --data_folder_path /data/ldcq_arc/ARC_Single \
+    --tasks 10.09.13 \
+    --num_samples 500 \
     --num_examples 3 \
     --max_grid_dim 10 10 \
     --horizon 5 \
     --save_whole_trace True \
     --save_seg_trace True \
-    --render_mode None\
-    --delete_existing_data True\
-    --rand_seed 5
+    --render_mode None \
+    --delete_existing_data True \
+    --rand_seed 0
 
 
 :<<"OPTIONS"

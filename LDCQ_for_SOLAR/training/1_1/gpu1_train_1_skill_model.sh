@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
+CUDA_VISIBLE_DEVICES=1 python ./train_skills.py \
 --env ARCLE \
 --solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
 --test_solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13 \
@@ -9,10 +9,10 @@ CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
 --test_on True \
 --horizon 5 \
 --a_dim 36 \
---z_dim 32 \
---h_dim 64 \
---s_dim 64 \
---gpu_name gpu0 \
+--z_dim 64 \
+--h_dim 128 \
+--s_dim 128 \
+--gpu_name gpu1 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \

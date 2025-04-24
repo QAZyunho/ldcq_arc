@@ -199,8 +199,10 @@ def train(args):
     dqn_agent = DDQN(state_dim = x_shape, z_dim=y_dim, h_dim=args.h_dim, diffusion_prior=model, total_prior_samples=args.total_prior_samples, num_prior_samples=args.num_prior_samples, gamma=args.gamma,max_grid_size=args.max_grid_size,horizon=args.horizon)
     # dqn_agent.learn(dataload_train=per_buffer if args.per_buffer else dataload_train, n_epochs=args.n_epoch,
     #     diffusion_model_name=args.skill_model_filename[:-4], cfg_weight=args.cfg_weight, per_buffer = args.per_buffer, batch_size = args.batch_size, gpu_name=args.gpu_name)
+    task_name = args.solar_dir.split("/")[-1]
+    
     dqn_agent.learn(dataload_train=per_buffer, n_epochs=args.n_epoch,
-        diffusion_model_name=args.skill_model_filename[:-4], cfg_weight=args.cfg_weight, per_buffer = args.per_buffer, batch_size = args.batch_size, gpu_name=args.gpu_name,q_checkpoint_dir=args.q_checkpoint_dir)
+        diffusion_model_name=args.skill_model_filename[:-4], cfg_weight=args.cfg_weight, per_buffer = args.per_buffer, batch_size = args.batch_size, gpu_name=args.gpu_name,q_checkpoint_dir=args.q_checkpoint_dir,task_name=task_name)
 
 
 if __name__ == "__main__":
@@ -225,7 +227,7 @@ if __name__ == "__main__":
 
     parser.add_argument('--checkpoint_dir', type=str, default=parent_folder+'/checkpoints/')
     parser.add_argument('--q_checkpoint_dir', type=str, default=parent_folder+'/q_checkpoints/')
-
+    parser.add_argument('--solar_dir', type=str, default=None)
     parser.add_argument('--data_dir', type=str, default=parent_folder+'/data/')
     parser.add_argument('--skill_model_filename', type=str)
     parser.add_argument('--diffusion_model_filename', type=str)

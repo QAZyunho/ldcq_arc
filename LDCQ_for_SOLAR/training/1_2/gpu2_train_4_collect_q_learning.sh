@@ -1,24 +1,24 @@
-CUDA_VISIBLE_DEVICES=0 python ./train_q_net.py \
+CUDA_VISIBLE_DEVICES=2 python ./collect_offline_q_learning_dataset.py \
 --env ARCLE \
 --solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
---data_dir /data/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_09.13_0.7 \
+--data_dir /data/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_09.13_0.8 \
 --checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.13 \
---q_checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.7 \
 --skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
 --diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
---total_prior_samples 300 \
+--num_diffusion_samples 300 \
 --num_prior_samples 300 \
---n_epoch 500 \
 --diffusion_steps 500 \
---gpu_name gpu0 \
 --a_dim 36 \
 --z_dim 256 \
 --h_dim 512 \
---s_dim 512 \
---batch_size 64 \
---max_grid_size 10 \
---gamma 0.7 \
---horizon 5
+--skill_model_diffusion_steps 100 \
+--train_diffusion_prior 1 \
+--conditional_prior 1 \
+--normalize_latent 0 \
+--batch_size 256 \
+--max_grid_size 10  \
+--gamma 0.8 \
+--horizon 5 
 
 :<<"OPTIONS"
 explanation of arguments
@@ -26,10 +26,9 @@ explanation of arguments
 -solar_dir: train dataset directory.
 -data_dir: diffusion model 학습하는 데 필요한 데이터를 저장하는 directory.
 -checkpoint_dir: vae 모델 저장된 directory.
--q_checkpoint_dir: dqn 모델 저장될 directory.
 -skill_model_filename: vae 모델 파일 이름. pth 확장자로 된 것.
 -diffusion_model_filename: diffusion 모델 파일 이름. checkpoint에 같이 저장된 pt 확장자 파일 중 선택.
--total_prior_samples, num_prior_samples sample 몇개 뽑을 지인데 두 개 동일하게 사용하면 됨. default는 500.
+-num_diffusion_samples, num_prior_samples sample 몇개 뽑을 지인데 diffusion 썻냐 아니냐 차이에 따라 들어감. default는 500.
 -diffusion_steps: 3번 diffusion model 학습에 사용한 diffusion model.
 -horizon: step length of segment trace
 -a_dim: operation 갯수 ARCLE 기준 0~34, 35는 None

@@ -212,6 +212,7 @@ if __name__ == "__main__":
     parser.add_argument('--test_split', type=float, default=0.05)    # 원래는 0.1
     parser.add_argument('--sample_z', type=int, default=0)
 
+    parser.add_argument('--solar_dir', type=str, default=None)
     parser.add_argument('--checkpoint_dir', type=str, default=parent_folder+'/checkpoints/')
     parser.add_argument('--data_dir', type=str, default=parent_folder+'/data/')
     parser.add_argument('--skill_model_filename', type=str)
@@ -239,11 +240,13 @@ if __name__ == "__main__":
     d = datetime.datetime.now()
     file_info = args.env+'_'+args.date
     filename = args.gpu_name+'_'+'diffusion_'+file_info
-
+    task_name = args.solar_dir.split("/")[-1]
+    task= task_name.split(".")[1]
     wandb.init(
         project = "LDCQ_single",
-        name = 'LDCQ_'+args.gpu_name+'_'+'diffusion'+'_'+str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
+        name = 'LDCQ_'+args.gpu_name+'_'+'diffusion'+'_'+ task + '_'+ str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
         config = {
+            'task':task_name,
             'lr':args.lrate,
             'batch_size':args.batch_size,
             'sample_z':args.sample_z,

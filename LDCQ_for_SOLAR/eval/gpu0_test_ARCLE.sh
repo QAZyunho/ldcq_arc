@@ -1,29 +1,29 @@
 CUDA_VISIBLE_DEVICES=0 python ./plan_skills_diffusion_ARCLE.py \
-    --env ARCLE/O2ARCv2Env-v0 \
-    --test_solar_dir /home/jovyan/ldcq_arc/ARC_Single/whole/train.5c0a986e.10.11.13 \
-    --checkpoint_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu1_11.07 \
-    --q_checkpoint_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu1_11.07 \
-    --skill_model_filename gpu1_skill_model_ARCLE_11.07_400_.pth \
-    --diffusion_filename gpu1_skill_model_ARCLE_11.07_400__diffusion_prior_best.pt \
-    --policy_decoder_type mlp \
-    --num_diffusion_samples 300 \
-    --q_checkpoint_steps 48 \
-    --diffusion_steps 500 \
-    --num_parallel_envs 1 \
-    --skill_model_diffusion_steps 100 \
-    --a_dim 36 \
-    --z_dim 256 \
-    --h_dim 512 \
-    --s_dim 512 \
-    --train_diffusion_prior 1 \
-    --conditional_prior 1 \
-    --normalize_latent 0 \
-    --exec_horizon 1 \
-    --horizon 5 \
-    --policy q \
-    --render None \
-    --beta 0.1 \
-    --max_grid_size 10
+--env ARCLE/O2ARCv2Env-v0 \
+--test_solar_dir /data/ldcq_arc/ARC_Single/whole/test.10.09.13 \
+--checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.13 \
+--q_checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.7 \
+--skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
+--diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
+--policy_decoder_type mlp \
+--num_diffusion_samples 300 \
+--q_checkpoint_steps 21 \
+--diffusion_steps 500 \
+--num_parallel_envs 1 \
+--skill_model_diffusion_steps 100 \
+--a_dim 36 \
+--z_dim 256 \
+--h_dim 512 \
+--s_dim 512 \
+--train_diffusion_prior 1 \
+--conditional_prior 1 \
+--normalize_latent 0 \
+--exec_horizon 1 \
+--horizon 5 \
+--policy q \
+--render None \
+--beta 0.1 \
+--max_grid_size 10
     
 :<<"OPTIONS"
 explanation of arguments
@@ -31,7 +31,7 @@ explanation of arguments
 -test_solar_dir: train dataset directory.
 -checkpoint_dir: vae 모델 저장된 directory.
 -skill_model_filename: vae 모델 파일 이름. pth 확장자로 된 것.
--diffusion_filename: diffusion 모델 파일 이름. checkpoint에 같이 저장된 pt 확장자 파일 중 선택.
+-diffusion_model_filename: diffusion 모델 파일 이름. checkpoint에 같이 저장된 pt 확장자 파일 중 선택.
 -num_diffusion_samples: sample 몇개 뽑을 지인데 diffusion 썻냐 아니냐 차이에 따라 들어감. default는 500.
 -q_checkpoint_steps: dqn 모델 선택하기. 항상 마지막이 더 잘 되는 것이 아님. loss graph보면 td error가 다시 올라가기에 적절히 선택할 필요.
 -diffusion_steps: diffusion model에 사용한 diffusion step.

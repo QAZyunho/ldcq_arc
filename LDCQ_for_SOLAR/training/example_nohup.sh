@@ -1,8 +1,8 @@
 <1단계 - train_skills>
-nohup ./1_0/gpu0_train_1_skill_model.sh > ./log/gpu0_10.31/gpu0_1.log 2>&1 &
-nohup ./1_1/gpu1_train_1_skill_model.sh > ./log/gpu1_09.12/gpu1.30_1.log 2>&1 &
-nohup ./1_2/gpu2_train_1_skill_model.sh > ./log/gpu2_09.12/gpu2_1.log 2>&1 &
-nohup ./1_3/gpu3_train_1_skill_model.sh > ./log/gpu3_09.12/gpu3_1.log 2>&1 &
+nohup ./1_0/gpu0_train_1_skill_model.sh > ./log/gpu0_04.10/gpu0_1.log 2>&1 &
+nohup ./1_1/gpu1_train_1_skill_model.sh > ./log/gpu1_04.10/gpu1_1.log 2>&1 &
+nohup ./1_2/gpu2_train_1_skill_model.sh > ./log/gpu2_04.10/gpu2_1.log 2>&1 &
+nohup ./1_3/gpu3_train_1_skill_model.sh > ./log/gpu3_04.10/gpu3_1.log 2>&1 &
 
 
 <2단계 - collect_diffusion_data>
@@ -36,13 +36,23 @@ nohup ./1_2/gpu2_train_5_q_learning.sh > ./log/gpu3_09.10/gpu2_5_0.99.log 2>&1 &
 nohup ./1_3/gpu3_train_5_q_learning.sh > ./log/gpu3_09.12/gpu3_5.log 2>&1 &
 
 <eval>
-nohup ./gpu0_test_ARCLE.sh > ./log/gpu0_09.12/gpu0_q10.log 2>&1 &
-nohup ./gpu1_test_ARCLE.sh > ./log/gpu1_30.09.12/gpu1_30_0.99.log 2>&1 &
-nohup ./gpu2_test_ARCLE.sh > ./log/gpu2_09.13/gpu2_q29_5.log 2>&1 &
+nohup ./gpu0_test_ARCLE.sh > ./log/gpu0_04.10/gpu0_z32_1.log 2>&1 &
+nohup ./gpu1_test_ARCLE.sh > ./log/gpu1_04.12_z64/gpu1_64_1.log 2>&1 &
+nohup ./gpu2_test_ARCLE.sh > ./log/gpu2_04.10_z128/gpu2_vae_1.log 2>&1 &
 nohup ./gpu3_test_ARCLE.sh > ./log/gpu3_09.12/gpu3_diffusion.log 2>&1 &
 
+nohup ./gpu4_test_ARCLE.sh > ./log/gpu4_04.09/r0.5_H5_ex1_1.log 2>&1 &
+nohup ./gpu5_test_ARCLE.sh > ./log/gpu5_04.09/r0.9_H5_ex1_1.log 2>&1 &
+
 nohup ./gpu0.sh > ./log/gpu2_09.12/gpu0_q50.log 2>&1 &
+
+nohup ./1_0/gpu0_total.sh > ./log/simple/gpu0_total_0.7.log 2>&1 &
+nohup ./1_1/gpu1_total.sh > ./log/gpu1_04.12/gpu1_total.log 2>&1 &
+nohup ./1_2/gpu2_total.sh > ./log/gpu2_04.10/gpu2_total.log 2>&1 &
+nohup ./1_3/gpu3_total.sh > ./log/gpu3_04.10/gpu3_total.log 2>&1 &
 
 ps -ef | grep train_skills.py
 ps -ef | grep train_diffusion.py
 ps aux | grep python
+
+nohup ./gpu2_test_ARCLE.sh > ./log/gpu2_04.11/expert_r0.5_H5_ex5_1.log 2>&1 &

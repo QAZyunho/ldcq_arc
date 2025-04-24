@@ -1,10 +1,10 @@
 CUDA_VISIBLE_DEVICES=0 python ./collect_offline_q_learning_dataset.py \
 --env ARCLE \
---solar_dir /home/jovyan/ldcq_arc/ARC_Single/segment/train.6f8cd79b.10.11.26 \
---data_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/data/train.6f8cd79b.10.11.26 \
---checkpoint_dir /home/jovyan/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_11.26 \
---skill_model_filename gpu0_skill_model_ARCLE_11.26_400_.pth \
---diffusion_model_filename gpu0_skill_model_ARCLE_11.26_400__diffusion_prior_best.pt \
+--solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
+--data_dir /data/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_09.13_0.7 \
+--checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.13 \
+--skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
+--diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
 --num_diffusion_samples 300 \
 --num_prior_samples 300 \
 --diffusion_steps 500 \
@@ -17,7 +17,7 @@ CUDA_VISIBLE_DEVICES=0 python ./collect_offline_q_learning_dataset.py \
 --normalize_latent 0 \
 --batch_size 256 \
 --max_grid_size 10  \
---gamma 0.5 \
+--gamma 0.7 \
 --horizon 5 
 
 :<<"OPTIONS"

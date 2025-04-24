@@ -16,6 +16,10 @@ import matplotlib.pyplot as plt
 # matplotlib.use('TkAgg')
 # from mujoco_py import GlfwContext
 # GlfwContext(offscreen=True)
+import warnings
+
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
 
 from models.diffusion_models import (
     Model_mlp,
@@ -491,7 +495,7 @@ def evaluate(args, loader):
         #   diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4] + '_diffusion_prior_gc_best.pt')).to(args.device)
         # else:
         #   diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4] + '_diffusion_prior_best.pt')).to(args.device)
-        diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_filename)).to(args.device)
+        diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_model_filename)).to(args.device)
         
         diffusion_model = Model_Cond_Diffusion(
             diffusion_nn_model,
@@ -587,7 +591,7 @@ if __name__ == "__main__":
     parser.add_argument('--q_checkpoint_steps', type=int, default=0)
     parser.add_argument('--test_solar_dir', type=str, default=parent_folder+'/data')
     parser.add_argument('--skill_model_filename', type=str)
-    parser.add_argument('--diffusion_filename', type=str)
+    parser.add_argument('--diffusion_model_filename', type=str)
     parser.add_argument('--append_goals', type=int, default=0)
 
     parser.add_argument('--policy', type=str, default='q') #greedy/exhaustive/q

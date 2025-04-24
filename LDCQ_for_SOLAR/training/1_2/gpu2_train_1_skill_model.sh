@@ -1,7 +1,7 @@
-CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
+CUDA_VISIBLE_DEVICES=2 python ./train_skills.py \
 --env ARCLE \
---solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
---test_solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13 \
+--solar_dir /data/ldcq_arc/ARC_Single/segment/train.5c0a986e.s10.25.04.11  \
+--test_solar_dir /data/ldcq_arc/ARC_Single/segment/test.5c0a986e.s10.25.04.11 \
 --checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
@@ -9,10 +9,10 @@ CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
 --test_on True \
 --horizon 5 \
 --a_dim 36 \
---z_dim 32 \
---h_dim 64 \
---s_dim 64 \
---gpu_name gpu0 \
+--z_dim 256 \
+--h_dim 512 \
+--s_dim 512 \
+--gpu_name gpu2 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \
@@ -23,7 +23,7 @@ CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
 --save_cycle 50 \
 --batch_size 128 \
 --max_grid_size 10 \
---date 04.10
+--date 04.11
 
 :<<"OPTIONS"
 explanation of arguments

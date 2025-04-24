@@ -108,30 +108,32 @@ class DDQN(nn.Module):
         return max_z, max_q_vals
 
 
-    def learn(self, dataload_train, dataload_test=None, n_epochs=10000, update_frequency=1, diffusion_model_name='',q_checkpoint_dir = '', cfg_weight=0.0, per_buffer = 0.0, batch_size = 128, gpu_name=None):
-        # assert self.diffusion_prior is not None
+    def learn(self, dataload_train, dataload_test=None, n_epochs=10000, update_frequency=1, diffusion_model_name='',q_checkpoint_dir = '', cfg_weight=0.0, per_buffer = 0.0, batch_size = 128, gpu_name=None ,task_name=''):
+        # assert self.diffusion_prior is not None,
         d = datetime.datetime.now()
+        task= task_name.split(".")[1]
         wandb.init(
             project = "LDCQ_single",
             
-            name = 'LDCQ_'+gpu_name+'_'+'Q'+'_'+str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
+            name = 'LDCQ_'+gpu_name+'_'+'Q'+'_'+ task +'_'+str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
             config = {
+                'task':task_name,
                 'diffusion_prior':diffusion_model_name,
                 'cfg_weight':cfg_weight,
                 'per_buffer': per_buffer,
             }
         )
-        # experiment = Experiment(api_key = '', project_name = '')
-        # experiment.log_parameters({'diffusion_prior':diffusion_model_name, 'cfg_weight':cfg_weight, 'per_buffer': per_buffer})
+
         steps_net_0, steps_net_1, steps_total = 0, 0, 0
         self.target_net_0 = copy.deepcopy(self.q_net_0)
         self.target_net_1 = copy.deepcopy(self.q_net_1)
         self.target_net_0.eval()
         self.target_net_1.eval()
         loss_net_0, loss_net_1, loss_total = 0, 0, 0 
+        min_loss_total = 10**10
         epoch = 0
         beta = 0.3
-        update_steps = 2000
+        update_steps = 20000
             
         update = 0
         
@@ -235,6 +237,11 @@ class DDQN(nn.Module):
                         wandb.log({"train_Q/step_per_update": update/update_steps,"train_Q/steps": steps_total})
                         wandb.log({"train_Q/epoches": ep, "train_Q/steps": steps_total})
                         
+                        if loss_total < min_loss_total:
+                            min_loss_total = loss_total
+
+                            torch.save(self,  os.path.join(q_checkpoint_dir,diffusion_model_name+'_dqn_agent_min'+'_cfg_weight_'+str(cfg_weight)+'{}.pt'.format('_PERbuffer' if per_buffer == 1 else '')))
+                            
                         loss_net_0, loss_net_1, loss_total = 0,0,0
                         steps_net_0, steps_net_1 = 0,0
                         #self.target_net_0 = copy.deepcopy(self.q_net_0)
