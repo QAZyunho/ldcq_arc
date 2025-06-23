@@ -130,10 +130,9 @@ class DDQN(nn.Module):
         self.target_net_0.eval()
         self.target_net_1.eval()
         loss_net_0, loss_net_1, loss_total = 0, 0, 0 
-        min_loss_total = 10**10
         epoch = 0
         beta = 0.3
-        update_steps = 20000
+        update_steps = 2000
             
         update = 0
         
@@ -236,11 +235,6 @@ class DDQN(nn.Module):
                         wandb.log({"train_Q/train_loss": loss_total})
                         wandb.log({"train_Q/step_per_update": update/update_steps,"train_Q/steps": steps_total})
                         wandb.log({"train_Q/epoches": ep, "train_Q/steps": steps_total})
-                        
-                        if loss_total < min_loss_total:
-                            min_loss_total = loss_total
-
-                            torch.save(self,  os.path.join(q_checkpoint_dir,diffusion_model_name+'_dqn_agent_min'+'_cfg_weight_'+str(cfg_weight)+'{}.pt'.format('_PERbuffer' if per_buffer == 1 else '')))
                             
                         loss_net_0, loss_net_1, loss_total = 0,0,0
                         steps_net_0, steps_net_1 = 0,0
@@ -254,13 +248,17 @@ class DDQN(nn.Module):
                         self.target_net_1.eval()
                         
                     if steps_total % (update_steps) == 0:
-                        torch.save(self,  os.path.join(q_checkpoint_dir,diffusion_model_name+'_dqn_agent_'+str(steps_total//update_steps)+'_cfg_weight_'+str(cfg_weight)+'{}.pt'.format('_PERbuffer' if per_buffer == 1 else '')))
                         beta = np.min((beta+0.03,1))
+                        self.scheduler_0.step()
+                        self.scheduler_1.step()
+                        
+                    if steps_total % (update_steps*10) == 0:
+                        torch.save(self,  os.path.join(q_checkpoint_dir,diffusion_model_name+'_dqn_agent_'+str(steps_total//update_steps)+'_cfg_weight_'+str(cfg_weight)+'{}.pt'.format('_PERbuffer' if per_buffer == 1 else '')))
+                        
                         # torch.save(self,  parent_folder+'/q_checkpoints/'+diffusion_model_name+'_dqn_agent_'+str(steps_total//update_steps)+'_cfg_weight_'+str(cfg_weight)+'{}.pt'.format('_PERbuffer' if per_buffer == 1 else ''))
 
-            
-            self.scheduler_0.step()
-            self.scheduler_1.step()
+                # self.scheduler_0.step()
+                # self.scheduler_1.step()
             # experiment.log_metric("train_loss_episode", loss_ep/n_batch, step=epoch)
             wandb.log({"train_Q/train_loss_episode": loss_ep/n_batch, "train_Q/udates": update})
             epoch += 1

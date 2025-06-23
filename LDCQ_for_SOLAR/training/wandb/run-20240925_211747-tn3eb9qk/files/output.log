@@ -1,7 +1,0 @@
-Test skill model :   0%|                                                                       | 0/1000 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "./train_skills.py", line 412, in <module>
-    test_loss, test_s_T_loss, test_a_loss, test_kl_loss, test_diffusion_loss = test(model, train_loader, test_state_decoder = i > start_training_state_decoder_after, test_num=args.test_num)
-  File "./train_skills.py", line 82, in test
-    for i, (state, clip, selection, operation, reward, terminated, _, in_grid, out_grid, ex_in, ex_out) in pbar:
-ValueError: too many values to unpack (expected 11)

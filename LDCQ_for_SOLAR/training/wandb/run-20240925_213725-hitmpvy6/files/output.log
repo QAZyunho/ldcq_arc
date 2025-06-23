@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "./train_diffusion.py", line 262, in <module>
-    train(args)
-  File "./train_diffusion.py", line 115, in train
-    max_grid_size=args.max_grid_size
-AttributeError: 'Namespace' object has no attribute 'max_grid_size'

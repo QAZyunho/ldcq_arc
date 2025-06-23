@@ -1,13 +1,13 @@
-CUDA_VISIBLE_DEVICES=2 python ./plan_skills_diffusion_ARCLE.py \
+CUDA_VISIBLE_DEVICES=0 python ./plan_skills_diffusion_ARCLE.py \
 --env ARCLE/O2ARCv2Env-v0 \
---test_solar_dir /data/ldcq_arc/ARC_Single/whole/test.10.09.13 \
---checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.13 \
---q_checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.8 \
+--test_solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/whole/test.10.09.13 \
+--checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.15 \
+--q_checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.95 \
 --skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
 --diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
 --policy_decoder_type mlp \
---num_diffusion_samples 300 \
---q_checkpoint_steps 21 \
+--num_diffusion_samples 100 \
+--q_checkpoint_steps 150 \
 --diffusion_steps 500 \
 --num_parallel_envs 1 \
 --skill_model_diffusion_steps 100 \

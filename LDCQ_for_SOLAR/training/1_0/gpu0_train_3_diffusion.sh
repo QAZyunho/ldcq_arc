@@ -1,14 +1,14 @@
 CUDA_VISIBLE_DEVICES=0 python ./train_diffusion.py \
 --env ARCLE \
---solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
---data_dir /data/ldcq_arc/LDCQ_for_SOLAR/data/gpu0_04.10 \
---checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_04.10_0 \
---skill_model_filename gpu0_skill_model_ARCLE_04.10_400_.pth \
---n_epoch 400 \
+--solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13 \
+--data_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/data/gpu3_04.10 \
+--checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu3_04.10 \
+--skill_model_filename gpu3_skill_model_ARCLE_04.10_400_.pth \
+--n_epoch 500 \
 --save_cycle 10 \
 --diffusion_steps 500 \
---gpu_name gpu0 \
---s_dim 64 \
+--gpu_name gpu3 \
+--s_dim 1024 \
 --batch_size 32 \
 --max_grid_size 10
 

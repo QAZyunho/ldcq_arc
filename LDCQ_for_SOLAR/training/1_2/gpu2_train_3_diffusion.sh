@@ -1,8 +1,8 @@
 CUDA_VISIBLE_DEVICES=2 python ./train_diffusion.py \
 --env ARCLE \
---solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
---data_dir /data/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_04.10 \
---checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_04.10  \
+--solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13  \
+--data_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_04.10 \
+--checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_04.10  \
 --skill_model_filename gpu2_skill_model_ARCLE_04.10_400_.pth \
 --n_epoch 400 \
 --save_cycle 10 \

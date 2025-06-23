@@ -1,17 +1,17 @@
 CUDA_VISIBLE_DEVICES=1 python ./train_skills.py \
 --env ARCLE \
---solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
---test_solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13 \
---checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
+--solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13  \
+--test_solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13 \
+--checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
 --state_decoder_type mlp \
 --test_on True \
 --horizon 5 \
 --a_dim 36 \
---z_dim 64 \
---h_dim 128 \
---s_dim 128 \
+--z_dim 256 \
+--h_dim 512 \
+--s_dim 512 \
 --gpu_name gpu1 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \

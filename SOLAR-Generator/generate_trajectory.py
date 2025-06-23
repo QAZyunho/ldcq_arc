@@ -218,8 +218,8 @@ for i in tqdm(range(len(tasks)), desc="total", position=0):
                 sel_mask = np.zeros(max_grid_dim, dtype=np.int8)
                 # repeat end state.
                 for _ in range(H-1):
-                    utils.append_data(data, grid.copy(), sel, 0, 0, grid.copy(), 0, 0, sel_mask, 35, 0, True, len(data['step']))
-                    # utils.append_data(data, grid_pad, selection, g_h, g_w, clip_pad, c_h, c_w, selection_mask, operation, reward, term, len(data['step']))
+                    # utils.append_data(data, grid.copy(), sel, 0, 0, grid.copy(), 0, 0, sel_mask, 35, 0, True, len(data['step']))
+                    utils.append_data(data, grid_pad, selection, g_h, g_w, clip_pad, c_h, c_w, selection_mask, operation, reward, term, len(data['step']))
 
                 utils.save_seg(data, tasks[i], H, t, max_grid_dim[0], data_folder_path)
 

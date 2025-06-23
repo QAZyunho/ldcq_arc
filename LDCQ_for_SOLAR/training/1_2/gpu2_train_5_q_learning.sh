@@ -1,21 +1,21 @@
-CUDA_VISIBLE_DEVICES=2 python ./train_q_net.py \
+CUDA_VISIBLE_DEVICES=1 python ./train_q_net.py \
 --env ARCLE \
---solar_dir /data/ldcq_arc/ARC_Single/segment/train.10.09.13  \
---data_dir /data/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_09.13_0.8 \
---checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.13 \
---q_checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.8 \
+--solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13  \
+--data_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_09.13_0.8 \
+--checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.15 \
+--q_checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.8 \
 --skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
 --diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
---total_prior_samples 300 \
---num_prior_samples 300 \
---n_epoch 500 \
+--total_prior_samples 100 \
+--num_prior_samples 100 \
+--n_epoch 200 \
 --diffusion_steps 500 \
 --gpu_name gpu2 \
 --a_dim 36 \
 --z_dim 256 \
 --h_dim 512 \
 --s_dim 512 \
---batch_size 64 \
+--batch_size 32 \
 --max_grid_size 10 \
 --gamma 0.8 \
 --horizon 5

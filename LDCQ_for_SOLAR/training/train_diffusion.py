@@ -197,7 +197,7 @@ def train(args):
         #     torch.save(nn_model, os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4] + '_diffusion_prior_best.pt'))
 
         if(ep%args.save_cycle == 0):
-            torch.save(nn_model, os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4]+'_'+str(ep)+'_epoch'+'.pth'))
+            torch.save(nn_model, os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4]+'_'+str(ep)+'_epoch'+'.pt'))
 
 if __name__ == "__main__":
     parser = ArgumentParser()

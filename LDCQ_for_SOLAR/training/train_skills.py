@@ -342,26 +342,26 @@ else:
 file_info = env_name  + '_' + nowtime
 filename = args.gpu_name+'_' + 'skill_model_' + file_info
 
-# 확인하고 싶은 디렉토리의 경로를 지정하세요
-org_checkpoint_dir = checkpoint_dir+'/'+args.gpu_name+'_'+ nowtime
+# # 확인하고 싶은 디렉토리의 경로를 지정하세요
+# org_checkpoint_dir = checkpoint_dir+'/'+args.gpu_name+'_'+ nowtime
 
-suffix = 0
-checkpoint_dir = org_checkpoint_dir
+# suffix = 0
+# checkpoint_dir = org_checkpoint_dir
 
-while os.path.exists(checkpoint_dir):
-    checkpoint_dir = org_checkpoint_dir + f'_{suffix}'
-    suffix += 1
+# while os.path.exists(checkpoint_dir):
+#     checkpoint_dir = org_checkpoint_dir + f'_{suffix}'
+#     suffix += 1
 
-os.makedirs(checkpoint_dir)
+# os.makedirs(checkpoint_dir)
 
-# # 디렉토리가 존재하는지 확인
-# if not os.path.exists(checkpoint_dir):
-#     # 디렉토리가 없으면 새로 만듭니다
-#     os.makedirs(checkpoint_dir)
-#     print(f"디렉토리가 생성되었습니다: {checkpoint_dir}")
-# else:
-    
-#     print(f"디렉토리가 이미 존재합니다: {checkpoint_dir}")
+checkpoint_dir = checkpoint_dir+'/'+args.gpu_name+'_'+ nowtime
+# 디렉토리가 존재하는지 확인
+if not os.path.exists(checkpoint_dir):
+    # 디렉토리가 없으면 새로 만듭니다
+    os.makedirs(checkpoint_dir)
+    print(f"디렉토리가 생성되었습니다: {checkpoint_dir}")
+else:
+    raise FileExistsError(f"디렉토리가 이미 존재합니다: {checkpoint_dir}")
 
 # Check model option
 print("Normalize_latent : {0}".format(normalize_latent))

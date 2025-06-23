@@ -3,8 +3,8 @@
 #change the arguments below
 python generate_trajectory.py \
     --env ARCLE/O2ARCv2Env-v0 \
-    --data_folder_path /data/ldcq_arc/ARC_Single \
-    --tasks 10.09.13 \
+    --data_folder_path /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single \
+    --tasks simple \
     --num_samples 500 \
     --num_examples 3 \
     --max_grid_dim 10 10 \

@@ -1,8 +1,8 @@
 CUDA_VISIBLE_DEVICES=2 python ./train_skills.py \
 --env ARCLE \
---solar_dir /data/ldcq_arc/ARC_Single/segment/train.5c0a986e.s10.25.04.11  \
---test_solar_dir /data/ldcq_arc/ARC_Single/segment/test.5c0a986e.s10.25.04.11 \
---checkpoint_dir /data/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
+--solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.5c0a986e.s10.25.04.11  \
+--test_solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/test.5c0a986e.s10.25.04.11 \
+--checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
 --state_decoder_type mlp \

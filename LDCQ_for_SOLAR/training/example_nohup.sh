@@ -46,7 +46,7 @@ nohup ./gpu5_test_ARCLE.sh > ./log/gpu5_04.09/r0.9_H5_ex1_1.log 2>&1 &
 
 nohup ./gpu0.sh > ./log/gpu2_09.12/gpu0_q50.log 2>&1 &
 
-nohup ./1_0/gpu0_total.sh > ./log/simple/gpu0_total_0.7.log 2>&1 &
+nohup ./1_0/gpu0_total.sh > ./log/gpu2_09.13_r0.5/gpu0_total.log 2>&1 &
 nohup ./1_1/gpu1_total.sh > ./log/gpu1_04.12/gpu1_total.log 2>&1 &
 nohup ./1_2/gpu2_total.sh > ./log/gpu2_04.10/gpu2_total.log 2>&1 &
 nohup ./1_3/gpu3_total.sh > ./log/gpu3_04.10/gpu3_total.log 2>&1 &
