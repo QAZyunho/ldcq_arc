@@ -1,15 +1,26 @@
+echo "=================================="
+echo "Script: $0"
+echo "Started at: $(TZ='Asia/Seoul' date)"
+echo "=================================="
+echo ""
+echo "Script contents:"
+cat "$0"
+echo ""
+echo "=================================="
+echo "Execution begins:"
+echo "=================================="
 CUDA_VISIBLE_DEVICES=1 python ./collect_diffusion_data.py \
 --env ARCLE \
---solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13  \
---data_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/data/gpu1_04.12 \
---checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu1_04.12_0 \
---skill_model_filename gpu1_skill_model_ARCLE_04.12_400_.pth \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.10.09.13.s10.25.06.17 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu1_06.25  \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu1_06.25 \
+--skill_model_filename gpu1_skill_model_ARCLE_06.25_400_.pth \
 --policy_decoder_type mlp \
 --horizon 5 \
 --a_dim 36 \
---z_dim 256 \
---h_dim 512 \
---s_dim 512 \
+--z_dim 512 \
+--h_dim 1024 \
+--s_dim 1024 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \

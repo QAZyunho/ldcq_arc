@@ -1,20 +1,31 @@
+echo "=================================="
+echo "Script: $0"
+echo "Started at: $(TZ='Asia/Seoul' date)"
+echo "=================================="
+echo ""
+echo "Script contents:"
+cat "$0"
+echo ""
+echo "=================================="
+echo "Execution begins:"
+echo "=================================="
 CUDA_VISIBLE_DEVICES=0 python ./plan_skills_diffusion_ARCLE.py \
 --env ARCLE/O2ARCv2Env-v0 \
---test_solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/whole/test.10.09.13 \
---checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.13 \
---q_checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.5_500 \
---skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
---diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/whole/test.5c0a986e-mix-colorfix.s10.25.06.17 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_06.25 \
+--skill_model_filename gpu0_skill_model_ARCLE_06.25_400_.pth \
+--diffusion_model_filename gpu0_skill_model_ARCLE_06.25_400__diffusion_prior_best.pt \
+--q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu0.06.25 \
 --policy_decoder_type mlp \
 --num_diffusion_samples 100 \
---q_checkpoint_steps 150 \
+--q_checkpoint_steps 3000 \
 --diffusion_steps 500 \
 --num_parallel_envs 1 \
 --skill_model_diffusion_steps 100 \
 --a_dim 36 \
---z_dim 256 \
---h_dim 512 \
---s_dim 512 \
+--z_dim 512 \
+--h_dim 1024 \
+--s_dim 1024 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \

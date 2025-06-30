@@ -9,16 +9,16 @@ echo ""
 echo "=================================="
 echo "Execution begins:"
 echo "=================================="
-CUDA_VISIBLE_DEVICES=2 python ./train_diffusion.py \
+CUDA_VISIBLE_DEVICES=3 python ./train_diffusion.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.5c0a986e-mix-colorfix.s10.25.06.17 \
---data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_06.25 \
---checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_06.25 \
---skill_model_filename gpu2_skill_model_ARCLE_06.25_400_.pth \
---n_epoch 500 \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.10.09.13.s10.25.06.17 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu3_06.25 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu3_06.25 \
+--skill_model_filename gpu3_skill_model_ARCLE_06.25_400_.pth \
+--n_epoch 400 \
 --save_cycle 10 \
 --diffusion_steps 500 \
---gpu_name gpu2 \
+--gpu_name gpu3 \
 --s_dim 512 \
 --batch_size 32 \
 --max_grid_size 10

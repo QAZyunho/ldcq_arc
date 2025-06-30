@@ -1,13 +1,24 @@
+echo "=================================="
+echo "Script: $0"
+echo "Started at: $(TZ='Asia/Seoul' date)"
+echo "=================================="
+echo ""
+echo "Script contents:"
+cat "$0"
+echo ""
+echo "=================================="
+echo "Execution begins:"
+echo "=================================="
 CUDA_VISIBLE_DEVICES=0 python ./train_diffusion.py \
 --env ARCLE \
---solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13 \
---data_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/data/gpu3_04.10 \
---checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu3_04.10 \
---skill_model_filename gpu3_skill_model_ARCLE_04.10_400_.pth \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.5c0a986e-mix-colorfix.s10.25.06.17 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu0_06.25 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_06.25 \
+--skill_model_filename gpu0_skill_model_ARCLE_06.25_400_.pth \
 --n_epoch 500 \
 --save_cycle 10 \
 --diffusion_steps 500 \
---gpu_name gpu3 \
+--gpu_name gpu0 \
 --s_dim 1024 \
 --batch_size 32 \
 --max_grid_size 10

@@ -403,7 +403,11 @@ d=datetime.datetime.now()
 # Wandb 기록
 task_name = args.solar_dir.split("/")[-1]
 task= task_name.split(".")[1]
-wandb.init(
+
+os.environ["WANDB_API_KEY"] = "1d8e9524a57e6dc61398747064c13219471115ec"
+
+run=wandb.init(
+    entity="dbsgh797210",
     project = "LDCQ_single",
     name = 'LDCQ_'+args.gpu_name+'_'+'skill'+'_'+ task + '_' +nowtime,
     config = {
@@ -433,16 +437,19 @@ wandb.init(
     }
 )
 
+run_name = run.name
+print(f"WandB Run Name: {run_name}")
+
 train_loader = DataLoader(
 	dataset=dataset,
 	batch_size=batch_size,
-	num_workers=0,
+	num_workers=8,
 	shuffle=True)
 
 test_loader = DataLoader(
 	dataset=test_dataset,
 	batch_size=1,
-	num_workers=0,
+	num_workers=8,
 	shuffle=True
  )
 

@@ -20,7 +20,7 @@ import wandb
 from tqdm import tqdm
 
 class DDQN(nn.Module):
-    def __init__(self, state_dim, z_dim, h_dim=256, gamma=0.995, tau=0.995, lr=1e-3, num_prior_samples=100, total_prior_samples=1000, extra_steps=10, horizon=10,device='cuda', diffusion_prior=None,max_grid_size=30):
+    def __init__(self, state_dim, z_dim, h_dim=256, gamma=0.995, tau=0.995, lr=1e-3, num_prior_samples=100, total_prior_samples=100, extra_steps=0, horizon=10,device='cuda', diffusion_prior=None,max_grid_size=30):
         super(DDQN,self).__init__()
 
         self.state_dim = state_dim
@@ -112,9 +112,11 @@ class DDQN(nn.Module):
         # assert self.diffusion_prior is not None,
         d = datetime.datetime.now()
         task= task_name.split(".")[1]
-        wandb.init(
+        os.environ["WANDB_API_KEY"] = "1d8e9524a57e6dc61398747064c13219471115ec"
+
+        run=wandb.init(
+            entity="dbsgh797210",
             project = "LDCQ_single",
-            
             name = 'LDCQ_'+gpu_name+'_'+'Q'+'_'+ task +'_'+str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
             config = {
                 'task':task_name,
@@ -123,7 +125,7 @@ class DDQN(nn.Module):
                 'per_buffer': per_buffer,
             }
         )
-
+        print("WandB run initialized with name:", run.name)
         steps_net_0, steps_net_1, steps_total = 0, 0, 0
         self.target_net_0 = copy.deepcopy(self.q_net_0)
         self.target_net_1 = copy.deepcopy(self.q_net_1)

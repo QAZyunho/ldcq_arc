@@ -1,3 +1,14 @@
+echo "=================================="
+echo "Script: $0"
+echo "Started at: $(TZ='Asia/Seoul' date)"
+echo "=================================="
+echo ""
+echo "Script contents:"
+cat "$0"
+echo ""
+echo "=================================="
+echo "Execution begins:"
+echo "=================================="
 CUDA_VISIBLE_DEVICES=1 python ./plan_skills_diffusion_ARCLE.py \
 --env ARCLE/O2ARCv2Env-v0 \
 --test_solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/whole/test.10.09.13 \

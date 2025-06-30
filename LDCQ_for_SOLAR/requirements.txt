@@ -3,3 +3,4 @@ matplotlib
 wandb
 ipdb
 arcle == 0.2.5
+torch

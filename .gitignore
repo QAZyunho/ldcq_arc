@@ -1,11 +1,34 @@
+# Data directories
+ARC_data/*/*/
+data/
+data_5x/
+barc/
+ARC_Single/
+ARC_DT/
+
+# Working directories
+not_use/
+working/
+wandb/
+
+# File types
+*.json
 *.pt
 *.pth
 *.npy
-*.json
+*.log
+
+# Python
 *__pycache__*
+
+# Media files
 *.gif
 *.png
-*.log
-ARC_Single/
-ARC_DT/
-**/wandb/
+
+# System files
+*:Zone.Identifier
+
+# Exceptions (keep these files)
+!generate_trace.gif
+!visualization_example.gif
+!visualization_example.png

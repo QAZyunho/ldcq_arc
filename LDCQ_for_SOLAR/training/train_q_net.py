@@ -168,7 +168,7 @@ def train(args):
         y_dim = torch_data_train.latent_all.shape[1]
         
         dataload_train = DataLoader(
-            torch_data_train, batch_size=args.batch_size, shuffle=True, num_workers=0
+            torch_data_train, batch_size=args.batch_size, shuffle=True, num_workers=8
         )
     '''
 
@@ -176,14 +176,14 @@ def train(args):
         args.data_dir, args.skill_model_filename[:-4], train_or_test="test", test_prop=args.test_split, sample_z=args.sample_z
     )
     dataload_test = DataLoader(
-        torch_data_test, batch_size=args.batch_size, shuffle=True, num_workers=0
+        torch_data_test, batch_size=args.batch_size, shuffle=True, num_workers=8
     )
     '''
     # create model
     model = None
     if args.do_diffusion:
         # diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4] + '_diffusion_prior_best.pt')).to(args.device)
-        diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_model_filename)).to(args.device)
+        diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_model_filename),weights_only=False).to(args.device)
         model = Model_Cond_Diffusion(
             diffusion_nn_model,
             betas=(1e-4, 0.02),

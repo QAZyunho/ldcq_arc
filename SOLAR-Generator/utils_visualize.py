@@ -143,6 +143,98 @@ def save_for_gif(is_ex, data, i, task_id, trace_id, save_folder_path):
     plt.savefig(f"{save_folder_path}/{task_id}/gif/pngs_{task_id}_{trace_id}/{file_name}.png", bbox_inches='tight', dpi=300)
 
 
+# def plot_task(mode, data, task_id, trace_id, save_folder_path, make_task_folder=False):
+#     '''
+#     method for visuallizing trace
+#     mode : gif, iniout, segment, whole, wrong
+#     data : loaded json data
+#     task_id : task_id 
+#     trace_id : i-th trace, file name would be {task_id}_{trace_id} or {task_id}_{trace_id}_{segment_id}
+#     save_folder_path : folder to save the images
+#     '''
+#     num_step = len(data['step'])
+#     num_examples = len(data['ex_in'])
+#     exi = []
+#     exo = []
+#     axs = []
+
+#     seg_id = 0
+
+#     if mode == "gif":
+#         if os.path.exists(f"{save_folder_path}/{task_id}/gif/pngs_{task_id}_{trace_id}"):
+#             shutil.rmtree(f"{save_folder_path}/{task_id}/gif/pngs_{task_id}_{trace_id}")
+
+#         for i in range(num_step):
+#             save_for_gif(0, data, i, task_id, trace_id, save_folder_path)
+
+#     elif mode == "inout":
+#         fig = plt.figure(figsize=(10, 5*(num_examples+1)))
+#         gs = GridSpec(nrows=num_examples+1, ncols=2)
+#         is_ex = 0
+
+#         for h in range(num_examples):
+#             is_ex = h+1
+#             exi.append(fig.add_subplot(gs[h, 0]))
+#             plot_one(mode, is_ex, data['ex_in'][h], exi[h], 0, seg_id)
+#             exo.append(fig.add_subplot(gs[h, 1]))
+#             plot_one(mode, is_ex, data['ex_out'][h], exo[h], 1, seg_id)
+
+#         is_ex = 0
+#         ax_in = fig.add_subplot(gs[num_examples, 0])
+#         ax_out = fig.add_subplot(gs[num_examples, 1])
+#         plot_one(mode, is_ex, data, ax_in, 0, seg_id)
+#         plot_one(mode, is_ex, data, ax_out, 1, seg_id)
+
+#     else:  # segment // whole // wrong
+#         fig = plt.figure(figsize=(5*num_step, 5*(num_examples+1)))
+#         # gs = GridSpec(nrows=num_examples+1, ncols=num_step)
+#         gs = GridSpec(nrows=num_examples+1, ncols=num_step)
+#         is_ex = 0
+
+#         if mode == "segment":
+#             seg_id = int(data['desc']['id'].split('.')[0].split('_')[-1])
+
+#         for h in range(num_examples):
+#             is_ex = h+1
+#             exi.append(fig.add_subplot(gs[h, 0]))
+#             plot_one(mode, is_ex, data['ex_in'][h], exi[h], 0, seg_id)
+#             exo.append(fig.add_subplot(gs[h, 1]))
+#             plot_one(mode, is_ex, data['ex_out'][h], exo[h], 1, seg_id)
+
+#         is_ex = 0
+
+#         for i in range(num_step):
+#             axs.append(fig.add_subplot(gs[num_examples, i]))
+#             plot_one(mode, is_ex, data, axs[i], i, seg_id)
+
+#     if mode != "gif":  # inout // segment // whole // wrong
+#         if 'expert' in data['desc']['id']:
+#             title = data['desc']['id'].replace('expert', 'gold-standard')
+#         else: 
+#             title = data['desc']['id']
+#         fig.suptitle(f"{title}, {mode}\n",fontsize=20)
+
+#         if not os.path.exists(save_folder_path):
+#             os.makedirs(save_folder_path)
+#         if make_task_folder == "true":
+#             if not os.path.exists(f"{save_folder_path}/{task_id}"):
+#                 os.makedirs(f"{save_folder_path}/{task_id}")
+#             if not os.path.exists(f"{save_folder_path}/{task_id}/{mode}"):
+#                 os.makedirs(f"{save_folder_path}/{task_id}/{mode}")
+#             if mode == 'segment':
+#                 if not os.path.exists(f"{save_folder_path}/{task_id}/{mode}/{task_id}_{trace_id}"):
+#                     os.makedirs(f"{save_folder_path}/{task_id}/{mode}/{task_id}_{trace_id}")
+
+#             # plt.subplots_adjust(wspace=0.05,hspace=0.3)
+#             plt.tight_layout()
+#             plt.savefig(f"{save_folder_path}/{task_id}/{mode}/{data['desc']['id']}.png", dpi=300)
+#             # plt.show()
+
+#         else:
+#             plt.tight_layout()
+#             plt.savefig(f"{save_folder_path}/{data['desc']['id']}.png", dpi=300)
+#     plt.close()
+
 def plot_task(mode, data, task_id, trace_id, save_folder_path, make_task_folder=False):
     '''
     method for visuallizing trace
@@ -221,20 +313,22 @@ def plot_task(mode, data, task_id, trace_id, save_folder_path, make_task_folder=
                 os.makedirs(f"{save_folder_path}/{task_id}")
             if not os.path.exists(f"{save_folder_path}/{task_id}/{mode}"):
                 os.makedirs(f"{save_folder_path}/{task_id}/{mode}")
+            
+            # For segment mode, save in subdirectory
             if mode == 'segment':
                 if not os.path.exists(f"{save_folder_path}/{task_id}/{mode}/{task_id}_{trace_id}"):
                     os.makedirs(f"{save_folder_path}/{task_id}/{mode}/{task_id}_{trace_id}")
-
-            # plt.subplots_adjust(wspace=0.05,hspace=0.3)
-            plt.tight_layout()
-            plt.savefig(f"{save_folder_path}/{task_id}/{mode}/{data['desc']['id']}.png", dpi=300)
-            # plt.show()
+                
+                plt.tight_layout()
+                plt.savefig(f"{save_folder_path}/{task_id}/{mode}/{task_id}_{trace_id}/{data['desc']['id']}.png", dpi=300)
+            else:
+                plt.tight_layout()
+                plt.savefig(f"{save_folder_path}/{task_id}/{mode}/{data['desc']['id']}.png", dpi=300)
 
         else:
             plt.tight_layout()
             plt.savefig(f"{save_folder_path}/{data['desc']['id']}.png", dpi=300)
     plt.close()
-
 
 def make_gif(png_folder_path, output_filename):
     '''

@@ -21,7 +21,6 @@ class GridMaker(BaseGridMaker):
         max_h, max_w = kwargs['max_grid_dim']
         num_examples = kwargs['num_examples']
 
-        p_colors = random.sample(range(1, 10), 2)
         #p_colors = [1, 2]
         
         # randomly generate inputs
@@ -38,7 +37,7 @@ class GridMaker(BaseGridMaker):
             # 공통
 
             # 색상 2개 선택
-            
+            p_colors = random.sample(range(1, 10), 2)
 
             j = 0
             # num_examples 만큼 예제 만들기 + 마지막 1개 test case
@@ -111,13 +110,19 @@ class GridMaker(BaseGridMaker):
                     'operations': operations}
             dat.append((ex_in, ex_out, pr_in, pr_out, desc))
             
-            for i in range(9):
-                branch_idx = random.randint(1, len(operations) - 2)  # 예: 1~(N-2)
-                rand_operations = operations[:branch_idx]
-                rand_selections = selections
+            for i in range(4):
+                branch_idx = random.randint(1, len(operations) - 2)
+                rand_operations = operations[:branch_idx].copy()  # copy() 사용
+                rand_selections = selections[:branch_idx].copy()   # copy() 사용
+                
                 for _ in range(6):  # Submit 제외
-                    rand_operations.append(random.randint(1,10))
-                rand_operations.append(34)
+                    rand_x1 = random.randint(0, h-1)
+                    rand_y1 = random.randint(0, w-1)
+                    rand_operations.append(random.choice(p_colors))  # 유효한 색상만 사용
+                    rand_selections.append([rand_x1, rand_y1, 0, 0])  # selection도 추가
+                
+                rand_operations.append(34)  # Submit
+                rand_selections.append([0, 0, h-1, w-1])  # Submit selection도 추가
 
                 desc = {'id': f'5c0a986e-random_{num}_{i}',
                         'selections': rand_selections,

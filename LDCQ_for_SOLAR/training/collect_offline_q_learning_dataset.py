@@ -59,7 +59,7 @@ def collect_data(args):
     skill_model.eval()
 
     if args.do_diffusion:
-        diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_model_filename)).to(args.device)
+        diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_model_filename),weights_only=False).to(args.device)
         
         diffusion_model = Model_Cond_Diffusion(
             diffusion_nn_model,
@@ -83,7 +83,7 @@ def collect_data(args):
     train_loader = DataLoader(
         dataset=dataset,
         batch_size=args.batch_size,
-        num_workers=0)
+        num_workers=8)
 
     states_gt = np.zeros((len_train_dataset, 1, args.max_grid_size, args.max_grid_size))
     clip_gt = np.zeros((len_train_dataset, 1, args.max_grid_size, args.max_grid_size))

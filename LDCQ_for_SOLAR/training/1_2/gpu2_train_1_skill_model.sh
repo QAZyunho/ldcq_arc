@@ -1,8 +1,19 @@
+echo "=================================="
+echo "Script: $0"
+echo "Started at: $(TZ='Asia/Seoul' date)"
+echo "=================================="
+echo ""
+echo "Script contents:"
+cat "$0"
+echo ""
+echo "=================================="
+echo "Execution begins:"
+echo "=================================="
 CUDA_VISIBLE_DEVICES=2 python ./train_skills.py \
 --env ARCLE \
---solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.5c0a986e.s10.25.04.11  \
---test_solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/test.5c0a986e.s10.25.04.11 \
---checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.5c0a986e-mix-colorfix.s10.25.06.17 \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/test.5c0a986e-mix-colorfix.s10.25.06.17 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
 --state_decoder_type mlp \
@@ -23,7 +34,7 @@ CUDA_VISIBLE_DEVICES=2 python ./train_skills.py \
 --save_cycle 50 \
 --batch_size 128 \
 --max_grid_size 10 \
---date 04.11
+--date 06.25 \
 
 :<<"OPTIONS"
 explanation of arguments

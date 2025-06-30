@@ -1,23 +1,34 @@
+echo "=================================="
+echo "Script: $0"
+echo "Started at: $(TZ='Asia/Seoul' date)"
+echo "=================================="
+echo ""
+echo "Script contents:"
+cat "$0"
+echo ""
+echo "=================================="
+echo "Execution begins:"
+echo "=================================="
 CUDA_VISIBLE_DEVICES=0 python ./collect_offline_q_learning_dataset.py \
 --env ARCLE \
---solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/segment/train.10.09.13 \
---data_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/data/gpu2_09.13_recon \
---checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.13 \
---skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
---diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.5c0a986e-mix-colorfix.s10.25.06.17 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu0_06.25 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_06.25 \
+--skill_model_filename gpu0_skill_model_ARCLE_06.25_400_.pth \
+--diffusion_model_filename gpu0_skill_model_ARCLE_06.25_400__diffusion_prior_best.pt \
 --num_diffusion_samples 300 \
 --num_prior_samples 300 \
 --diffusion_steps 500 \
 --a_dim 36 \
---z_dim 256 \
---h_dim 512 \
+--z_dim 512 \
+--h_dim 1024 \
 --skill_model_diffusion_steps 100 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \
 --batch_size 256 \
 --max_grid_size 10  \
---gamma 0.5 \
+--gamma 0.7 \
 --horizon 5 
 
 :<<"OPTIONS"

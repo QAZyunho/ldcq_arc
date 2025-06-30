@@ -422,7 +422,7 @@ if __name__ == "__main__":
     train_loader = DataLoader(
 	dataset=dataset,
 	batch_size=16,
-	num_workers=0,
+	num_workers=8,
 	shuffle=True)
     
     pbar = tqdm(enumerate(train_loader), total=len(train_loader))

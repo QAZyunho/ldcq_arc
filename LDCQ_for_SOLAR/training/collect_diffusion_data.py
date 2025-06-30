@@ -59,7 +59,7 @@ def collect_data(args):
     train_loader = DataLoader(
         dataset,
         batch_size=args.batch_size,
-        num_workers=0)
+        num_workers=8)
     
     len_train_dataset = dataset.__len__()
     
@@ -96,7 +96,11 @@ def collect_data(args):
         output, output_std = skill_model.encoder(state, clip, in_grid, operation, selection, pair_in, pair_out)
         latent_gt[start_idx : end_idx] = output.detach().cpu().numpy().squeeze(1)
 
-        
+    if not os.path.exists(args.data_dir):
+        # 디렉토리가 없으면 새로 만듭니다
+        os.makedirs(args.data_dir)
+        print(f"디렉토리가 생성되었습니다: {args.data_dir}")
+
     np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_states.npy'), states_gt)
     np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_latents.npy'), latent_gt)
     np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_clip.npy'), clip_gt)

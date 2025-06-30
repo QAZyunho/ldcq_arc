@@ -9,11 +9,10 @@ echo ""
 echo "=================================="
 echo "Execution begins:"
 echo "=================================="
-
-CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
+CUDA_VISIBLE_DEVICES=3 python ./train_skills.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.5c0a986e-mix-colorfix.s10.25.06.17 \
---test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/test.5c0a986e-mix-colorfix.s10.25.06.17 \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.10.09.13.s10.25.06.17 \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/test.10.09.13.s10.25.06.17 \
 --checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
@@ -21,10 +20,10 @@ CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
 --test_on True \
 --horizon 5 \
 --a_dim 36 \
---z_dim 512 \
---h_dim 1024 \
---s_dim 1024 \
---gpu_name gpu0 \
+--z_dim 256 \
+--h_dim 512 \
+--s_dim 512 \
+--gpu_name gpu3 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
 --normalize_latent 0 \
@@ -33,9 +32,9 @@ CUDA_VISIBLE_DEVICES=0 python ./train_skills.py \
 --test_num 100 \
 --test_cycle 10 \
 --save_cycle 50 \
---batch_size 256 \
+--batch_size 128 \
 --max_grid_size 10 \
---date 04.10
+--date 06.25
 
 :<<"OPTIONS"
 explanation of arguments

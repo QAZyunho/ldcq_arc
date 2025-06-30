@@ -3,8 +3,8 @@
 #change the arguments below
 python visualize_trajectory.py \
     --mode whole \
-    --file_path /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/whole/test.10.09.13 \
-    --save_folder_path /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/figure/org \
+    --file_path /home/ubuntu/yunho/ldcq_arc/data_5x/whole/train.5c0a986e-mix-colordiff.s10.25.06.17 \
+    --save_folder_path /home/ubuntu/yunho/ldcq_arc/ARC_Single/figure \
     --make_task_folder true
 
 :<<"OPTIONS"

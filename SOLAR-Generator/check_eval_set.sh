@@ -1,5 +1,5 @@
 #!/bin/bash
 
-python check_eval_set.py \
-    --train_file_path /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/whole/test.10.09.13 \
-    --test_file_path /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/whole/test.simple.s10.25.05.09
+python ./check_eval_set.py \
+    --train_file_path /home/ubuntu/yunho/ldcq_arc/data_5x/whole/train.5c0a986e-mix-colorfix.s10.25.06.17 \
+    --test_file_path /home/ubuntu/yunho/ldcq_arc/data_5x/whole/test.5c0a986e-mix-colorfix.s10.25.06.17

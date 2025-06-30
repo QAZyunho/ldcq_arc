@@ -46,9 +46,11 @@ nohup ./gpu5_test_ARCLE.sh > ./log/gpu5_04.09/r0.9_H5_ex1_1.log 2>&1 &
 
 nohup ./gpu0.sh > ./log/gpu2_09.12/gpu0_q50.log 2>&1 &
 
+nohup bash -c "echo '=== Script Content ===' && cat ./1_0/gpu0_train_4_collect_q_learning.sh && echo '=== Execution ===' && ./1_0/gpu0_train_4_collect_q_learning.sh" > ./log/gpu0_09.12/gpu0_4.log 2>&1 &
+
 nohup ./1_0/gpu0_total.sh > ./log/gpu2_09.13_r0.5/gpu0_total.log 2>&1 &
 nohup ./1_1/gpu1_total.sh > ./log/gpu1_04.12/gpu1_total.log 2>&1 &
-nohup ./1_2/gpu2_total.sh > ./log/gpu2_04.10/gpu2_total.log 2>&1 &
+nohup ./1_2/gpu2_total.sh > ./log/gpu2_06.23/gpu2_total.log 2>&1 &
 nohup ./1_3/gpu3_total.sh > ./log/gpu3_04.10/gpu3_total.log 2>&1 &
 
 ps -ef | grep train_skills.py

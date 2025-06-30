@@ -90,7 +90,7 @@ def train(args):
         args.data_dir, args.skill_model_filename[:-4], train_or_test="train", test_prop=args.test_split, sample_z=args.sample_z
     )
     dataload_train = DataLoader(
-        torch_data_train, batch_size=args.batch_size, shuffle=True, num_workers=0
+        torch_data_train, batch_size=args.batch_size, shuffle=True, num_workers=8
     )
 
     if args.test_split > 0.0:
@@ -98,7 +98,7 @@ def train(args):
             args.data_dir, args.skill_model_filename[:-4], train_or_test="test", test_prop=args.test_split, sample_z=args.sample_z
         )
         dataload_test = DataLoader(
-            torch_data_test, batch_size=args.batch_size, shuffle=True, num_workers=0
+            torch_data_test, batch_size=args.batch_size, shuffle=True, num_workers=8
         )
 
     # x_shape = torch_data_train.state_all.shape[1]
@@ -242,7 +242,10 @@ if __name__ == "__main__":
     filename = args.gpu_name+'_'+'diffusion_'+file_info
     task_name = args.solar_dir.split("/")[-1]
     task= task_name.split(".")[1]
-    wandb.init(
+    os.environ["WANDB_API_KEY"] = "1d8e9524a57e6dc61398747064c13219471115ec"
+
+    run=wandb.init(
+        entity="dbsgh797210",
         project = "LDCQ_single",
         name = 'LDCQ_'+args.gpu_name+'_'+'diffusion'+'_'+ task + '_'+ str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
         config = {
@@ -261,5 +264,5 @@ if __name__ == "__main__":
             'append_goals': args.append_goals
         }
     )
-    
+    print("wandb run name: ", run.name)
     train(args)

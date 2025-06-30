@@ -4,8 +4,8 @@
 python generate_trajectory.py \
     --env ARCLE/O2ARCv2Env-v0 \
     --data_folder_path /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single \
-    --tasks simple \
-    --num_samples 500 \
+    --tasks 5c0a986e-mix-colordiff \
+    --num_samples 1000 \
     --num_examples 3 \
     --max_grid_dim 10 10 \
     --horizon 5 \
