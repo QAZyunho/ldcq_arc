@@ -49,6 +49,7 @@ def collect_data(args):
                             normalize_latent=args.normalize_latent,
                             action_num=a_dim,
                             max_grid_size=args.max_grid_size,
+                            use_in_out=args.use_in_out,
                             ).to(args.device)
     
     skill_model.load_state_dict(checkpoint['model_state_dict'])
@@ -67,6 +68,8 @@ def collect_data(args):
     clip_gt = np.zeros((len_train_dataset, 1, args.max_grid_size, args.max_grid_size))
     in_grid_gt = np.zeros((len_train_dataset, 1, args.max_grid_size, args.max_grid_size))
     latent_gt = np.zeros((len_train_dataset, args.z_dim))
+    pair_in_gt = np.zeros((len_train_dataset, args.num_ex_pair, args.max_grid_size, args.max_grid_size))
+    pair_out_gt = np.zeros((len_train_dataset, args.num_ex_pair, args.max_grid_size, args.max_grid_size))
     
     if args.save_z_dist:
         latent_std_gt = np.zeros((len_train_dataset, args.z_dim))
@@ -92,6 +95,9 @@ def collect_data(args):
         states_gt[start_idx : end_idx, 0, :, :] = state[:, 0, :, :].cpu().numpy()
         clip_gt[start_idx : end_idx, 0, :, :] = clip[:, 0, :, :].cpu().numpy()
         in_grid_gt[start_idx : end_idx, 0, :, :] = in_grid[:, 0, :, :].cpu().numpy()
+        pair_in_gt[start_idx: end_idx] = pair_in[:, :, :, :].cpu().numpy()
+        pair_out_gt[start_idx: end_idx] = pair_out[:, :, :, :].cpu().numpy()
+        
         
         output, output_std = skill_model.encoder(state, clip, in_grid, operation, selection, pair_in, pair_out)
         latent_gt[start_idx : end_idx] = output.detach().cpu().numpy().squeeze(1)
@@ -105,6 +111,8 @@ def collect_data(args):
     np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_latents.npy'), latent_gt)
     np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_clip.npy'), clip_gt)
     np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_in_grid.npy'), in_grid_gt)
+    np.save(os.path.join(args.data_dir, args.skill_model_filename[:-4] + '_pair_in.npy'), pair_in_gt)
+    np.save(os.path.join(args.data_dir, args.skill_model_filename[:-4] + '_pair_out.npy'), pair_out_gt)
     
     if args.save_z_dist:
         np.save(os.path.join(args.data_dir,f'{args.skill_model_filename[:-4]}_latents_std.npy'), latent_std_gt)
@@ -143,7 +151,8 @@ if __name__ == '__main__':
     parser.add_argument('--normalize_latent', type=int, default=0)
     parser.add_argument('--diffusion_steps', type=int, default=100)
     parser.add_argument('--max_grid_size', type=int, default=30)
-    
+    parser.add_argument('--num_ex_pair', type=int, default=3)
+    parser.add_argument('--use_in_out', type=int, default=0)  # 0: False, 1: True
     
     args = parser.parse_args()
 

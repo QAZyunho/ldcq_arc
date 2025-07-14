@@ -11,12 +11,12 @@ echo "Execution begins:"
 echo "=================================="
 CUDA_VISIBLE_DEVICES=3 python ./train_q_net.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.10.09.13.s10.25.06.17 \
---data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu3_06.25 \
---checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu3_06.25 \
---skill_model_filename gpu3_skill_model_ARCLE_06.25_400_.pth \
---diffusion_model_filename gpu3_skill_model_ARCLE_06.25_400__diffusion_prior_best.pt \
---q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu3_06.25 \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_half/segment/train.4c4377d9-half.s10.H5.25.07.03 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu3_07.03 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu3_07.03 \
+--skill_model_filename gpu3_skill_model_ARCLE_07.03_400_.pth \
+--diffusion_model_filename gpu3_skill_model_ARCLE_07.03_400__diffusion_prior_best.pt \
+--q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu3_07.03 \
 --total_prior_samples 300 \
 --num_prior_samples 300 \
 --n_epoch 800 \
@@ -29,7 +29,9 @@ CUDA_VISIBLE_DEVICES=3 python ./train_q_net.py \
 --batch_size 32 \
 --max_grid_size 10 \
 --gamma 0.5 \
---horizon 5
+--horizon 5 \
+--use_in_out 0
+
 
 :<<"OPTIONS"
 explanation of arguments

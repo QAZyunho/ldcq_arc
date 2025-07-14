@@ -11,18 +11,18 @@ echo "Execution begins:"
 echo "=================================="
 CUDA_VISIBLE_DEVICES=1 python ./train_skills.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.10.09.13.s10.25.06.17 \
---test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/test.10.09.13.s10.25.06.17 \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data/segment/train.74dd1130-mix.s10.H1.25.06.30 \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data/segment/test.74dd1130-mix.s10.H1.25.06.30 \
 --checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
 --state_decoder_type mlp \
 --test_on True \
---horizon 5 \
+--horizon 1 \
 --a_dim 36 \
---z_dim 512 \
---h_dim 1024 \
---s_dim 1024 \
+--z_dim 256 \
+--h_dim 512 \
+--s_dim 512 \
 --gpu_name gpu1 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
@@ -32,9 +32,11 @@ CUDA_VISIBLE_DEVICES=1 python ./train_skills.py \
 --test_num 100 \
 --test_cycle 10 \
 --save_cycle 50 \
---batch_size 256 \
+--batch_size 128 \
 --max_grid_size 10 \
---date 06.25 \
+--date 07.02 \
+--use_in_out 0
+
 
 :<<"OPTIONS"
 explanation of arguments

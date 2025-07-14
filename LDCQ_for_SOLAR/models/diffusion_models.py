@@ -233,7 +233,8 @@ class Model_mlp_diff_embed(nn.Module):
         net_type="fc",
         use_prev=False,
         h_dims=[128,32,16,8],
-        max_grid_size=30
+        max_grid_size=30,
+        use_in_out=False,
     ):
         super(Model_mlp_diff_embed, self).__init__()
         self.embed_dim = embed_dim  # input embedding dimension
@@ -241,7 +242,9 @@ class Model_mlp_diff_embed(nn.Module):
         self.net_type = net_type
         self.x_dim = x_dim
         self.y_dim = y_dim
-        self.use_prev = use_prev  # whether x contains previous timestep
+        self.use_prev = use_prev # whether x contains previous timestep
+        self.use_in_out = use_in_out  # whether to use in_grid and pair_in/out as input to model
+        
         if output_dim is None:
             self.output_dim = y_dim  # by default, just output size of action space
         else:
@@ -259,13 +262,29 @@ class Model_mlp_diff_embed(nn.Module):
             # nn.Flatten(), nn.Linear(32*28*28, x_dim), 
             nn.Tanh()
         )
-        self.s_p_emb_layer = nn.Sequential(
-            nn.Linear(x_dim*3, x_dim),  # state, clip, in_grid
+        
+        self.pair_emb_layer = nn.Sequential(
+            nn.Linear(6 * n_hidden, n_hidden),  # 3개 input + 3개 output = 6개 그리드
             nn.ReLU(),
-            nn.Linear(x_dim, x_dim),
+            nn.Linear(n_hidden, n_hidden),
             nn.ReLU()
         )
-
+        
+        if self.use_in_out:
+            self.s_p_emb_layer = nn.Sequential(
+                nn.Linear(x_dim*4, x_dim),  # state, clip, in_grid, pair
+                nn.ReLU(),
+                nn.Linear(x_dim, x_dim),
+                nn.ReLU()
+            )
+        else:
+            self.s_p_emb_layer = nn.Sequential(
+                nn.Linear(x_dim*3, x_dim),  # state, clip, in_grid
+                nn.ReLU(),
+                nn.Linear(x_dim, x_dim),
+                nn.ReLU()
+            )
+            
         if self.net_type == 'unet':
             self.unet = UNet(input_dim=y_dim, state_dim=x_dim, h_dims=h_dims, nheads=32, time_embed_dim=self.x_dim, state_embed_dim=self.x_dim)
             # self.unet = UNet(input_dim=y_dim, state_dim=x_dim, h_dims=h_dims, nheads=32, time_embed_dim=256, state_embed_dim=256)
@@ -325,7 +344,7 @@ class Model_mlp_diff_embed(nn.Module):
         else:
             raise NotImplementedError
 
-    def forward(self, y, x, clip, in_grid, t, context_mask):
+    def forward(self, y, x, clip, in_grid, t, context_mask, pair_in=None, pair_out=None):
         # embed y, x, t
         if self.net_type == 'unet':
             # print("input x shape: {0}".format(x.shape))
@@ -333,7 +352,26 @@ class Model_mlp_diff_embed(nn.Module):
             clip_emb = self.state_emb_layer(clip)
             in_grid_emb = self.state_emb_layer(in_grid)
             
-            feat = torch.cat([s_emb, clip_emb, in_grid_emb], dim=-1)
+            # print(pair_in.shape)
+            # print(pair_out.shape)
+        
+            
+            # state, clip, in_grid + pair 모두 concat
+            if self.use_in_out:
+                # VAE와 정확히 동일한 처리
+                pair = torch.cat([pair_in, pair_out], dim=1)
+                pair_shape = pair.shape
+                
+                # VAE와 동일: state_emb_layer로 처리
+                pair_emb = self.state_emb_layer(pair.reshape(-1, 1, self.max_grid_size, self.max_grid_size).type(torch.float32).contiguous().cuda())
+                pair_emb = pair_emb.reshape(pair_shape[0], 1, pair_shape[1] * self.n_hidden)  # VAE와 동일한 reshape
+                pair_emb = self.pair_emb_layer(pair_emb)
+                
+                # Diffusion에서는 time dimension이 없으므로 squeeze
+                pair_emb = pair_emb.squeeze(1)  # (batch, n_hidden)
+                feat = torch.cat([s_emb, clip_emb, in_grid_emb, pair_emb], dim=-1)
+            else:
+                feat = torch.cat([s_emb, clip_emb, in_grid_emb], dim=-1)
             s_p_emb = self.s_p_emb_layer(feat)
             # print("s_emb shape: {0}".format(s_emb.shape))
             net_output = self.unet(y, t, s_p_emb)
@@ -476,7 +514,7 @@ def ddpm_schedules(beta1, beta2, T, schedule):
 
 
 class Model_Cond_Diffusion(nn.Module):
-    def __init__(self, nn_model, betas, n_T, device, x_dim, y_dim, drop_prob=0.1, guide_w=0.0, normalize_latent=False, schedule='linear'):
+    def __init__(self, nn_model, betas, n_T, device, x_dim, y_dim, drop_prob=0.1, guide_w=0.0, normalize_latent=False, schedule='linear',use_in_out=False):
         super(Model_Cond_Diffusion, self).__init__()
         for k, v in ddpm_schedules(betas[0], betas[1], n_T, schedule).items():
             self.register_buffer(k, v)
@@ -490,8 +528,9 @@ class Model_Cond_Diffusion(nn.Module):
         self.y_dim = y_dim
         self.guide_w = guide_w
         self.normalize_latent = normalize_latent
-
-    def loss_on_batch(self, x_batch, clip, in_grid, y_batch, predict_noise=True):
+        self.use_in_out = use_in_out
+        
+    def loss_on_batch(self, x_batch, clip, in_grid, pair_in_batch, pair_out_batch, y_batch, predict_noise=True):
         _ts = torch.randint(1, self.n_T + 1, (y_batch.shape[0], 1)).to(self.device)
 
         # dropout context with some probability
@@ -507,9 +546,9 @@ class Model_Cond_Diffusion(nn.Module):
 
         # use nn model to predict noise
         if self.nn_model.net_type == 'unet':
-            noise_pred_batch = self.nn_model(y_t, x_batch, clip, in_grid, _ts, context_mask)
+            noise_pred_batch = self.nn_model(y_t, x_batch, clip, in_grid, pair_in_batch, pair_out_batch, _ts, context_mask)
         else:
-            noise_pred_batch = self.nn_model(y_t, x_batch, clip, in_grid, _ts / self.n_T, context_mask)
+           noise_pred_batch = self.nn_model(y_t, x_batch, clip, in_grid, pair_in_batch, pair_out_batch, _ts / self.n_T, context_mask)
 
         if self.normalize_latent:
             noise_pred_batch = noise_pred_batch/torch.norm(noise_pred_batch, dim=-1).unsqueeze(-1)
@@ -519,7 +558,7 @@ class Model_Cond_Diffusion(nn.Module):
         else:
             return (torch.minimum((self.sqrtab[_ts] / self.sqrtmab[_ts]) ** 2, torch.tensor(5)) * ((y_batch - noise_pred_batch) ** 2)).mean()
 
-    def sample(self, x_batch, clip, in_grid, return_y_trace=False, extract_embedding=False, predict_noise=True):
+    def sample(self, x_batch, clip, in_grid, pair_in=None, pair_out=None, return_y_trace=False, extract_embedding=False, predict_noise=True):
         # also use this as a shortcut to avoid doubling batch when guide_w is zero
         is_zero = False
         if self.guide_w > -1e-3 and self.guide_w < 1e-3:
@@ -570,12 +609,12 @@ class Model_Cond_Diffusion(nn.Module):
 
             # split predictions and compute weighting
             if extract_embedding:   # 안씀
-                eps = self.nn_model(y_i, x_batch, clip, in_grid, t_is, context_mask, x_embed)
+                eps = self.nn_model(y_i, x_batch, clip, in_grid, pair_in, pair_out, t_is, context_mask, x_embed)
             else:
                 if self.nn_model.net_type == 'unet':
-                    eps = self.nn_model(y_i, x_batch, clip, in_grid, t_is*self.n_T, context_mask)
+                    eps = self.nn_model(y_i, x_batch, clip, in_grid, pair_in, pair_out, t_is*self.n_T, context_mask)
                 else:
-                    eps = self.nn_model(y_i, x_batch, clip, in_grid, t_is, context_mask)
+                    eps = self.nn_model(y_i, x_batch, clip, in_grid, pair_in, pair_out, t_is, context_mask)
             if not is_zero:
                 eps1 = eps[:n_sample]
                 eps2 = eps[n_sample:]
@@ -595,7 +634,7 @@ class Model_Cond_Diffusion(nn.Module):
         else:
             return y_i
 
-    def sample_extra(self, x_batch, clip, in_grid, extra_steps=4, return_y_trace=False, predict_noise=True):
+    def sample_extra(self, x_batch, clip, in_grid, pair_in, pair_out, extra_steps=4,return_y_trace=False, predict_noise=True):
         # also use this as a shortcut to avoid doubling batch when guide_w is zero
         is_zero = False
         if self.guide_w > -1e-3 and self.guide_w < 1e-3:
@@ -647,9 +686,9 @@ class Model_Cond_Diffusion(nn.Module):
 
             # split predictions and compute weighting
             if self.nn_model.net_type == 'unet':
-                eps = self.nn_model(y_i, x_batch, clip, in_grid, t_is*self.n_T, context_mask)
+                eps = self.nn_model(y_i, x_batch, clip, in_grid, pair_in, pair_out, t_is*self.n_T, context_mask)
             else:
-                eps = self.nn_model(y_i, x_batch, clip, in_grid, t_is, context_mask)
+                eps = self.nn_model(y_i, x_batch, clip, in_grid, pair_in, pair_out, t_is, context_mask)
 
             if self.normalize_latent:
                 eps = eps/torch.norm(eps,dim=-1).unsqueeze(-1)
@@ -678,8 +717,7 @@ class Model_Cond_Diffusion(nn.Module):
             return y_i, y_i_store
         else:
             return y_i
-
-
+        
 class ResidualConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, is_res=False):
         super().__init__()
@@ -783,7 +821,7 @@ class Model_cnn_mlp(nn.Module):
 
 
 class Model_mlp(nn.Module):
-    def __init__(self, x_shape, n_hidden, y_dim, embed_dim, net_type, max_grid_size=30, output_dim=None):
+    def __init__(self, x_shape, n_hidden, y_dim, embed_dim, net_type, max_grid_size=30, output_dim=None, use_in_out=False):
         super(Model_mlp, self).__init__()
         self.x_shape = x_shape
         self.n_hidden = n_hidden
@@ -791,6 +829,7 @@ class Model_mlp(nn.Module):
         self.embed_dim = embed_dim
         self.net_type = net_type
         self.max_grid_size = max_grid_size
+        self.use_in_out = use_in_out  # whether to use in_grid and pair_in/out as input to model
         
         if output_dim is None:
             self.output_dim = y_dim  # by default, just output size of action space
@@ -808,10 +847,14 @@ class Model_mlp(nn.Module):
             activation="relu",
             net_type=self.net_type,
             use_prev=False,
-            # h_dims=[int(y_dim*4), int(y_dim*2), int(y_dim), int(y_dim/2)],
+            #h_dims=[int(y_dim*4), int(y_dim*2), int(y_dim), int(y_dim/2)],
             h_dims=[128,32,16,8],
-            max_grid_size=self.max_grid_size
+            max_grid_size=self.max_grid_size,
+            use_in_out=self.use_in_out
         )
 
-    def forward(self, y, x, clip, in_grid, t, context_mask, x_embed=None):
-        return self.nn(y, x, clip, in_grid, t, context_mask)
+    def forward(self, y, x, clip, in_grid, pair_in, pair_out, t, context_mask,  x_embed=None):
+        # print(pair_in.shape)
+        # print(pair_out.shape)
+            
+        return self.nn(y, x, clip, in_grid, t, context_mask, pair_in=pair_in, pair_out=pair_out)

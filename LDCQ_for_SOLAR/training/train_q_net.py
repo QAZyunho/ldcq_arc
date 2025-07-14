@@ -184,6 +184,11 @@ def train(args):
     if args.do_diffusion:
         # diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.skill_model_filename[:-4] + '_diffusion_prior_best.pt')).to(args.device)
         diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_model_filename),weights_only=False).to(args.device)
+        if not hasattr(diffusion_nn_model, 'use_in_out'):
+            diffusion_nn_model.use_in_out = args.use_in_out  # 또는 원하는 기본값
+        if hasattr(diffusion_nn_model, 'nn') and not hasattr(diffusion_nn_model.nn, 'use_in_out'):
+            diffusion_nn_model.nn.use_in_out = args.use_in_out
+            
         model = Model_Cond_Diffusion(
             diffusion_nn_model,
             betas=(1e-4, 0.02),
@@ -193,6 +198,7 @@ def train(args):
             y_dim=y_dim,
             drop_prob=args.drop_prob,
             guide_w=args.cfg_weight,
+            use_in_out=args.use_in_out,  # 0: False, 1: True
         ).to(args.device)
         model.eval()
 
@@ -202,7 +208,7 @@ def train(args):
     task_name = args.solar_dir.split("/")[-1]
     
     dqn_agent.learn(dataload_train=per_buffer, n_epochs=args.n_epoch,
-        diffusion_model_name=args.skill_model_filename[:-4], cfg_weight=args.cfg_weight, per_buffer = args.per_buffer, batch_size = args.batch_size, gpu_name=args.gpu_name,q_checkpoint_dir=args.q_checkpoint_dir,task_name=task_name)
+        diffusion_model_name=args.skill_model_filename[:-4], cfg_weight=args.cfg_weight, per_buffer = args.per_buffer, batch_size = args.batch_size, gpu_name=args.gpu_name,q_checkpoint_dir=args.q_checkpoint_dir,task_name=task_name,args=args)
 
 
 if __name__ == "__main__":
@@ -245,6 +251,7 @@ if __name__ == "__main__":
     parser.add_argument('--horizon',type=int, default=5)
     parser.add_argument('--gpu_name', type=str, required=True)
     parser.add_argument('--max_grid_size', type=int, default=30)
+    parser.add_argument('--use_in_out', type=int, default=0)  # 0: False, 1: True
     args = parser.parse_args()
     
     train(args)

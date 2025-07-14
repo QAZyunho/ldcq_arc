@@ -54,7 +54,7 @@ class DDQN(nn.Module):
             perm = torch.randperm(self.total_prior_samples)[:n_samples]
             z_samples = torch.FloatTensor(sample_latents).to(self.device).reshape(sample_latents.shape[0]*n_samples,sample_latents.shape[2])
         else:
-            z_samples = self.diffusion_prior.sample_extra(states, clip, in_grid, predict_noise=0, extra_steps=self.extra_steps)
+            z_samples = self.diffusion_prior.sample_extra(states, clip, in_grid, pair_in, pair_out, predict_noise=0, extra_steps=self.extra_steps)
 
         # q_vals_0 = self.q_net_0(states, z_samples)[:,0]
         # q_vals_1 = self.q_net_1(states, z_samples)[:,0]
@@ -86,7 +86,7 @@ class DDQN(nn.Module):
             z_samples = torch.FloatTensor(sample_latents).to(self.device).reshape(sample_latents.shape[0]*self.num_prior_samples, sample_latents.shape[2])
         else:
             # z_samples = self.diffusion_prior.sample_extra(states, clip, predict_noise=0, extra_steps=self.extra_steps)
-            z_samples = self.diffusion_prior.sample_extra(states, clip, in_grid, predict_noise=0, extra_steps=self.extra_steps)
+            z_samples = self.diffusion_prior.sample_extra(states, clip, in_grid, pair_in, pair_out, predict_noise=0, extra_steps=self.extra_steps)
 
         if is_eval:
             q_vals = torch.minimum(self.target_net_0(states, clip, in_grid, z_samples, pair_in, pair_out)[:, 0], self.target_net_1(states, clip, in_grid, z_samples, pair_in, pair_out)[:, 0])
@@ -108,22 +108,34 @@ class DDQN(nn.Module):
         return max_z, max_q_vals
 
 
-    def learn(self, dataload_train, dataload_test=None, n_epochs=10000, update_frequency=1, diffusion_model_name='',q_checkpoint_dir = '', cfg_weight=0.0, per_buffer = 0.0, batch_size = 128, gpu_name=None ,task_name=''):
+    def learn(self, dataload_train, dataload_test=None, n_epochs=10000, update_frequency=1, diffusion_model_name='',q_checkpoint_dir = '', cfg_weight=0.0, per_buffer = 0.0, batch_size = 128, gpu_name=None ,task_name='',args=None):
         # assert self.diffusion_prior is not None,
+        
+        beta = 0.3
+        update_steps = 2000
+        
         d = datetime.datetime.now()
         task= task_name.split(".")[1]
         os.environ["WANDB_API_KEY"] = "1d8e9524a57e6dc61398747064c13219471115ec"
+        
+        config = {
+                'task':task_name,
+                'diffusion_prior':diffusion_model_name,
+                'cfg_weight':cfg_weight,
+                'per_buffer': per_buffer,
+                'beta': beta,
+                'update_steps': update_steps,
+        }
+        
+        if args is not None:
+            base_config = vars(args).copy()  # args의 모든 속성을 dict로 변환
+            config = {**config, **base_config}
 
         run=wandb.init(
             entity="dbsgh797210",
             project = "LDCQ_single",
             name = 'LDCQ_'+gpu_name+'_'+'Q'+'_'+ task +'_'+str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
-            config = {
-                'task':task_name,
-                'diffusion_prior':diffusion_model_name,
-                'cfg_weight':cfg_weight,
-                'per_buffer': per_buffer,
-            }
+            config = config
         )
         print("WandB run initialized with name:", run.name)
         steps_net_0, steps_net_1, steps_total = 0, 0, 0
@@ -133,9 +145,6 @@ class DDQN(nn.Module):
         self.target_net_1.eval()
         loss_net_0, loss_net_1, loss_total = 0, 0, 0 
         epoch = 0
-        beta = 0.3
-        update_steps = 2000
-            
         update = 0
         
         if not os.path.exists(q_checkpoint_dir) :

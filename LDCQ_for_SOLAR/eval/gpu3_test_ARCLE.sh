@@ -9,16 +9,16 @@ echo ""
 echo "=================================="
 echo "Execution begins:"
 echo "=================================="
-CUDA_VISIBLE_DEVICES=3 python ./plan_skills_diffusion_ARCLE.py \
+CUDA_VISIBLE_DEVICES=2 python ./plan_skills_diffusion_ARCLE.py \
 --env ARCLE/O2ARCv2Env-v0 \
---test_solar_dir /home/jovyan/beomi/jaehyun/ldcq_arc/ARC_Single/whole/test.10.09.13 \
---checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu2_09.15 \
---q_checkpoint_dir /home/jovyan/beomi/jaehyun/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu2_09.13_0.8 \
---skill_model_filename Openhpc_gpu2_ARCLE_09.13_400_.pth \
---diffusion_model_filename Openhpc_gpu2_ARCLE_09.13_400__diffusion_prior_best.pt \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/whole/test.5c0a986e-expert-colordiff.s10.25.07.03 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_07.03 \
+--skill_model_filename gpu0_skill_model_ARCLE_07.03_400_.pth \
+--diffusion_model_filename gpu0_skill_model_ARCLE_07.03_400__diffusion_prior_best.pt \
+--q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu0_07.03_vae_r0.7 \
 --policy_decoder_type mlp \
 --num_diffusion_samples 100 \
---q_checkpoint_steps 150 \
+--q_checkpoint_steps 250 \
 --diffusion_steps 500 \
 --num_parallel_envs 1 \
 --skill_model_diffusion_steps 100 \
@@ -31,10 +31,12 @@ CUDA_VISIBLE_DEVICES=3 python ./plan_skills_diffusion_ARCLE.py \
 --normalize_latent 0 \
 --exec_horizon 1 \
 --horizon 5 \
---policy q \
+--policy q_vae \
 --render None \
 --beta 0.1 \
---max_grid_size 10
+--max_grid_size 10 \
+--use_in_out 0 \
+
     
 :<<"OPTIONS"
 explanation of arguments

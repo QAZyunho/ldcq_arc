@@ -9,19 +9,19 @@ echo ""
 echo "=================================="
 echo "Execution begins:"
 echo "=================================="
-CUDA_VISIBLE_DEVICES=0 python ./collect_offline_q_learning_dataset.py \
+CUDA_VISIBLE_DEVICES=3 python ./collect_offline_q_learning_dataset.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.5c0a986e-mix-colorfix.s10.25.06.17 \
---data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu0_06.25 \
---checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_06.25 \
---skill_model_filename gpu0_skill_model_ARCLE_06.25_400_.pth \
---diffusion_model_filename gpu0_skill_model_ARCLE_06.25_400__diffusion_prior_best.pt \
---num_diffusion_samples 300 \
---num_prior_samples 300 \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/segment/train.5c0a986e-expert-colordiff.s10.H5.25.07.03 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu0_07.03_vae_r0.7 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_07.03 \
+--skill_model_filename gpu0_skill_model_ARCLE_07.03_400_.pth \
+--diffusion_model_filename gpu0_skill_model_ARCLE_07.03_400__diffusion_prior_best.pt \
+--num_diffusion_samples 100 \
+--num_prior_samples 100 \
 --diffusion_steps 500 \
 --a_dim 36 \
---z_dim 512 \
---h_dim 1024 \
+--z_dim 256 \
+--h_dim 512 \
 --skill_model_diffusion_steps 100 \
 --train_diffusion_prior 1 \
 --conditional_prior 1 \
@@ -29,7 +29,10 @@ CUDA_VISIBLE_DEVICES=0 python ./collect_offline_q_learning_dataset.py \
 --batch_size 256 \
 --max_grid_size 10  \
 --gamma 0.7 \
---horizon 5 
+--horizon 5 \
+--do_diffusion 0 \
+--use_in_out 0
+
 
 :<<"OPTIONS"
 explanation of arguments

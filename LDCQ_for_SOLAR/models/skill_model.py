@@ -764,7 +764,7 @@ class GenerativeModel(nn.Module):
 class SkillModel(nn.Module):
     def __init__(self,state_dim,a_dim,z_dim,h_dim,horizon,a_dist='normal',beta=1.0,fixed_sig=None,encoder_type='gru',state_decoder_type='mlp',policy_decoder_type='mlp',
                  per_element_sigma=True,conditional_prior=True,train_diffusion_prior=False,normalize_latent=False,
-                 color_num=11,action_num=36,max_grid_size=30,diffusion_steps=100):
+                 color_num=11,action_num=36,max_grid_size=30,diffusion_steps=100, use_in_out=False ,diffusion_scale=1.0):
         super(SkillModel, self).__init__()
 
         self.state_dim = state_dim # state dimension
@@ -779,6 +779,8 @@ class SkillModel(nn.Module):
         self.a_dist = a_dist
         self.normalize_latent = normalize_latent
         self.max_grid_size = max_grid_size
+        self.diffusion_scale = diffusion_scale
+        self.use_in_out = use_in_out
         
         self.state_emb_layer = nn.Sequential(
             nn.Conv2d(1, 32, kernel_size=1, stride=1, padding=0), 
@@ -822,6 +824,7 @@ class SkillModel(nn.Module):
                 embed_dim = 128, 
                 net_type ='unet',
                 max_grid_size=self.max_grid_size,
+                use_in_out=self.use_in_out,
                 # net_type ='transformer'
             ).to('cuda')
             self.diffusion_prior = Model_Cond_Diffusion(
@@ -833,6 +836,7 @@ class SkillModel(nn.Module):
                 y_dim=z_dim,
                 drop_prob=0.0,
                 guide_w=0.0,
+                use_in_out=self.use_in_out,
             )
 
         self.beta = beta
@@ -854,7 +858,7 @@ class SkillModel(nn.Module):
         '''
 
         # STEP 1. Encode states and actions to get posterior over z
-        z_post_means, z_post_sigs = self.encoder(states, clip, in_grid, actions, selection, pair_in, pair_out)        # 여기까지 함!!!!!!!
+        z_post_means, z_post_sigs = self.encoder(states, clip, in_grid, actions, selection, pair_in, pair_out)        
         
         # STEP 2. sample z from posterior
         if not self.normalize_latent: 
@@ -908,11 +912,12 @@ class SkillModel(nn.Module):
                 z_prior_dist = Normal.Normal(z_prior_means, z_prior_sigs)
         
         # 원래 있던 Loss 쓰는 경우
-        a_loss = -torch.mean(torch.sum(a_dist.log_prob(actions.squeeze()), dim=-1))
-        x_loss = -torch.mean(torch.sum(x_dist.log_prob(selection[:, :, 0].squeeze()), dim=-1))
-        y_loss = -torch.mean(torch.sum(y_dist.log_prob(selection[:, :, 1].squeeze()), dim=-1))
-        h_loss = -torch.mean(torch.sum(h_dist.log_prob(selection[:, :, 2].squeeze()), dim=-1))
-        w_loss = -torch.mean(torch.sum(w_dist.log_prob(selection[:, :, 3].squeeze()), dim=-1))
+        # print(actions.shape, actions.squeeze(-1).shape, selection.shape, selection[:, :, 0].squeeze(-1).shape)
+        a_loss = -torch.mean(torch.sum(a_dist.log_prob(actions.squeeze(-1)), dim=-1))
+        x_loss = -torch.mean(torch.sum(x_dist.log_prob(selection[:, :, 0].squeeze(-1)), dim=-1))
+        y_loss = -torch.mean(torch.sum(y_dist.log_prob(selection[:, :, 1].squeeze(-1)), dim=-1))
+        h_loss = -torch.mean(torch.sum(h_dist.log_prob(selection[:, :, 2].squeeze(-1)), dim=-1))
+        w_loss = -torch.mean(torch.sum(w_dist.log_prob(selection[:, :, 3].squeeze(-1)), dim=-1))
         
         # KL loss 계산
         if not self.normalize_latent:
@@ -922,7 +927,8 @@ class SkillModel(nn.Module):
 
         # Diffusion prior loss 계산
         if self.train_diffusion_prior:
-            diffusion_loss = self.diffusion_prior.loss_on_batch(states[:, 0:1, :, :], clip[:, 0:1, :, :], in_grid, z_sampled[:, 0, :].detach(), predict_noise=0)
+            # diffusion_loss = self.diffusion_prior.loss_on_batch(states[:, 0:1, :, :], clip[:, 0:1, :, :], in_grid, z_sampled[:, 0, :].detach(), predict_noise=0)
+            diffusion_loss = self.diffusion_prior.loss_on_batch(states[:, 0:1, :, :], clip[:, 0:1, :, :], in_grid, pair_in, pair_out, z_sampled[:, 0, :].detach(), predict_noise=0)
         else:
             diffusion_loss = 0.0
             

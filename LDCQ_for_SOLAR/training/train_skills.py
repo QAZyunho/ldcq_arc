@@ -289,6 +289,8 @@ parser.add_argument('--z_dim', type=int, default=128)		# 원래는 16
 parser.add_argument('--h_dim', type=int, default=256)
 parser.add_argument('--s_dim', type=int, default=256)
 parser.add_argument('--max_grid_size', type=int, default=256)
+parser.add_argument('--diffusion_scale', type=float, default=1.0)
+parser.add_argument('--use_in_out', type=int, default=0)
 
 args = parser.parse_args()
 
@@ -388,6 +390,8 @@ model = SkillModel(
     color_num=11,				# 0~9 색깔, 10은 배경
     action_num=action_num,		# 35개의 action
     max_grid_size=args.max_grid_size,
+    diffusion_scale=args.diffusion_scale,
+    use_in_out=args.use_in_out
 ).cuda()
 
 
@@ -406,21 +410,15 @@ task= task_name.split(".")[1]
 
 os.environ["WANDB_API_KEY"] = "1d8e9524a57e6dc61398747064c13219471115ec"
 
-run=wandb.init(
-    entity="dbsgh797210",
-    project = "LDCQ_single",
-    name = 'LDCQ_'+args.gpu_name+'_'+'skill'+'_'+ task + '_' +nowtime,
-    config = {
+base_config = vars(args) if 'args' in locals() else {}
+additional_config = {
         'task':task_name,
 		'lr':lr,
 		'h_dim':h_dim,
 		'z_dim':z_dim,
-		'H':H,
 		'a_dim':a_dim,
-		'state_dim':state_dim,
 		'l2_reg':wd,
 		'beta':beta,
-		'env_name':env_name,
 		'a_dist':a_dist,
 		'filename':filename,
 		'encoder_type':encoder_type,
@@ -435,6 +433,14 @@ run=wandb.init(
 		'normalize_latent': args.normalize_latent,
 		'append_goals': args.append_goals
     }
+
+config = {**base_config, **additional_config}
+
+run=wandb.init(
+    entity="dbsgh797210",
+    project = "LDCQ_single",
+    name = 'LDCQ_'+args.gpu_name+'_'+'skill'+'_'+ task + '_' +nowtime,
+    config = config
 )
 
 run_name = run.name

@@ -36,6 +36,8 @@ class PriorDataset(Dataset):
         self.clip_all = np.load(os.path.join(data_dir, filename + "_clip.npy"), allow_pickle=True)
         self.in_grid_all = np.load(os.path.join(data_dir, filename + "_in_grid.npy"), allow_pickle=True)
         self.latent_all = np.load(os.path.join(data_dir, filename + "_latents.npy"), allow_pickle=True)
+        self.pair_in_all = np.load(os.path.join(data_dir, filename + "_pair_in.npy"), allow_pickle=True)
+        self.pair_out_all = np.load(os.path.join(data_dir, filename + "_pair_out.npy"), allow_pickle=True)
         if sample_z:
             self.latent_all_std = np.load(os.path.join(data_dir, filename + "_latents_std.npy"), allow_pickle=True)
 
@@ -55,6 +57,8 @@ class PriorDataset(Dataset):
             self.clip_all = self.clip_all[:n_train]
             self.in_grid_all = self.in_grid_all[:n_train]
             self.latent_all = self.latent_all[:n_train]
+            self.pair_in_all = self.pair_in_all[:n_train]
+            self.pair_out_all = self.pair_out_all[:n_train]
             if sample_z:
                 self.latent_all_std = self.latent_all_std[:n_train]
         elif train_or_test == "test":
@@ -62,6 +66,8 @@ class PriorDataset(Dataset):
             self.clip_all = self.clip_all[n_train:]
             self.in_grid_all = self.in_grid_all[n_train:]
             self.latent_all = self.latent_all[n_train:]
+            self.pair_in_all = self.pair_in_all[n_train:]
+            self.pair_out_all = self.pair_out_all[n_train:]
             if sample_z:
                 self.latent_all_std = self.latent_all_std[n_train:]
         else:
@@ -75,13 +81,15 @@ class PriorDataset(Dataset):
         clip = self.clip_all[index]
         in_grid = self.in_grid_all[index]
         latent = self.latent_all[index]
+        pair_in = self.pair_in_all[index]
+        pair_out = self.pair_out_all[index]
         if self.sample_z:
             latent_std = self.latent_all_std[index]
             latent = np.random.normal(latent,latent_std)
             # latent = (latent - self.latent_mean) / self.latent_std
         #else:
         #    latent = (latent - self.latent_mean) / self.latent_std
-        return (state, clip, in_grid, latent)
+        return (state, clip, in_grid, pair_in, pair_out, latent)
 
 
 def train(args):
@@ -112,7 +120,8 @@ def train(args):
         y_dim = y_dim, 
         embed_dim = 128,    # h_dim*8 = 16*8 = 128
         net_type = args.net_type,
-        max_grid_size=args.max_grid_size
+        max_grid_size=args.max_grid_size,
+        use_in_out=args.use_in_out,  # 0: False, 1: True
     ).to(args.device)
     
     model = Model_Cond_Diffusion(
@@ -126,6 +135,7 @@ def train(args):
         guide_w=0.0,
         # normalize_latent=args.normalize_latent,   # 여기도 normalize 키면 학습이 안됨
         schedule=args.schedule,
+        use_in_out=args.use_in_out,  # 0: False, 1: True
     ).to(args.device)
 
     # Select Optimizer
@@ -151,13 +161,16 @@ def train(args):
         pbar = tqdm(dataload_train)
         loss_ep, n_batch = 0, 0
 
-        for x_batch, clip_batch, in_grid_batch, y_batch in pbar:
+        for x_batch, clip_batch, in_grid_batch, pair_in_batch, pair_out_batch ,y_batch in pbar:
             x_batch = x_batch.type(torch.FloatTensor).to(args.device)   # (Batch, 1, 30, 30)
             clip_batch = clip_batch.type(torch.FloatTensor).to(args.device)   # (Batch, 1, 30, 30)
             in_grid_batch = in_grid_batch.type(torch.FloatTensor).to(args.device)   # (Batch, 1, 30, 30)
+            pair_in_batch = pair_in_batch.type(torch.FloatTensor).to(args.device)
+            pair_out_batch = pair_out_batch.type(torch.FloatTensor).to(args.device)
+            
             y_batch = y_batch.type(torch.FloatTensor).to(args.device)   # (Batch, z_dim)
             
-            loss = model.loss_on_batch(x_batch, clip_batch, in_grid_batch, y_batch, args.predict_noise)
+            loss = model.loss_on_batch(x_batch, clip_batch, in_grid_batch, pair_in_batch, pair_out_batch, y_batch, args.predict_noise)
             optim.zero_grad()
             loss.backward()
             wandb.log({"train_diffusion/loss": loss.item()})
@@ -176,13 +189,13 @@ def train(args):
             loss_ep, n_batch = 0, 0
 
             with torch.no_grad():
-                for x_batch, clip_batch, in_grid_batch, y_batch in pbar:
+                for x_batch, clip_batch, in_grid_batch, pair_in_batch, pair_out_batch ,y_batch in pbar:
                     x_batch = x_batch.type(torch.FloatTensor).to(args.device)
                     clip_batch = clip_batch.type(torch.FloatTensor).to(args.device)
                     in_grid_batch = in_grid_batch.type(torch.FloatTensor).to(args.device)
                     y_batch = y_batch.type(torch.FloatTensor).to(args.device)
                     
-                    loss = model.loss_on_batch(x_batch, clip_batch, in_grid_batch, y_batch, args.predict_noise)
+                    loss = model.loss_on_batch(x_batch, clip_batch, in_grid_batch, pair_in_batch, pair_out_batch, y_batch, args.predict_noise)
                     loss_ep += loss.detach().item()
                     n_batch += 1
                     pbar.set_description(f"test loss: {loss_ep/n_batch:.4f}")
@@ -222,7 +235,7 @@ if __name__ == "__main__":
     parser.add_argument('--diffusion_steps', type=int, default=100)
     parser.add_argument('--cfg_weight', type=float, default=0.0)
     parser.add_argument('--predict_noise', type=int, default=0)
-    parser.add_argument('--normalize_latent', type=int, default=1)  # 원래는 0(바활성화)
+    parser.add_argument('--normalize_latent', type=int, default=0)  # 원래는 0(바활성화)
     parser.add_argument('--schedule', type=str, default='linear')
 
     # parser.add_argument('--a_dim', type=int, default=36)
@@ -235,6 +248,7 @@ if __name__ == "__main__":
     parser.add_argument('--gpu_name', type=str, required=True)
     parser.add_argument('--optimizer', type=str, default="AdamW")
     parser.add_argument('--max_grid_size', type=int, default=30)
+    parser.add_argument('--use_in_out', type=int, default=0)  # 0: False, 1: True
     args = parser.parse_args()
 
     d = datetime.datetime.now()
@@ -244,16 +258,11 @@ if __name__ == "__main__":
     task= task_name.split(".")[1]
     os.environ["WANDB_API_KEY"] = "1d8e9524a57e6dc61398747064c13219471115ec"
 
-    run=wandb.init(
-        entity="dbsgh797210",
-        project = "LDCQ_single",
-        name = 'LDCQ_'+args.gpu_name+'_'+'diffusion'+'_'+ task + '_'+ str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
-        config = {
+    base_config = vars(args) if 'args' in locals() else {}
+    additional_config = {
             'task':task_name,
-            'lr':args.lrate,
             'batch_size':args.batch_size,
             'sample_z':args.sample_z,
-            'env_name':args.env,
             'filename':filename,
             'net_type':args.net_type,
             'diffusion_steps':args.diffusion_steps,
@@ -263,6 +272,14 @@ if __name__ == "__main__":
             'test_split': args.test_split,
             'append_goals': args.append_goals
         }
+
+    config = {**base_config, **additional_config}
+
+    run=wandb.init(
+        entity="dbsgh797210",
+        project = "LDCQ_single",
+        name = 'LDCQ_'+args.gpu_name+'_'+'diffusion'+'_'+ task + '_'+ str(d.month)+'.'+str(d.day)+'_'+str(d.hour)+'.'+str(d.minute),
+        config = config,
     )
     print("wandb run name: ", run.name)
     train(args)

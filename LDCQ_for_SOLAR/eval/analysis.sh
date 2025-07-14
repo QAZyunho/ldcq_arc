@@ -1,0 +1,12 @@
+CUDA_VISIBLE_DEVICES=4 python /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/eval/run_evalauation_analysis.py \
+    --skill_model_filename /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_07.03/gpu0_skill_model_ARCLE_07.03_400_.pth \
+    --diffusion_model_filename /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu0_07.03/gpu0_skill_model_ARCLE_07.03_400__diffusion_prior_best.pt \
+    --test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/whole/test.5c0a986e-expert-colordiff.s10.25.07.03 \
+    --mode both \
+    --num_evals 100 \
+    --analysis_samples 300 \
+    --q_checkpoint_steps 350 \
+    --save_analysis \
+    --output_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/eval/analysis/gpu0_07.03 \
+    --compare_policies diffusion_prior q \
+    --device cuda

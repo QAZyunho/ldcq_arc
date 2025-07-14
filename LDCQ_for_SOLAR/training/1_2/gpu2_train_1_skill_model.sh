@@ -11,14 +11,14 @@ echo "Execution begins:"
 echo "=================================="
 CUDA_VISIBLE_DEVICES=2 python ./train_skills.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.5c0a986e-mix-colorfix.s10.25.06.17 \
---test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/test.5c0a986e-mix-colorfix.s10.25.06.17 \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data/segment/train.74dd1130-mix.s10.H3.25.07.03 \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data/segment/test.74dd1130-mix.s10.H3.25.07.03 \
 --checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
 --state_decoder_type mlp \
 --test_on True \
---horizon 5 \
+--horizon 3 \
 --a_dim 36 \
 --z_dim 256 \
 --h_dim 512 \
@@ -34,7 +34,9 @@ CUDA_VISIBLE_DEVICES=2 python ./train_skills.py \
 --save_cycle 50 \
 --batch_size 128 \
 --max_grid_size 10 \
---date 06.25 \
+--date 07.04 \
+--use_in_out 0
+
 
 :<<"OPTIONS"
 explanation of arguments

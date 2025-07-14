@@ -54,12 +54,17 @@ def collect_data(args):
         color_num=11,	# 0~9 색깔, 10은 배경
         action_num=args.a_dim,	# 36개의 action
         max_grid_size=args.max_grid_size,
+        use_in_out=args.use_in_out,
     ).to(args.device)
     skill_model.load_state_dict(checkpoint['model_state_dict'])
     skill_model.eval()
 
     if args.do_diffusion:
         diffusion_nn_model = torch.load(os.path.join(args.checkpoint_dir, args.diffusion_model_filename),weights_only=False).to(args.device)
+        if not hasattr(diffusion_nn_model, 'use_in_out'):
+            diffusion_nn_model.use_in_out = args.use_in_out  # 또는 원하는 기본값
+        if hasattr(diffusion_nn_model, 'nn') and not hasattr(diffusion_nn_model.nn, 'use_in_out'):
+            diffusion_nn_model.nn.use_in_out = args.use_in_out
         
         diffusion_model = Model_Cond_Diffusion(
             diffusion_nn_model,
@@ -70,6 +75,7 @@ def collect_data(args):
             y_dim=args.z_dim,
             drop_prob=None,
             guide_w=args.cfg_weight,
+            use_in_out=args.use_in_out,
         )
         diffusion_model.eval()
 
@@ -101,6 +107,7 @@ def collect_data(args):
 
     if args.do_diffusion:
         diffusion_latents_gt = np.zeros((len_train_dataset, args.num_diffusion_samples, args.z_dim))
+    else:
         prior_latents_gt = np.zeros((len_train_dataset, args.num_prior_samples, args.z_dim))
 
     if not 'maze' in args.env and not 'kitchen' in args.env:
@@ -144,13 +151,22 @@ def collect_data(args):
                 prior_latent_mean = prior_latent_mean.repeat_interleave(args.num_prior_samples, 0)
                 prior_latent_std = prior_latent_std.repeat_interleave(args.num_prior_samples, 0)
                 
-                prior_latents_gt[start_idx : end_idx] = torch.stack(torch.distributions.normal.Normal(prior_latent_mean, prior_latent_std).sample().chunk(state.shape[0])).cpu().numpy()
+                prior_latents_gt[start_idx : end_idx] = torch.stack(torch.distributions.normal.Normal(prior_latent_mean.squeeze(1), prior_latent_std.squeeze(1)).sample().chunk(state.shape[0])).cpu().numpy()
         else:
             diffusion_state = state[:, 0:1, :].repeat_interleave(args.num_diffusion_samples, 0)
             diffusion_clip = clip[:, 0:1, :].repeat_interleave(args.num_diffusion_samples, 0)
             diffusion_in_grid = in_grid[:, 0:1, :].repeat_interleave(args.num_diffusion_samples, 0)
+            diffusion_pair_in = pair_in.repeat_interleave(args.num_diffusion_samples, 0)
+            diffusion_pair_out = pair_out.repeat_interleave(args.num_diffusion_samples, 0)
+
+            # print(pair_in.shape)
+            # print(pair_out.shape)
+            # print(diffusion_in_grid.shape)
+            # print(diffusion_pair_in.shape)
+            # print(diffusion_pair_out.shape)
+            
             with torch.no_grad():
-                diffusion_latents_gt[start_idx : end_idx] = torch.stack(diffusion_model.sample_extra(diffusion_state, diffusion_clip, diffusion_in_grid, predict_noise=args.predict_noise, extra_steps=args.extra_steps).chunk(state.shape[0])).cpu().numpy()
+                diffusion_latents_gt[start_idx : end_idx] = torch.stack(diffusion_model.sample_extra(diffusion_state, diffusion_clip, diffusion_in_grid, diffusion_pair_in, diffusion_pair_out, predict_noise=args.predict_noise, extra_steps=args.extra_steps).chunk(state.shape[0])).cpu().numpy()
 
         output, output_std = skill_model.encoder(state, clip, in_grid, operation, selection, pair_in, pair_out)
         latent_gt[start_idx : end_idx] = output.detach().cpu().numpy().squeeze(1)
@@ -203,7 +219,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_prior_samples', type=int, default=300)
     parser.add_argument('--diffusion_steps', type=int, default=500)
     parser.add_argument('--cfg_weight', type=float, default=0.0)
-    parser.add_argument('--extra_steps', type=int, default=5)
+    parser.add_argument('--extra_steps', type=int, default=4)
     parser.add_argument('--predict_noise', type=int, default=0)
 
     parser.add_argument('--gamma', type=float, default=1.0)
@@ -226,7 +242,8 @@ if __name__ == '__main__':
     parser.add_argument('--h_dim', type=int, default=256)
     parser.add_argument('--z_dim', type=int, default=16)
     parser.add_argument('--max_grid_size', type=int, default=30)
-    
+    parser.add_argument('--use_in_out', type=int, default=0)  # 0: False, 1: True
+
 
     args = parser.parse_args()
 

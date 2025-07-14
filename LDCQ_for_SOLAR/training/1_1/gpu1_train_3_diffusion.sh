@@ -11,17 +11,19 @@ echo "Execution begins:"
 echo "=================================="
 CUDA_VISIBLE_DEVICES=1 python ./train_diffusion.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_5x/segment/train.10.09.13.s10.25.06.17 \
---data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu1_06.25  \
---checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu1_06.25 \
---skill_model_filename gpu1_skill_model_ARCLE_06.25_400_.pth \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data/segment/train.74dd1130-mix.s10.H1.25.06.30 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu1_07.02 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu1_07.02 \
+--skill_model_filename gpu1_skill_model_ARCLE_07.02_400_.pth \
 --n_epoch 400 \
 --save_cycle 10 \
 --diffusion_steps 500 \
 --gpu_name gpu1 \
 --s_dim 512 \
 --batch_size 32 \
---max_grid_size 10
+--max_grid_size 10 \
+--use_in_out 0
+
 
 :<<"OPTIONS"
 explanation of arguments
