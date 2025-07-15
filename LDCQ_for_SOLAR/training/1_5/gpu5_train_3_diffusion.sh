@@ -11,10 +11,10 @@ echo "Execution begins:"
 echo "=================================="
 CUDA_VISIBLE_DEVICES=5 python ./train_diffusion.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/segment/train.5c0a986e-expert-colordiff.s10.H5.25.07.03 \
---data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu5_07.14 \
---checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu5_07.14 \
---skill_model_filename gpu5_skill_model_ARCLE_07.14_400_.pth \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/segment/train.4258a5f9-expert-colorfix.s10.H5.25.07.15 \
+--data_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/data/gpu5_07.15 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu5_07.15 \
+--skill_model_filename gpu5_skill_model_ARCLE_07.15_400_.pth \
 --n_epoch 400 \
 --save_cycle 10 \
 --diffusion_steps 500 \
@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=5 python ./train_diffusion.py \
 --s_dim 512 \
 --batch_size 32 \
 --max_grid_size 10 \
---use_in_out 0
+--use_in_out 1
 
 
 :<<"OPTIONS"

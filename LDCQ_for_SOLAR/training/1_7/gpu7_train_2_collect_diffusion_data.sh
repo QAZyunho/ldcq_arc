@@ -27,7 +27,7 @@ CUDA_VISIBLE_DEVICES=7 python ./collect_diffusion_data.py \
 --normalize_latent 0 \
 --diffusion_steps 100 \
 --max_grid_size 10 \
---use_in_out 0
+--use_in_out 1
 
 
 :<<"OPTIONS"

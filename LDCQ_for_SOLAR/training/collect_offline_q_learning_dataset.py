@@ -56,7 +56,7 @@ def collect_data(args):
         max_grid_size=args.max_grid_size,
         use_in_out=args.use_in_out,
     ).to(args.device)
-    skill_model.load_state_dict(checkpoint['model_state_dict'])
+    skill_model.load_state_dict(checkpoint['model_state_dict'],strict=False)
     skill_model.eval()
 
     if args.do_diffusion:

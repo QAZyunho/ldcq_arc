@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=7 python ./train_diffusion.py \
 --s_dim 512 \
 --batch_size 32 \
 --max_grid_size 10 \
---use_in_out 0
+--use_in_out 1
 
 
 :<<"OPTIONS"

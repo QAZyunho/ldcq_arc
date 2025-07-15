@@ -10,12 +10,11 @@ echo "=================================="
 echo "Execution begins:"
 echo "=================================="
 CUDA_VISIBLE_DEVICES=6 python ./plan_skills_diffusion_ARCLE.py \
---env ARCLE/O2ARCv2Env-v0 \
---test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/whole/test.0d3d703e-expert.s10.25.07.10 \
---checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu6_07.11 \
---skill_model_filename gpu6_skill_model_ARCLE_07.11_400_.pth \
---diffusion_model_filename gpu6_skill_model_ARCLE_07.11_400__diffusion_prior_best.pt \
---q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu6_07.11 \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/whole/test.0d3d703e-expert.s10.25.07.14 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu6_07.14 \
+--skill_model_filename gpu6_skill_model_ARCLE_07.14_400_.pth \
+--diffusion_model_filename gpu6_skill_model_ARCLE_07.14_400__diffusion_prior_best.pt \
+--q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu6_07.14 \
 --policy_decoder_type mlp \
 --num_diffusion_samples 100 \
 --q_checkpoint_steps 350 \
@@ -35,8 +34,7 @@ CUDA_VISIBLE_DEVICES=6 python ./plan_skills_diffusion_ARCLE.py \
 --render None \
 --beta 0.1 \
 --max_grid_size 10 \
---use_in_out 0 \
-
+--use_in_out 1 \
     
 :<<"OPTIONS"
 explanation of arguments

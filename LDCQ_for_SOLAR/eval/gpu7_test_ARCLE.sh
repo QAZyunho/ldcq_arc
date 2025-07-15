@@ -12,10 +12,10 @@ echo "=================================="
 CUDA_VISIBLE_DEVICES=7 python ./plan_skills_diffusion_ARCLE.py \
 --env ARCLE/O2ARCv2Env-v0 \
 --test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/whole/test.4258a5f9-expert-colorfix.s10.25.07.10 \
---checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu7_07.10 \
---skill_model_filename gpu7_skill_model_ARCLE_07.10_400_.pth \
---diffusion_model_filename gpu7_skill_model_ARCLE_07.10_400__diffusion_prior_best.pt \
---q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu7_07.10 \
+--checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints/gpu7_07.11 \
+--skill_model_filename gpu7_skill_model_ARCLE_07.11_400_.pth \
+--diffusion_model_filename gpu7_skill_model_ARCLE_07.11_400__diffusion_prior_best.pt \
+--q_checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/q_checkpoints/gpu7_07.11 \
 --policy_decoder_type mlp \
 --num_diffusion_samples 100 \
 --q_checkpoint_steps 250 \
@@ -35,7 +35,7 @@ CUDA_VISIBLE_DEVICES=7 python ./plan_skills_diffusion_ARCLE.py \
 --render None \
 --beta 0.1 \
 --max_grid_size 10 \
---use_in_out 0 \
+--use_in_out 1 \
 
     
 :<<"OPTIONS"

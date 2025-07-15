@@ -35,7 +35,7 @@ CUDA_VISIBLE_DEVICES=6 python ./train_skills.py \
 --batch_size 128 \
 --max_grid_size 10 \
 --date 07.14 \
---use_in_out 0
+--use_in_out 1
 
 
 :<<"OPTIONS"

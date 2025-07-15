@@ -30,7 +30,7 @@ CUDA_VISIBLE_DEVICES=4 python ./collect_offline_q_learning_dataset.py \
 --max_grid_size 10  \
 --gamma 0.7 \
 --horizon 5 \
---use_in_out 0
+--use_in_out 1
 
 
 :<<"OPTIONS"

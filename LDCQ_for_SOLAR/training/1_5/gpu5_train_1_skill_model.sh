@@ -11,8 +11,8 @@ echo "Execution begins:"
 echo "=================================="
 CUDA_VISIBLE_DEVICES=5 python ./train_skills.py \
 --env ARCLE \
---solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/segment/train.5c0a986e-expert-colordiff.s10.H5.25.07.03 \
---test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/segment/test.5c0a986e-expert-colordiff.s10.H5.25.07.03 \
+--solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/segment/train.4258a5f9-expert-colorfix.s10.H5.25.07.15 \
+--test_solar_dir /home/ubuntu/yunho/ldcq_arc/data_expert/segment/test.4258a5f9-expert-colorfix.s10.H5.25.07.15 \
 --checkpoint_dir /home/ubuntu/yunho/ldcq_arc/LDCQ_for_SOLAR/checkpoints \
 --num_epochs 401 \
 --start_training_state_decoder_after 402 \
@@ -34,8 +34,8 @@ CUDA_VISIBLE_DEVICES=5 python ./train_skills.py \
 --save_cycle 50 \
 --batch_size 128 \
 --max_grid_size 10 \
---date 07.14 \
---use_in_out 0
+--date 07.15 \
+--use_in_out 1
 
 
 
